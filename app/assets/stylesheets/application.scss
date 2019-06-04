@@ -17,3 +17,16 @@ body {
   background-color: black;
   color: white;
 }
+
+#landing-background {
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  margin-top: -100px;
+  display:flex;
+  justify-content: center;
+}
+
+#banner-header {
+  margin-top: 300px;
+}
