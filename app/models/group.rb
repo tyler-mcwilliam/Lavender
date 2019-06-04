@@ -1,6 +1,6 @@
 class Group < ApplicationRecord
   belongs_to :creator
-  has_many :polls
+  has_many :polls, dependent: :destroy
   has_many :positions
   has_many :users, through: :user_groups
   has_many :orders, through: :polls
