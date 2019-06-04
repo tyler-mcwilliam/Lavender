@@ -12,8 +12,20 @@ class GroupsController < ApplicationController
   def show
   end
 
+  def new
+    @group = Group.new
+  end
+
   def create
     @group = Group.new(group_params)
+    @group.creator_id = current_user.id
+    @user_group = UserGroup.create(initial_deposit: params[:group]['initial_deposit'])
+    @user_group.group = @group
+    @user_group.user = current_user
+    @group.save
+    if @group.save == false
+      raise
+    end
   end
 
   def update
@@ -21,6 +33,9 @@ class GroupsController < ApplicationController
   end
 
   def edit
+  end
+
+  def initial_deposit
   end
 
   private
