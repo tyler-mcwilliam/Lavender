@@ -1,10 +1,7 @@
-<div id='landing-background' style="background-image:linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%),url(<%= asset_url 'landing_background.jpg' %>)">
-  <div class='container d-flex justify-content-center align-items-center' style="margin-top:-200px;">
-      <%= image_tag 'banner_text.png', style:'width:100%;' %>
-<!--     <div class=''> -->
- <!--      <h1 id='banner-text'>Lavender<span style='color:#8B81D2'>.</span></h1>
-      <h2>group investing</h2> -->
-    <!-- </div> -->
+<div id='landing-banner' style="background-image:linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%),url(<%= asset_url 'landing_background.jpg' %>)">
+  <div id =
+  'banner-text' class='container d-flex justify-content-center align-items-center'>
+      <%= image_tag 'banner-text.png', style:'width:100%;' %>
   </div>
 </div>
 
@@ -12,7 +9,7 @@
   <h2 id='easy-to-start'>Easy <span style='color:white;'>to start</span>.</h2>
 </div>
 
-<div class='container'>
+<div id='info-container' class='container'>
   <div id='info-cards' class='row no-gutters'>
     <div class='info-card col-md-4 col-xs-12'>
       <div class='info-photo mx-auto'>
@@ -50,11 +47,44 @@
   </div>
 </div>
 
-<div class='container d-flex flex-column align-items-center justify-content-center' style='margin-top:200px;'>
-  <h2 id='closing-text'>Invest commission-<span style='color:#8B81D2;'>free</span></h2>
-  <p style='margin:0; padding:0; font-size:30px;'>with your family, friends, and more!</p>
+<div id='closing-container' class='container d-flex flex-column align-items-center justify-content-center'>
+  <h2 class='closing-text'>Invest commission-<span style='color:#8B81D2;'>free</span></h2>
+  <p>with your family, friends, and more!</p>
+  <%= link_to "Signup", new_user_registration_path, class: "nav-link signup-button text-center", style:'margin-top:50px;' %>
 </div>
 
-<div class='footer-image'>
-  <img src='<%= asset_url 'background_triangles.png' %>'>
+<div id='team-container' class='container d-flex flex-column align-items-center justify-content-center'>
+  <h2 class='closing-text'>Meet our <span style='color:#8B81D2;'>Team</span></h2>
+  <div class='container d-flex align-items-center justify-content-center', style='margin-top:50px;'>
+    <div class='row'>
+      <div class='col-md-3 col-sm-6'>
+        <div class='team-avatar'>
+          <%= image_tag 'tony.jpg', class: 'avatar-huge' %>
+          <p class='text-center'>Tyler</p>
+        </div>
+      </div>
+      <div class='col-md-3 col-sm-6'>
+        <div class='team-avatar'>
+          <%= image_tag 'tony.jpg', class: 'avatar-huge' %>
+          <p class='text-center'>Tony</p>
+        </div>
+      </div>
+      <div class='col-md-3 col-sm-6'>
+        <div class='team-avatar'>
+          <%= image_tag 'tony.jpg', class: 'avatar-huge' %>
+          <p class='text-center'>Nasser</p>
+        </div>
+      </div>
+      <div class='col-md-3 col-sm-6'>
+        <div class='team-avatar'>
+          <%= image_tag 'tony.jpg', class: 'avatar-huge' %>
+          <p class='text-center'>Mike</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='footer-image' style="background-image: url(<%= asset_url 'background_triangles.png' %>)">
 </div>
