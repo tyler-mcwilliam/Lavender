@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_group, only: [:show, :edit]
+  before_action :set_order, only: [:show, :edit]
   def index
     @orders = Order.all
   end
@@ -9,16 +9,17 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @poll = @order.poll
+    @order.ticker = @poll.ticker
+    @order.quantity = @poll.quantity
+    @order.buy = @poll.buy
   end
 
   def update
     @order.save!
   end
 
-  def edit
-  end
-
-  def order_params
-    params.require(:order).permit()
+  def destroy
+    @order.delete
   end
 end
