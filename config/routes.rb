@@ -1,5 +1,25 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  devise_for :users
+  # controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+
+  get 'auth/:provider/callback', to: 'sessions#googleAuth'
+  get 'auth/failure', to: redirect('/')
+
+  get '/dashboard', to: 'users#dashboard', as: 'dashboard'
+
+  resources :user_groups, only: [:create]
+
+  resources :groups, only: [:show, :create, :update, :edit] do
+    resources :polls, only: [:create]
+  end
+
+  resources :polls, only: [:show] do
+    resources :votes, only: [:create]
+  end
 end
