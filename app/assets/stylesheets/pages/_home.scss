@@ -51,14 +51,31 @@
   }
 }
 
+#closing-container {
+  p {
+  margin:0;
+  padding:0;
+  font-size:30px;
+  }
+}
+
 #closing-text {
   font-size:72px;
   font-family:Ropa Sans;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
   #closing-text {
     font-size: 36px;
+  }
+  #closing-container p {
+    font-size: 20px;
+  }
+  #easy-to-start {
+    font-size: 50px;
+  }
+  #meet-our-team {
+    font-size: 50px;
   }
 }
 
