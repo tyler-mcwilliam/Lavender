@@ -12,6 +12,12 @@
 @import "components/index";
 @import "pages/index";
 
+body {
+  font-family: Ropa Sans;
+  background-color: black;
+  color: white;
+}
+
 .btn-google {
   color: white;
   background-color: #ea4335;
