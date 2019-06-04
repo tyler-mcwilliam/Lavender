@@ -1,33 +1,35 @@
 <div id='landing-background' style="background-image:linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%),url(<%= asset_url 'landing_background.jpg' %>)">
-  <div class='container d-flex justify-content-center align-items-center'>
-    <div class='d-flex justify-content-center align-items-center'>
-      <h1 id='banner-text'>Lavender<span style='color:#8B81D2'>.</span></h1>
-    </div>
+  <div class='container d-flex justify-content-center align-items-center' style="margin-top:-200px;">
+      <%= image_tag 'banner_text.png', style:'width:100%;' %>
+<!--     <div class=''> -->
+ <!--      <h1 id='banner-text'>Lavender<span style='color:#8B81D2'>.</span></h1>
+      <h2>group investing</h2> -->
+    <!-- </div> -->
   </div>
 </div>
 
 <div class='d-flex justify-content-center'>
-  <h2 style="font-size:72px; color:#8B81D2;font-family:Ropa Sans; margin-bottom:100px;">Easy <span style='color:white;'>to start</span>.</h2>
+  <h2 id='easy-to-start'>Easy <span style='color:white;'>to start</span>.</h2>
 </div>
 
 <div class='container'>
   <div id='info-cards' class='row no-gutters'>
     <div class='info-card col-md-4 col-xs-12'>
-      <div class='info-photo'>
+      <div class='info-photo mx-auto'>
         <%= image_tag 'group.jpg' %>
       </div>
-      <div class='info-text'>
+      <div class='info-text mx-auto'>
         <h3>
           Create<span style='color:#8B81D2'>.</span>
           <span style='font-size:24px;color:#8B81D2;'>an investment group</span>
         </h3>
       </div>
     </div>
-    <div class='info-card col-md-4 col-xs-12'>
-      <div class='info-photo'>
+    <div class='info-card col-md-4 '>
+      <div class='info-photo mx-auto'>
         <%= image_tag 'phone.jpg' %>
       </div>
-      <div class='info-text'>
+      <div class='info-text mx-auto'>
         <h3>
           Invest<span style='color:#8B81D2'>.</span>
           <span style='font-size:24px;color:#8B81D2;'>purchase stocks cooperatively</span>
@@ -35,10 +37,10 @@
       </div>
     </div>
     <div class='info-card col-md-4 col-xs-12'>
-      <div class='info-photo'>
+      <div class='info-photo mx-auto'>
         <%= image_tag 'breath.jpg' %>
       </div>
-      <div class='info-text'>
+      <div class='info-text mx-auto'>
         <h3>
           Grow<span style='color:#8B81D2'>.</span>
           <span style='font-size:24px;color:#8B81D2;'>together!</span>
@@ -48,7 +50,11 @@
   </div>
 </div>
 
-<div class='d-flex flex-column align-items-center justify-content-center'>
-  <h2 style="font-size:72px;font-family:Ropa Sans; margin-top:200px;">Invest commission-<span style='color:#8B81D2;'>free</span></h2>
+<div class='container d-flex flex-column align-items-center justify-content-center' style='margin-top:200px;'>
+  <h2 id='closing-text'>Invest commission-<span style='color:#8B81D2;'>free</span></h2>
   <p style='margin:0; padding:0; font-size:30px;'>with your family, friends, and more!</p>
+</div>
+
+<div class='footer-image'>
+  <img src='<%= asset_url 'background_triangles.png' %>'>
 </div>
