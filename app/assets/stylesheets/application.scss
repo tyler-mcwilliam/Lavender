@@ -52,7 +52,34 @@ body {
   }
 }
 
+#info-container {
+  width: 1000px;
+  margin: auto;
+}
+
+#info-cards {
+  display: flex;
+  justify-content: around;
+}
+
 .info-card {
   width: 300px;
   height: 400px;
+  h3 {
+    font-family: Ropa Sans;
+    font-size: 30px;
+    padding: 10px 0;
+  }
+}
+
+.info-photo {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  justify-content:center;
+  img {
+  height: 300px;
+  // object-fit: contain;
+  }
 }
