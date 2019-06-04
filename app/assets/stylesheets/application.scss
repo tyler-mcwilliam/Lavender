@@ -52,23 +52,22 @@ body {
   }
 }
 
-#info-container {
-  width: 1000px;
-  margin: auto;
-}
-
-#info-cards {
-  display: flex;
-  justify-content: around;
-}
+// #info-container {
+//   width: 1000px;
+//   margin: auto;
+//   display: flex;
+//   justify-content: center;
+// }
 
 .info-card {
   width: 300px;
   height: 400px;
+  margin: auto;
   h3 {
     font-family: Ropa Sans;
     font-size: 30px;
     padding: 10px 0;
+    width: auto;
   }
 }
 
@@ -80,6 +79,11 @@ body {
   justify-content:center;
   img {
   height: 300px;
-  // object-fit: contain;
+  width: 300px;
+  object-fit: cover;
   }
+}
+
+.info-text {
+  width: 300px;
 }
