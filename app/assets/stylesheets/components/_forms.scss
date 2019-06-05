@@ -1,0 +1,47 @@
+.btn-primary{
+  background-color: transparent;
+  border-color: $lavender;
+}
+
+.btn-primary:hover{
+  background-color: $lavender;
+}
+
+// .box{
+//  font-family: sans-serif;
+//  width: 300px;
+//  padding: 40px;
+//  position: absolute;
+//  top: 50%;
+//  left: 50%;
+//  transform: translate(-50%,-50%);
+//  background: #0E0000;
+//  text-align: center;
+//      box-shadow: -1px 92px 99px -62px rgba(3, 107, 255, 0.27), 0 1px 6px 0 rgba(10, 48, 255, 0.48);
+//    border-radius: 5px;
+// }
+
+// .box input[type = "text"],.box input[type = "password"]{
+//  border:0;
+//  background: none;
+//  display: block;
+//  margin: 20px auto;
+//  text-align: center;
+//  border: 2px solid white;
+//  padding: 14px 10px;
+//  width: 200px;
+//  outline: none;
+//  color: #F4F4F4;
+//  border-radius: 24px;
+//  transition: 0.25s;
+
+// }
+
+
+// .box input[type = "text"]:focus,.box input[type = "password"]:focus{
+//  width: 280px;
+//  border-color: #8B81D2;
+//  transition height 0.3s, width 0.3s 0.1s
+//  input:focus ~ .border
+
+// }
