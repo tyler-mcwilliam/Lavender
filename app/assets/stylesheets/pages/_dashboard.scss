@@ -1,4 +1,22 @@
 #dashboard-container {
   height: 150vh;
   width: 100%;
+  background-position: left top;
+  background-repeat: no-repeat;
+  margin: -72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.dashboard-profile {
+  background-color: #252525;
+  border-radius: 5px;
+  height: 500px;
+  width: 400px;
+}
+
+.dashboard-group {
+
+}
+
