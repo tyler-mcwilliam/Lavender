@@ -1,19 +1,43 @@
-<h1>Lavender</h1>
-
-<%= render '/shared/group_form' %>
-
-<% Group.all.each do |group| %>
-  <%= group.name %>
-<% end %>
-
-<% UserGroup.all.each do |user_group| %>
-  <%= user_group %>
-<% end %>
-
-<% @groups.each do |group| %>
-  <%= group %>
-<% end %>
-
-<% @user_groups.each do |user_group| %>
-  <%= user_group %>
-<% end %>
+<div id='dashboard-container' style='background-image:url(<%= asset_url 'dashboard_background.png' %>);'>
+  <div class='container-fluid d-flex justify-content-center' >
+    <div class='dashboard-profile'>
+      <div class='profile-card'>
+        <div class='profile-photo text-center'>
+          <%= image_tag 'tony.jpg', class:'avatar-huge' %>
+        </div>
+        <div class='profile-info'>
+          <h2>Tony Yu</h2>
+          <div>
+            <p>Available Balance:</p>
+            <p class='text-white'>$1,000,000</p>
+          </div>
+          <div>
+            <p>Total Balance:</p>
+            <p class='text-white'>$2,000,000</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class='dashboard-group'>
+      <div class='group-card'>
+        <div class='group-photo'>
+          <%= image_tag 'group.jpg' %>
+        </div>
+        <div class='group-info'>
+          <div class='d-flex flex-column justify-content-start'>
+            <h3>Lavender</h3>
+            <div>
+              <p>Group Value: $554,023</p>
+              <p>Ownership: 51%
+            </div>
+          </div>
+          <div class='d-flex flex-column'>
+            <h3 style='color:green; text-align:right;'>+23%</h3>
+            <p style='color:green; text-align:right;'>+$1,003</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
