@@ -23,7 +23,7 @@
       <% current_user.user_groups.each do |user_group| %>
         <div class='group-card'>
           <div class='group-photo'>
-            <%= link_to image_tag user_group.group.photo, group_path(user_group.group_id) %>
+            <%= image_tag 'group.jpg' %>
           </div>
           <div class='group-info'>
             <div class='d-flex flex-column justify-content-start'>
