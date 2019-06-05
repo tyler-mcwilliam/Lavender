@@ -2,7 +2,7 @@ class CreatePositions < ActiveRecord::Migration[5.2]
   def change
     create_table :positions do |t|
       t.string :ticker
-      t.integer :quantity
+      t.integer :quantity, default: 0
       t.float :cost_basis
       t.float :current_price
       t.float :return

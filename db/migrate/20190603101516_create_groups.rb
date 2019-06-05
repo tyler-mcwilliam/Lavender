@@ -4,10 +4,10 @@ class CreateGroups < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :photo
       t.text :description
-      t.float :portfolio_value
-      t.float :cash_value
-      t.float :investment_value
-      t.integer :total_shares
+      t.float :portfolio_value, default: 0
+      t.float :cash_value, default: 0
+      t.float :investment_value, default: 0
+      t.integer :total_shares, default: 0
       t.references :creator, foreign_key: { to_table: :users }
 
       t.timestamps
