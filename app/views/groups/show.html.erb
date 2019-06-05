@@ -38,18 +38,30 @@
   </p>
 </div>
 
-<!-- deposit/withdrawl -->
+<!-- deposit -->
 <div class="create-form mx-auto">
   <span>
     <span style="font-size:24px; font-weight:bold;" >
-      <h3>Deposit/Withdraw</h3>
+      <h3>Deposit</h3>
     </span>
     <p>
-    <%= simple_form_for [@group] do |f| %>
-    <%= f.input :name, maxlength: 20 %>
-    <%= f.input :description %>
-    <%= f.input :initial_deposit %>
-    <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
+    <%= simple_form_for [@user_group] do |f| %>
+    <%= f.input :amount %>
+    <%= f.button :submit, 'Deposit', class: 'btn btn-primary'%>
+    <% end %>
+  </p>
+</div>
+
+<!-- withdraw -->
+<div class="create-form mx-auto">
+  <span>
+    <span style="font-size:24px; font-weight:bold;" >
+      <h3>Withdraw</h3>
+    </span>
+    <p>
+    <%= simple_form_for [@user_group] do |f| %>
+    <%= f.input :amount %>
+    <%= f.button :submit, 'Withdraw', class: 'btn btn-primary'%>
     <% end %>
   </p>
 </div>
@@ -61,11 +73,9 @@
       <h3>Submit Vote</h3>
     </span>
     <p>
-    <%= simple_form_for [@group] do |f| %>
-    <%= f.input :name, maxlength: 20 %>
-    <%= f.input :description %>
-    <%= f.input :initial_deposit %>
-    <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
+    <%= simple_form_for [Vote.new] do |f| %>
+    <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+    <%= f.button :submit, 'no', class: 'btn btn-primary' %>
     <% end %>
   </p>
 </div>

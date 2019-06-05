@@ -1,4 +1,5 @@
 class UserGroupsController < ApplicationController
+  attr_accessor :deposit, :withdraw
   def new
     @user_group = UserGroup.new
   end
@@ -26,4 +27,6 @@ class UserGroupsController < ApplicationController
     @user_group.share += transfer
     @user_group.user_contribution += transfer
   end
+
+
 end
