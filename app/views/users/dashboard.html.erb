@@ -11,7 +11,7 @@
     <%= simple_form_for [@group] do |f| %>
     <%= f.input :name, maxlength: 20 %>
     <%= f.input :description %>
-    <%= f.input :initial_deposit %>
+    <%= f.input :initial_deposit, required: true %>
     <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
     <% end %>
   </p>
@@ -22,7 +22,7 @@
 <% end %>
 
 <% UserGroup.all.each do |user_group| %>
-  <%= user_group.name %>
+  <%= user_group %>
 <% end %>
 
 <% @groups.each do |group| %>

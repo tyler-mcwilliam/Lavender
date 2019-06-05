@@ -1,10 +1,10 @@
 #footer {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   height: 72px;
-  color: white;
   width: 100%;
+  color: white;
   padding: 0 20px;
   a {
   font-size: 30px;
