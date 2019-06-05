@@ -125,14 +125,14 @@ dateAxis.renderer.labels.template.adapter.add("rotation", function (rotation, ta
     }
 })
 
-// bullet at the front of the line
-let bullet = series.createChild(am4charts.CircleBullet);
-bullet.circle.radius = 5;
-bullet.fillOpacity = 1;
-bullet.fill = chart.colors.getIndex(0);
-bullet.isMeasured = false;
+// // bullet at the front of the line
+// let bullet = series.createChild(am4charts.CircleBullet);
+// bullet.circle.radius = 5;
+// bullet.fillOpacity = 1;
+// bullet.fill = chart.colors.getIndex(0);
+// bullet.isMeasured = false;
 
-series.events.on("validated", function() {
-    bullet.moveTo(series.dataItems.last.point);
-    bullet.validatePosition();
-});
+// series.events.on("validated", function() {
+//     bullet.moveTo(series.dataItems.last.point);
+//     bullet.validatePosition();
+// });

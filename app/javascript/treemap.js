@@ -14,95 +14,79 @@ let chart = am4core.create("treemapchartdiv", am4charts.TreeMap);
 chart.hiddenState.properties.opacity = 0;
 
 chart.data = [{
-  name: "First",
+  name: "Tech",
   children: [
     {
-      name: "A1",
-      value: 100
+      name: "AAPL",
+      value: 1000
     },
     {
-      name: "A2",
-      value: 60
+      name: "GOOGL",
+      value: 3000
     },
     {
-      name: "A3",
-      value: 30
+      name: "FB",
+      value: 1500
     }
   ]
 },
 {
-  name: "Second",
+  name: "Automotive",
   children: [
     {
-      name: "B1",
-      value: 135
+      name: "TSLA",
+      value: 1000
     },
     {
-      name: "B2",
-      value: 98
+      name: "GE",
+      value: 1300
     },
     {
-      name: "B3",
-      value: 56
+      name: "F",
+      value: 800
     }
   ]
 },
 {
-  name: "Third",
+  name: "Telecom",
   children: [
     {
-      name: "C1",
-      value: 335
+      name: "ATT",
+      value: 600
     },
     {
-      name: "C2",
-      value: 148
+      name: "V",
+      value: 900
     },
     {
-      name: "C3",
-      value: 126
-    },
-    {
-      name: "C4",
-      value: 26
+      name: "CMCSA",
+      value: 300
     }
   ]
 },
 {
-  name: "Fourth",
+  name: "Finance",
   children: [
     {
-      name: "D1",
-      value: 415
+      name: "JPM",
+      value: 800
     },
     {
-      name: "D2",
-      value: 148
+      name: "SCHW",
+      value: 900
     },
     {
-      name: "D3",
-      value: 89
-    },
-    {
-      name: "D4",
-      value: 64
-    },
-    {
-      name: "D5",
-      value: 16
+      name: "BAC",
+      value: 2000
     }
   ]
 },
 {
-  name: "Fifth",
+  name: "Aerospace",
   children: [
     {
-      name: "E1",
-      value: 687
-    },
-    {
-      name: "E2",
-      value: 148
+      name: "BA",
+      value: 2500
     }
   ]
 }];
