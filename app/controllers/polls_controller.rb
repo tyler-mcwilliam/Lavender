@@ -18,7 +18,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     @poll.creator = current_user
     @poll.group = @group
-    byebug
+    @poll.price = StockQuote::Stock.quote(@poll.ticker).latest_price
     if @poll.group.cash_value < (@poll.quantity * StockQuote::Stock.quote(@poll.ticker).latest_price)
       @poll.save!
     else
@@ -44,14 +44,7 @@ class PollsController < ApplicationController
   end
 
   def poll_params
-    params.require(:poll).permit(:description, :quantity, :ticker, :expiration,)
+    params.require(:poll).permit(:description, :quantity, :ticker, :expiration, :tarket_price, :stop_loss_price, :buy, :price, :creator_id, :created_at)
   end
 end
 
-
-    <li>target price: <%= @poll.target_price %></li>
-    <li><%= @poll.stop_loss_price %></li>
-    <li><%= @poll.buy %></li>
-    <li><%= @poll.price %></li>
-    <li><%= @poll.creator_id %></li>
-    <li><%= @poll.created_at %></li>
