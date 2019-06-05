@@ -6,17 +6,44 @@
   margin: -72px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .dashboard-profile {
-  background-color: #252525;
-  border-radius: 5px;
-  height: 500px;
   width: 400px;
+  margin-top: 200px;
+  .profile-card {
+    width: 400px;
+    background-color: #252525;
+    border-radius: 5px;
+  }
+  .profile-photo {
+    width: 400px;
+    height: 260px;
+    padding: 30px 0;
+  }
+  .profile-info {
+    width: 400px;
+    h2 {
+      font-size: 32px;
+      font-family: Ropa Sans;
+      padding: 0 20px 20px 20px;
+      margin: 0;
+      padding: 0 20px;
+    }
+    div {
+      padding: 20px 20px;
+      margin-bottom: 10px;
+      background-color: #323232;
+    }
+    p {
+      margin:0;
+      font-size: 30px;
+      color: $lavender;
+    }
+  }
 }
 
 .dashboard-group {
-
+  margin-top:200px;
 }
 

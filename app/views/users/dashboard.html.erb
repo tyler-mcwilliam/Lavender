@@ -1,11 +1,20 @@
 <div id='dashboard-container' style='background-image:url(<%= asset_url 'dashboard_background.png' %>);'>
-  <div class='container' >
+  <div class='container d-flex justify-content-center' >
     <div class='dashboard-profile'>
       <div class='profile-card'>
-        <div class='profile-photo'>
+        <div class='profile-photo text-center'>
+          <%= image_tag 'tony.jpg', class:'avatar-huge' %>
         </div>
         <div class='profile-info'>
-          <p>all the details</p>
+          <h2>Tony Yu</h2>
+          <div>
+            <p>Available Balance:</p>
+            <p class='text-white'>$1,000,000</p>
+          </div>
+          <div>
+            <p>Total Balance:</p>
+            <p class='text-white'>$2,000,000</p>
+          </div>
         </div>
       </div>
     </div>
