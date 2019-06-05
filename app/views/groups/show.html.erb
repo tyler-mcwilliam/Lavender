@@ -1,0 +1,19 @@
+<% Group.all.each do |group| %>
+  <%= group.name %>
+<% end %>
+
+<% UserGroup.all.each do |user_group| %>
+  <%= user_group.name %>
+<% end %>
+
+<% @groups.each do |group| %>
+  <%= group %>
+<% end %>
+
+<% @user_groups.each do |user_group| %>
+  <%= user_group %>
+<% end %>
+<!-- new poll
+deposit / withdrawl
+vote in poll
+ -->
