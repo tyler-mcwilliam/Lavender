@@ -1,34 +1,22 @@
-<h1>Lavender</h1>
+<div id='dashboard-container' style='background-image:url(<%= asset_url 'dashboard_background.png' %>);background-position: left top; background-repeat: no-repeat;'>
+  <div class='container' >
+    <div class='dashboard-profile'>
+      <div class='profile-card'>
+        <div class='profile-photo'>
+        </div>
+        <div class='profile-info'>
+          <p>all the details</p>
+        </div>
+      </div>
+    </div>
 
-<% render '/shared/group_form' %>
-
-<div class="create-form mx-auto">
-  <span>
-    <span style="font-size:24px; font-weight:bold;" >
-      <h3>List a New Toilet</h3>
-    </span>
-    <p>
-    <%= simple_form_for [@group] do |f| %>
-    <%= f.input :name, maxlength: 20 %>
-    <%= f.input :description %>
-    <%= f.input :initial_deposit %>
-    <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
-    <% end %>
-  </p>
+    <div class='dashboard-group'>
+      <div class='group-card'>
+        <div class='group-photo'>
+        </div>
+        <div class='group-info'>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<% Group.all.each do |group| %>
-  <%= group.name %>
-<% end %>
-
-<% UserGroup.all.each do |user_group| %>
-  <%= user_group.name %>
-<% end %>
-
-<% @groups.each do |group| %>
-  <%= group %>
-<% end %>
-
-<% @user_groups.each do |user_group| %>
-  <%= user_group %>
-<% end %>
