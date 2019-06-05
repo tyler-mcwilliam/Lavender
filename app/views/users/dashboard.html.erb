@@ -6,7 +6,10 @@
           <%= image_tag 'tony.jpg', class:'avatar-huge' %>
         </div>
         <div class='profile-info'>
-          <h2>Welcome <%= current_user.first_name %>!</h2>
+          <div class='d-flex justify-content-between'>
+            <h2>Welcome <%= current_user.first_name %>!</h2>
+            <a class='btn btn-primary' href='#'>Edit</a>
+          </div>
           <div>
             <p>Available Balance:</p>
             <p class='text-white'><%= current_user.available_balance %></p>
@@ -16,6 +19,11 @@
             <p class='text-white'><%= current_user.total_balance %></p>
           </div>
         </div>
+      </div>
+      <div class='group-buttons'>
+        <a class='btn btn-primary' href='#'>Create a group</a>
+        <a class='btn btn-primary' href='#'>Join a group</a>
+        <!-- create and join group buttons -->
       </div>
     </div>
 
