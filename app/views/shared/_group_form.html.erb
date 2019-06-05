@@ -1,13 +1,14 @@
-<div class="create-form mx-auto">
+<form class="box create-form mx-auto">
   <span>
     <span style="font-size:24px; font-weight:bold;" >
-      <h3>New Group</h3>
+      <h1>Create a Group</h1>
     </span>
     <p>
-    <%= simple_form_for [@group = Group.new] do |f| %>
+    <%= simple_form_for [@group] do |f| %>
     <%= f.input :name, maxlength: 20 %>
     <%= f.input :description %>
+    <%= f.input :initial_deposit, required: true %>
     <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
     <% end %>
   </p>
-</div>
+</form>

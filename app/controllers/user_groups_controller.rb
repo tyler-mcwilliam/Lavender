@@ -1,9 +1,10 @@
 class UserGroupsController < ApplicationController
+  attr_accessor :deposit, :withdraw
   def new
     @user_group = UserGroup.new
   end
 
-  def create
+  def update
     # Currenty using params[:deposit] as a placeholder for user's initial deposit.
     # Assuming this is a param from join / create form.
     @user_group.user = current_user

@@ -18,14 +18,18 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.creator_id = current_user.id
-    @user_group = UserGroup.create(initial_deposit: params[:group]['initial_deposit'])
-    @user_group.group = @group
-    @user_group.user = current_user
+    @group.creator = current_user
+    @group.cash_value = params[:group]['initial_deposit']
+    @group.investment_value = params[:group]['initial_deposit']
+    # @user_group = UserGroup.new(initial_deposit: params[:group]['initial_deposit'])
+    # @user_group.group = @group
+    # @user_group.user = current_user
     @group.save
-    if @group.save == false
-      raise
-    end
+    # if @group.save
+    #   @user_group.save
+    # else
+    #   raise
+    # end
   end
 
   def update
@@ -63,8 +67,8 @@ class GroupsController < ApplicationController
   end
 
   def set_users
-    @members = User.select do |user|
-      user.groups.contains(@group.id)
+    @users = User.select do |user|
+      user.groups.includes(@group)
     end
   end
 
