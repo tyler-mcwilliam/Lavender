@@ -45,6 +45,9 @@
       border-radius: 10px;
       border: 3px solid $lavender;
       box-shadow: 5px 5px 15px #222222;
+      &:hover {
+      background-color: $lavender;
+    }
     }
   }
 }
@@ -59,6 +62,9 @@
     border-radius: 10px;
     border: 3px solid $lavender;
     box-shadow: 5px 5px 15px #222222;
+    &:hover {
+      background-color: $lavender;
+    }
   }
 }
 
