@@ -2,7 +2,7 @@ class CreatePolls < ActiveRecord::Migration[5.2]
   def change
     create_table :polls do |t|
       t.text :description
-      t.float :approval
+      t.float :approval, default: 0
       t.float :target_price
       t.float :stop_loss_price
       t.boolean :buy
