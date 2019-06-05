@@ -49,6 +49,7 @@ class GroupsController < ApplicationController
   end
 
   def set_polls
+    @poll = Poll.new
     @polls = Poll.select do |poll|
       poll.group_id == @group.id
     end
