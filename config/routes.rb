@@ -9,10 +9,6 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  namespace :dashboard do
-    resources :users
-  end
-
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
 
   resources :user_groups, only: [:create]
