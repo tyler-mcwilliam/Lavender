@@ -195,6 +195,7 @@ GEM
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    sortable-rails (1.7.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -256,6 +257,7 @@ DEPENDENCIES
   redis
   sassc-rails
   simple_form
+  sortable-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   stock_quote
