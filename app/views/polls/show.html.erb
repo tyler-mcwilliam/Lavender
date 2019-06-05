@@ -19,3 +19,6 @@
     <li><%= @poll.created_at %></li>
   </ul>
 </div>
+<div>
+  <%= link_to "group", group_path(@poll.group_id) %>
+</div>
