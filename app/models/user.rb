@@ -23,4 +23,18 @@ class User < ApplicationRecord
       user.save
     end
   end
+
+  after_create :set_photo, :set_balance
+
+  def set_photo
+    @photos = ['monsters/1', 'monsters/2', 'monsters/3', 'monsters/4', 'monsters/5', 'monsters/6', 'monsters/7', 'monsters/8']
+    self.photo = @photos.sample
+    self.save!
+  end
+
+  def set_balance
+    self.available_balance = 0
+    self.total_balance = 0
+    self.save
+  end
 end

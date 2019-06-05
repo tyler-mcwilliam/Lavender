@@ -29,11 +29,6 @@ class GroupsController < ApplicationController
     else
       render :new
     end
-    # if @group.save
-    #   @user_group.save
-    # else
-    #   raise
-    # end
   end
 
   def update

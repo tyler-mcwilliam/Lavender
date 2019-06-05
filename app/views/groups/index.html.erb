@@ -1,22 +1,17 @@
 <div class='d-flex flex-column justify-content-start align-items-start'>
   <h1 style='font-family:Ropa Sans;margin: 100px 0;'>Investment Groups</h1>
   <div class='dashboard-group'>
-    <% current_user.user_groups.each do |user_group| %>
+    <% Group.all.each do |group| %>
       <div class='group-card'>
         <div class='group-photo'>
           <%= image_tag 'group.jpg' %>
         </div>
         <div class='group-info'>
           <div class='d-flex flex-column justify-content-start'>
-            <h3><%= link_to user_group.group.name, group_path(user_group.group_id) %></h3>
-            <div>
-              <p>Group Value: $<%= user_group.group.investment_value %></p>
-              <p>Ownership: <%= 100 * (user_group.user_share / user_group.group.total_shares)  %>%</p>
-            </div>
-          </div>
-          <div class='d-flex flex-column'>
-            <h3 style='color:green; text-align:right;'>+23%</h3>
-            <p style='color:green; text-align:right;'>+$1,003</p>
+            <h3><%= group.name %></h3>
+            <p>Members: <%= group.users.count %></p>
+            <br>
+            <p><i><%= group.description %></i></p>
           </div>
         </div>
       </div>

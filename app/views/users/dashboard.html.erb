@@ -3,20 +3,25 @@
     <div class='dashboard-profile'>
       <div class='profile-card gray-shadow'>
         <div class='profile-photo text-center'>
-          <%= image_tag 'tony.jpg', class:'avatar-huge' %>
+          <%= image_tag current_user.photo, class:'avatar-huge' %>
         </div>
         <div class='profile-info'>
           <div class='d-flex justify-content-between'>
             <h2>Welcome <%= current_user.first_name %>!</h2>
-            <a class='btn btn-primary gray-shadow' href='#'>Edit</a>
+            <a class='btn btn-primary gray-shadow' href='#'>Edit Profile</a>
           </div>
           <div>
             <p>Available Balance:</p>
             <p class='text-white'><%= current_user.available_balance %></p>
+            <div class='group-buttons'>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">Withdraw</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">Deposit</button>
+            </div>
           </div>
           <div style='margin:0 !important;'>
-            <p>Total Balance:</p>
-            <p class='text-white'><%= current_user.total_balance %></p>
+            <p>Total Balance:
+              <span class='text-white'><%= current_user.total_balance %></span>
+            </p>
           </div>
         </div>
       </div>
@@ -30,7 +35,7 @@
       <% current_user.user_groups.each do |user_group| %>
         <div class='group-card gray-shadow'>
           <div class='group-photo'>
-            <%= image_tag 'group.jpg' %>
+            <%= image_tag 'group' %>
           </div>
           <div class='group-info'>
             <div class='d-flex flex-column justify-content-start'>
@@ -38,6 +43,7 @@
               <div>
                 <p>Group Value: $<%= user_group.group.investment_value %></p>
                 <p>Ownership: <%= 100 * (user_group.user_share / user_group.group.total_shares)  %>%</p>
+                <p><i><%= user_group.group.description %></i></p>
               </div>
             </div>
             <div class='d-flex flex-column'>
