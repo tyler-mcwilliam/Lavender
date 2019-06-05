@@ -13,7 +13,51 @@
 <% @user_groups.each do |user_group| %>
   <%= user_group %>
 <% end %>
-<!-- new poll
-deposit / withdrawl
-vote in poll
- -->
+
+ <!-- new poll -->
+<div class="create-form mx-auto">
+  <span>
+    <span style="font-size:24px; font-weight:bold;" >
+      <h3>List a New Toilet</h3>
+    </span>
+    <p>
+    <%= simple_form_for [@group] do |f| %>
+    <%= f.input :name, maxlength: 20 %>
+    <%= f.input :description %>
+    <%= f.input :initial_deposit %>
+    <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
+    <% end %>
+  </p>
+</div>
+
+<!-- deposit/withdrawl -->
+<div class="create-form mx-auto">
+  <span>
+    <span style="font-size:24px; font-weight:bold;" >
+      <h3>List a New Toilet</h3>
+    </span>
+    <p>
+    <%= simple_form_for [@group] do |f| %>
+    <%= f.input :name, maxlength: 20 %>
+    <%= f.input :description %>
+    <%= f.input :initial_deposit %>
+    <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
+    <% end %>
+  </p>
+</div>
+
+<!-- vote in poll -->
+<div class="create-form mx-auto">
+  <span>
+    <span style="font-size:24px; font-weight:bold;" >
+      <h3>List a New Toilet</h3>
+    </span>
+    <p>
+    <%= simple_form_for [@group] do |f| %>
+    <%= f.input :name, maxlength: 20 %>
+    <%= f.input :description %>
+    <%= f.input :initial_deposit %>
+    <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
+    <% end %>
+  </p>
+</div>
