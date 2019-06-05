@@ -100,10 +100,11 @@
     padding: 20px 20px;
     display: flex;
     justify-content: space-between;
-    h3 {
+    a {
       color: $lavender;
       font-family: Ropa Sans;
       font-size: 42px;
+      text-decoration: none;
     }
     p {
       padding: 0;
