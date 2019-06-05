@@ -24,6 +24,11 @@ class PollsController < ApplicationController
     else
       redirect_to root
     end
+    if @poll.save
+      redirect_to poll_path(@poll)
+    else
+      redirect_to group_path(@group)
+    end
   end
 
   def update
