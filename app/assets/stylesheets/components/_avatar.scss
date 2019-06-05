@@ -9,7 +9,9 @@
 .avatar-huge {
   width: 200px;
   border: 3px dotted $lavender;
-  border-radius:50%
+  border-radius:50%;
+  height: 200px;
+  object-fit: cover;
 }
 .avatar-bordered {
   width: 40px;

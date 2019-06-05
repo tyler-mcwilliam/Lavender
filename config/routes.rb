@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
