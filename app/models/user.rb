@@ -20,7 +20,6 @@ class User < ApplicationRecord
       user.last_name = auth.info.name.split[1]
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.
       user.save
     end
   end
