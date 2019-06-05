@@ -2,20 +2,18 @@
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 140vh;
+  height: 100vh;
   margin-top: -80px;
   display:flex;
   justify-content: center;
-  #banner-text {
-    margin-top: -440px;
-  }
+  align-items: center;
 }
 
 #easy-to-start {
   font-size:72px;
   color:#8B81D2;
   font-family:Ropa Sans;
-  margin-top: -125px;
+  margin-top: -50px;
   margin-bottom: 50px;
 }
 
@@ -91,7 +89,7 @@
 @media only screen and (max-width: 576px) {
   #easy-to-start {
     font-size: 50px;
-    margin-top: -150px;
+    margin-top: -50px;
   }
   #info-container {
     margin-top: -50px;
@@ -114,5 +112,8 @@
   }
   #footer {
     justify-content: center;
+  }
+  #landing-banner {
+    height: 85vh;
   }
 }
