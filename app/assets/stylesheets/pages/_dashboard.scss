@@ -11,6 +11,7 @@
 .dashboard-profile {
   width: 400px;
   margin-top: 200px;
+  margin-right: 50px;
   .profile-card {
     width: 400px;
     background-color: #252525;
@@ -24,7 +25,7 @@
   .profile-info {
     width: 400px;
     h2 {
-      font-size: 32px;
+      font-size: 30px;
       font-family: Ropa Sans;
       padding: 0 20px 20px 20px;
       margin: 0;
@@ -37,13 +38,26 @@
     }
     p {
       margin:0;
-      font-size: 30px;
+      font-size: 26px;
       color: $lavender;
     }
   }
 }
 
 .dashboard-group {
-  margin-top:200px;
+  width: 550px;
+  margin-top: 200px;
+  margin-left: 50px;
+}
+
+.group-card {
+  width: 600px;
+  height: 250px;
+  background-color: #252525;
+  margin-bottom: 50px;
+  .group-photo {
+    width: 250px;
+    height: 250px;
+  }
 }
 
