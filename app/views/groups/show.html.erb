@@ -1,31 +1,39 @@
-<% Group.all.each do |group| %>
-  <%= group.name %>
+<!-- displaying users of the group -->
+<% @members.each do |member| %>
+  <%= member.first_name %>
+  <%= member.last_name %>
+<% end %>
+<!-- POSITIONS -->
+<% @positions.each do |position| %>
+  <%= position.ticker %>
+<% end %>
+<!-- POLLS -->
+<% @polls.each do |poll| %>
+  <%= poll.description %>
+<% end %>
+<!-- ORDERS -->
+<% @orders.each do |order| %>
+  <%= order.ticker %>
 <% end %>
 
-<% UserGroup.all.each do |user_group| %>
-  <%= user_group.name %>
-<% end %>
 
-<% @groups.each do |group| %>
-  <%= group %>
-<% end %>
 
-<% @user_groups.each do |user_group| %>
-  <%= user_group %>
-<% end %>
 
  <!-- new poll -->
 <div class="create-form mx-auto">
   <span>
     <span style="font-size:24px; font-weight:bold;" >
-      <h3>List a New Toilet</h3>
+      <h3>Create Poll</h3>
     </span>
     <p>
-    <%= simple_form_for [@group] do |f| %>
-    <%= f.input :name, maxlength: 20 %>
+    <%= simple_form_for [@poll] do |f| %>
     <%= f.input :description %>
-    <%= f.input :initial_deposit %>
-    <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
+    <%= f.input :target_price %>
+    <%= f.input :stop_loss_price %>
+    <%= f.input :quantity %>
+    <%= f.input :expiration %>
+    <%= f.input :ticker %>
+    <%= f.button :submit, 'Create Poll', class: 'btn btn-primary'%>
     <% end %>
   </p>
 </div>
@@ -34,7 +42,7 @@
 <div class="create-form mx-auto">
   <span>
     <span style="font-size:24px; font-weight:bold;" >
-      <h3>List a New Toilet</h3>
+      <h3>Deposit/Withdraw</h3>
     </span>
     <p>
     <%= simple_form_for [@group] do |f| %>
@@ -50,7 +58,7 @@
 <div class="create-form mx-auto">
   <span>
     <span style="font-size:24px; font-weight:bold;" >
-      <h3>List a New Toilet</h3>
+      <h3>Submit Vote</h3>
     </span>
     <p>
     <%= simple_form_for [@group] do |f| %>
