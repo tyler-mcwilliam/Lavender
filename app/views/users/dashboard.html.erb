@@ -1,5 +1,5 @@
 <div id='dashboard-container' style='background-image:url(<%= asset_url 'dashboard_background.png' %>);'>
-  <div class='container d-flex justify-content-center' >
+  <div class='container-fluid d-flex justify-content-center' >
     <div class='dashboard-profile'>
       <div class='profile-card'>
         <div class='profile-photo text-center'>
@@ -22,8 +22,20 @@
     <div class='dashboard-group'>
       <div class='group-card'>
         <div class='group-photo'>
+          <%= image_tag 'group.jpg' %>
         </div>
         <div class='group-info'>
+          <div class='d-flex flex-column justify-content-start'>
+            <h3>Lavender</h3>
+            <div>
+              <p>Group Value: $554,023</p>
+              <p>Ownership: 51%
+            </div>
+          </div>
+          <div class='d-flex flex-column'>
+            <h3 style='color:green; text-align:right;'>+23%</h3>
+            <p style='color:green; text-align:right;'>+$1,003</p>
+          </div>
         </div>
       </div>
     </div>
