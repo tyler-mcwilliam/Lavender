@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container", style="margin-top: 4.25rem;">
   <div class="row">
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-4 mx-auto">
       <h2>Sign up</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -20,7 +20,7 @@
                       input_html: { autocomplete: "new-password" } %>
         </div>
 
-        <div class="form-actions btn btn-primary" style="border-radius: 5rem";>
+        <div class="btn btn-primary btn-lg" style="border-radius: 5rem; width:100%; font-size: 100%;">
           <%= f.button :submit, "Sign up", class:"text-white" %>
         </div>
       <% end %>
