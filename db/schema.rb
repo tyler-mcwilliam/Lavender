@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 2019_06_04_071546) do
     t.string "name"
     t.string "photo"
     t.text "description"
-    t.float "portfolio_value"
-    t.float "cash_value"
-    t.float "investment_value"
-    t.integer "total_shares"
+    t.float "portfolio_value", default: 0.0
+    t.float "cash_value", default: 0.0
+    t.float "investment_value", default: 0.0
+    t.integer "total_shares", default: 0
     t.bigint "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_071546) do
 
   create_table "polls", force: :cascade do |t|
     t.text "description"
-    t.float "approval"
+    t.float "approval", default: 0.0
     t.float "target_price"
     t.float "stop_loss_price"
     t.boolean "buy"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_071546) do
 
   create_table "positions", force: :cascade do |t|
     t.string "ticker"
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.float "cost_basis"
     t.float "current_price"
     t.float "return"
@@ -77,9 +77,9 @@ ActiveRecord::Schema.define(version: 2019_06_04_071546) do
   create_table "user_groups", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
-    t.float "user_contribution"
-    t.integer "user_share"
-    t.float "user_balance"
+    t.float "user_contribution", default: 0.0
+    t.integer "user_share", default: 0
+    t.float "user_balance", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_user_groups_on_group_id"

@@ -1,14 +1,22 @@
-<form class="box create-form mx-auto">
-  <span>
-    <span style="font-size:24px; font-weight:bold;" >
-      <h1>Create a Group</h1>
-    </span>
-    <p>
-    <%= simple_form_for [@group] do |f| %>
-    <%= f.input :name, maxlength: 20 %>
-    <%= f.input :description %>
-    <%= f.input :initial_deposit, required: true %>
-    <%= f.button :submit, 'Create Group', class: 'btn btn-primary'%>
-    <% end %>
-  </p>
-</form>
+<div class="container", style="margin-top: 4.25rem;">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <form class="box create-form mx-auto">
+        <span>
+          <span style="font-size:24px; font-weight:bold;" >
+            <h1>Create a Group</h1>
+          </span>
+            <p>
+            <%= simple_form_for [@group] do |f| %>
+            <%= f.input :name, maxlength: 20 %>
+            <%= f.input :description %>
+            <%= f.input :photo  %>
+            <%= f.input :initial_deposit, required: true %>
+            <%= f.button :submit, 'Create Group', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
+            <% end %>
+            </p>
+        </span>
+      </form>
+    </div>
+  </div>
+</div>
