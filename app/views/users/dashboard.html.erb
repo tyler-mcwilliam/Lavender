@@ -8,11 +8,15 @@
         <div class='profile-info'>
           <div class='d-flex justify-content-between'>
             <h2>Welcome <%= current_user.first_name %>!</h2>
-            <a class='btn btn-primary' href='#'>Edit</a>
+            <a class='btn btn-primary' href='#'>Edit Profile</a>
           </div>
           <div>
             <p>Available Balance:</p>
             <p class='text-white'><%= current_user.available_balance %></p>
+            <div class='group-buttons'>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">Withdraw</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">Deposit</button>
+            </div>
           </div>
           <div>
             <p>Total Balance:
