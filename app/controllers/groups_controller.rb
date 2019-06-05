@@ -24,8 +24,11 @@ class GroupsController < ApplicationController
     # @user_group = UserGroup.new(initial_deposit: params[:group]['initial_deposit'])
     # @user_group.group = @group
     # @user_group.user = current_user
-    @group.save
-    redirect_to group_path(@group.id) if @group.save
+    if @group.save
+      redirect_to group_path(@group)
+    else
+      render :new
+    end
   end
 
   def update

@@ -1,14 +1,14 @@
 <div id='dashboard-container' style='background-image:url(<%= asset_url 'dashboard_background.png' %>);'>
   <div class='container-fluid d-flex justify-content-center' >
     <div class='dashboard-profile'>
-      <div class='profile-card'>
+      <div class='profile-card gray-shadow'>
         <div class='profile-photo text-center'>
           <%= image_tag current_user.photo, class:'avatar-huge' %>
         </div>
         <div class='profile-info'>
           <div class='d-flex justify-content-between'>
             <h2>Welcome <%= current_user.first_name %>!</h2>
-            <a class='btn btn-primary' href='#'>Edit Profile</a>
+            <a class='btn btn-primary gray-shadow' href='#'>Edit Profile</a>
           </div>
           <div>
             <p>Available Balance:</p>
@@ -18,21 +18,22 @@
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">Deposit</button>
             </div>
           </div>
-          <div>
+          <div style='margin:0 !important;'>
             <p>Total Balance:
-            <p class='text-white'><%= current_user.total_balance %></p>
+              <span class='text-white'><%= current_user.total_balance %></span>
+            </p>
           </div>
         </div>
       </div>
       <div class='group-buttons'>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create a group</button>
-        <%= link_to "Join a group", groups_path, class:'btn btn-primary' %>
+        <button type="button" class="btn btn-primary gray-shadow" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create a group</button>
+        <%= link_to "Join a group", groups_path, class:'btn btn-primary gray-shadow' %>
       </div>
     </div>
 
     <div class='dashboard-group'>
       <% current_user.user_groups.each do |user_group| %>
-        <div class='group-card'>
+        <div class='group-card gray-shadow'>
           <div class='group-photo'>
             <%= image_tag 'group' %>
           </div>
