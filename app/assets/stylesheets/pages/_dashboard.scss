@@ -64,6 +64,8 @@
     box-shadow: 5px 5px 15px #222222;
     &:hover {
       background-color: $lavender;
+      width:250px;
+      transition: 1s;
     }
   }
 }
