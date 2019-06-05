@@ -6,38 +6,40 @@
           <%= image_tag 'tony.jpg', class:'avatar-huge' %>
         </div>
         <div class='profile-info'>
-          <h2>Tony Yu</h2>
+          <h2>Welcome <%= current_user.first_name %>!</h2>
           <div>
             <p>Available Balance:</p>
-            <p class='text-white'>$1,000,000</p>
+            <p class='text-white'><%= current_user.available_balance %></p>
           </div>
           <div>
             <p>Total Balance:</p>
-            <p class='text-white'>$2,000,000</p>
+            <p class='text-white'><%= current_user.total_balance %></p>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class='dashboard-group'>
-      <div class='group-card'>
-        <div class='group-photo'>
-          <%= image_tag 'group.jpg' %>
-        </div>
-        <div class='group-info'>
-          <div class='d-flex flex-column justify-content-start'>
-            <h3>Lavender</h3>
-            <div>
-              <p>Group Value: $554,023</p>
-              <p>Ownership: 51%
+      <% current_user.user_groups.each do |user_group| %>
+        <div class='group-card'>
+          <div class='group-photo'>
+            <%= link_to image_tag user_group.group.photo, group_path(user_group.group_id) %>
+          </div>
+          <div class='group-info'>
+            <div class='d-flex flex-column justify-content-start'>
+              <h3><%= link_to user_group.group.name, group_path(user_group.group_id) %></h3>
+              <div>
+                <p>Group Value: $<%= user_group.group.investment_value %></p>
+                <p>Ownership: <%= 100 * (user_group.user_share / user_group.group.total_shares)  %>%</p>
+              </div>
+            </div>
+            <div class='d-flex flex-column'>
+              <h3 style='color:green; text-align:right;'>+23%</h3>
+              <p style='color:green; text-align:right;'>+$1,003</p>
             </div>
           </div>
-          <div class='d-flex flex-column'>
-            <h3 style='color:green; text-align:right;'>+23%</h3>
-            <p style='color:green; text-align:right;'>+$1,003</p>
-          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
