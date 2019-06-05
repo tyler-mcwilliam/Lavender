@@ -25,11 +25,7 @@ class GroupsController < ApplicationController
     # @user_group.group = @group
     # @user_group.user = current_user
     @group.save
-    # if @group.save
-    #   @user_group.save
-    # else
-    #   raise
-    # end
+    redirect_to group_path(@group.id) if @group.save
   end
 
   def update
