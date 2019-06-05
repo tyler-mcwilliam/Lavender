@@ -38,6 +38,7 @@
               <div>
                 <p>Group Value: $<%= user_group.group.investment_value %></p>
                 <p>Ownership: <%= 100 * (user_group.user_share / user_group.group.total_shares)  %>%</p>
+                <p><i><%= user_group.group.description %></i></p>
               </div>
             </div>
             <div class='d-flex flex-column'>
