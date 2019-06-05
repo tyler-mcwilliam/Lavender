@@ -44,7 +44,7 @@ class PollsController < ApplicationController
   end
 
   def poll_params
-    params.require(:poll).permit(:description, :quantity, :ticker, :expiration, :tarket_price, :stop_loss_price, :buy, :price, :creator_id, :created_at)
+    params.require(:poll).permit(:description, :quantity, :ticker, :expiration, :target_price, :stop_loss_price, :buy, :price, :creator_id, :created_at)
   end
 end
 
