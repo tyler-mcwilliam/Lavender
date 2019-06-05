@@ -1,6 +1,7 @@
 class PollsController < ApplicationController
   # before_action :set_group, only: [:show, :edit]
   before_action :set_poll, only: [:show, :edit]
+  before_action :set_group, only: [:create]
 
   def index
     @polls = Poll.all
@@ -15,6 +16,9 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new(poll_params)
+    @poll.creator = current_user
+    @poll.group = @group
+    byebug
     if @poll.group.cash_value < (@poll.quantity * StockQuote::Stock.quote(@poll.ticker).latest_price)
       @poll.save!
     else
@@ -31,11 +35,23 @@ class PollsController < ApplicationController
 
   private
 
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
+
   def set_poll
-    @poll = Poll.find(params[:poll_id])
+    @poll = Poll.find(params[:id])
   end
 
   def poll_params
-    params.require(:poll).permit(:description, :quantity, :ticker, :expiration)
+    params.require(:poll).permit(:description, :quantity, :ticker, :expiration,)
   end
 end
+
+
+    <li>target price: <%= @poll.target_price %></li>
+    <li><%= @poll.stop_loss_price %></li>
+    <li><%= @poll.buy %></li>
+    <li><%= @poll.price %></li>
+    <li><%= @poll.creator_id %></li>
+    <li><%= @poll.created_at %></li>
