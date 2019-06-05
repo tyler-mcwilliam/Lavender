@@ -6,7 +6,10 @@
           <%= image_tag 'tony.jpg', class:'avatar-huge' %>
         </div>
         <div class='profile-info'>
-          <h2>Tony Yu</h2>
+          <div class='d-flex justify-content-between'>
+            <h2>Tony Yu</h2>
+            <a class='btn btn-primary' href='#'>Edit</a>
+          </div>
           <div>
             <p>Available Balance:</p>
             <p class='text-white'>$1,000,000</p>
@@ -18,7 +21,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class='dashboard-group'>
       <div class='group-card'>
         <div class='group-photo'>
@@ -37,6 +40,11 @@
             <p style='color:green; text-align:right;'>+$1,003</p>
           </div>
         </div>
+      </div>
+      <div>
+        <a href='#' class='create-group'>
+          <i class="fas fa-plus-circle"></i>
+        </a>
       </div>
     </div>
   </div>

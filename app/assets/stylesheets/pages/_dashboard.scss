@@ -16,6 +16,7 @@
     width: 400px;
     background-color: #252525;
     border-radius: 5px;
+    box-shadow: 5px 5px 15px #222222;
   }
   .profile-photo {
     width: 400px;
@@ -27,9 +28,7 @@
     h2 {
       font-size: 30px;
       font-family: Ropa Sans;
-      padding: 0 20px 20px 20px;
       margin: 0;
-      padding: 0 20px;
     }
     div {
       padding: 20px 20px;
@@ -40,6 +39,12 @@
       margin:0;
       font-size: 26px;
       color: $lavender;
+    }
+    .btn {
+      background-color: #252525;
+      border-radius: 10px;
+      border: 3px solid $lavender;
+      box-shadow: 5px 5px 15px #222222;
     }
   }
 }
@@ -54,10 +59,11 @@
   width: 700px;
   height: 250px;
   background-color: #252525;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
+  box-shadow: 5px 5px 15px #222222;
   .group-photo {
     width: 250px;
     height: 250px;
@@ -89,3 +95,9 @@
   }
 }
 
+.create-group {
+  font-size: 72px;
+  .fa-plus-circle {
+  color: $lavender;
+  }
+}
