@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_071546) do
 
   create_table "polls", force: :cascade do |t|
     t.text "description"
-    t.float "approval"
+    t.float "approval", default: 0.0
     t.float "target_price"
     t.float "stop_loss_price"
     t.boolean "buy"
