@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-lavender fixed-top">
   <% if user_signed_in? %>
-    <%= link_to user_root_path, class: "navbar-brand" do %>
+    <%= link_to dashboard_path, class: "navbar-brand" do %>
       <%= image_tag('lavender-logo.png') %>
       <span>
         Lavender

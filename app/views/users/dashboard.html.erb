@@ -91,8 +91,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [@group] do |f| %>
-            <%= f.input :initial_deposit, required: true , placeholder: 'Number in Dollars', style:'background-color:gray;'%>
+        <%= simple_form_for [@user], :url => update_user_path(@user.id), :method => :patch do |f| %>
+            <%= f.input :deposit, required: true , placeholder: 'Number in Dollars', style:'background-color:gray;'%>
             <%= f.button :submit, 'Deposit Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
             <% end %>
       </div>
@@ -109,9 +109,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <h3>Funds available for withdrawal: $<%= current_user.available_balance %>.</h3>
       <div class="modal-body">
-        <%= simple_form_for [@group] do |f| %>
-            <%= f.input :initial_deposit, required: true , placeholder: 'Number in Dollars'%>
+        <%= simple_form_for [current_user], :url => update_user_path(@user.id), :method => :patch do |f| %>
+            <%= f.input :withdrawal, required: true , placeholder: 'Number in Dollars'%>
             <%= f.button :submit, 'Withdraw Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
             <% end %>
       </div>
