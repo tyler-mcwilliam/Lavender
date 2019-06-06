@@ -1,9 +1,18 @@
 <div class="navbar navbar-expand-sm navbar-lavender fixed-top">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag('lavender-logo.png') %>
-    <span>
-      Lavender
-    </span>
+  <% if user_signed_in? %>
+    <%= link_to user_root_path, class: "navbar-brand" do %>
+      <%= image_tag('lavender-logo.png') %>
+      <span>
+        Lavender
+      </span>
+    <% end %>
+  <% else %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag('lavender-logo.png') %>
+      <span>
+        Lavender
+      </span>
+    <% end %>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

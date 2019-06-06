@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
+  get '/users' => 'users#dashboard', as: :user_root # creates user_root_path
+
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
