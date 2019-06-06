@@ -10,8 +10,7 @@
       <div class="modal-body">
         <%= simple_form_for [@group, @poll] do |f| %>
         <%= f.input :description %>
-        <%= f.input :target_price %>
-        <%= f.input :stop_loss_price %>
+        <%= f.input :buy, as: :radio_buttons, collection: [[true, 'buy'], [false, 'sell']], label_method: :second, value_method: :first %>
         <%= f.input :quantity %>
         <%= f.input :expiration %>
         <%= f.input :ticker %>
