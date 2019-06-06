@@ -11,7 +11,8 @@
   border-radius: 5px;
   background-color: rgba(37,37,37,.3);
   div {
-    background-color: rgba(37,37,37,.3);
+    background-color: rgba(37,37,37,.7);
+    border-radius: 5px;
   }
   .close {
     color:white;
@@ -37,6 +38,7 @@
   background-color: rgba(37,37,37,.3);
   .modal-content{
     background-color: rgba(37,37,37,.3);
+    border-radius: 5px;
   }
   .close {
     color:white;
@@ -59,6 +61,7 @@
   background-color: rgba(37,37,37,.3);
   .modal-content{
     background-color: rgba(37,37,37,.3);
+    border-radius: 5px;
   }
   .close {
     color:white;
@@ -76,3 +79,26 @@
   }
 }
 
+
+#editProfile{
+  border-radius: 5px;
+  background-color: rgba(37,37,37,.3);
+  div {
+    border-radius: 5px;
+    background-color: rgba(37,37,37,.7);
+  }
+  .close {
+    color:white;
+  }
+  input {
+    background-color: #c3c3c3;
+  }
+  .btn {
+    background-color: rgba(139,129,210,.3);
+    width: 100%;
+    border-radius: 5rem;
+    &:hover {
+    background-color: $lavender;
+    }
+  }
+}
