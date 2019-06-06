@@ -5,9 +5,9 @@
     <h2>Start investing today!</h2>
   </div>
   <div id='group-cards-container' style='background-image:url(<%= asset_url ('bottomright.png') %>); background-position: right bottom; background-repeat: no-repeat;'>
-    <div class='container-fluid d-flex flex-row justify-content-center flex-wrap' style='padding:50px 118px;'>
+    <div class='container-fluid d-flex flex-row justify-content-center flex-wrap' style='padding:50px 118px; margin-bottom: 100px;'>
       <% Group.all.each do |group| %>
-        <a href='<%= group_path(group) %>' data-toggle="modal" data-target="#joinGroup">
+        <button id='join-group-button' type="button" class="btn btn-primary" data-toggle="modal" data-target="#joinGroup">
           <div class='group-cardd gray-shadow'>
             <%= image_tag 'group.jpg' %>
             <div class='d-flex justify-content-between align-items-center' style='width:300px;'>
@@ -16,13 +16,10 @@
             </div>
             <i class="fas fa-plus"></i>
           </div>
-        </a>
+        </button>
       <% end %>
     </div>
   </div>
 </span>
 
 <%= render 'shared/modal_join_group' %>
-
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#joinGroup">
-        </button>
