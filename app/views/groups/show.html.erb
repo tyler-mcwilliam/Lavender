@@ -3,7 +3,7 @@
     <div id='group-performance'>
       <div id='main-chart-header'>
         <div>
-          <h1>Lavender <span style='font-size: 24px;'>$939,938</span></h1>
+          <h1><%= @group.name %> <span style='font-size: 24px;'>$<%= @group.portfolio_value %></span></h1>
         </div>
         <p>+$233.93 (+24.33%)</p>
       </div>
@@ -12,11 +12,11 @@
         <div id='group-shares'>
           <div class='d-flex justify-content-between'>
             <p style='color:gray;'>Shares:</p>
-            <p>25</p>
+            <p><%= @group.total_shares %></p>
           </div>
           <div class='d-flex justify-content-between'>
             <p style='color:gray;'>Share value:</p>
-            <p>$10/share</p>
+            <p>$<%= @group.investment_value / @group.total_shares %></p>
           </div>
           <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
             <p style='color:gray;'>Your share:</p>
@@ -26,15 +26,15 @@
         <div id='group-balance'>
           <div class='d-flex justify-content-between'>
             <p style='color:gray;'>Available Cash:</p>
-            <p>$2,500</p>
+            <p>$<%= @group.cash_value %></p>
           </div>
           <div class='d-flex justify-content-between'>
             <p style='color:gray;'>Investment value:</p>
-            <p>$25,000</p>
+            <p>$<%= @group.investment_value %></p>
           </div>
           <div class='d-flex justify-content-between'style='border-top: 1px solid #8B81D2;'>
             <p style='color:gray;'>Portfolio Value:</p>
-            <p>$27,500</p>
+            <p>$<%= @group.portfolio_value %></p>
           </div>
         </div>
       </div>
@@ -47,63 +47,82 @@
             Dropdown
         </div>
       </div>
-      <div id='group-positions-content' class='gray-shadow'>
-        <div>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Shares:</p>
-            <p>30</p>
+      <%= "No positions yet, what are you waiting for?" if @positions.count.zero? %>
+      <% @positions.each do |position| %>
+        <div id='group-positions-content' class='gray-shadow'>
+          <div>
+            <div class='d-flex justify-content-between'>
+              <p style='color:gray;'><b><%= position.ticker %></p>
+            </div>
+            <div class='d-flex justify-content-between'>
+              <p style='color:gray;'>Shares:</p>
+              <p><%= position.quantity %></p>
+            </div>
+            <div class='d-flex justify-content-between'>
+              <p style='color:gray;'>Equity value:</p>
+              <p>$<%= position.quantity * StockQuote::Stock.quote(position.ticker).latest_price %></p>
+            </div>
+            <div class='d-flex justify-content-between'>
+              <p style='color:gray;'>Average Cost:</p>
+              <p>$22/share</p>
+            </div>
           </div>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Equity value:</p>
-            <p>$1,032</p>
-          </div>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Average Cost:</p>
-            <p>$22/share</p>
+          <div>
+            <div class='d-flex justify-content-between'>
+              <p style='color:gray;'>Today's Return:</p>
+              <p style='color:#219974'>+$30.23 (+2.5%)</p>
+            </div>
+            <div class='d-flex justify-content-between'>
+              <p style='color:gray;'>Total Return:</p>
+              <p style='color:#219974'>+$1,032 (+3.5%)</p>
+            </div>
           </div>
         </div>
-        <div>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Today's Return:</p>
-            <p style='color:#219974'>+$30.23 (+2.5%)</p>
-          </div>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Total Return:</p>
-            <p style='color:#219974'>+$1,032 (+3.5%)</p>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
 
     <div id='group-polls'>
       <h2>Polls</h2>
-      <div id='polls-container' class='gray-shadow'>
-        <div class='poll-header'>
-          <p><b>Tony</b> wants to <b>BUY</b></p>
-          <p><b>20</b> shares of <b>APPL</b></p>
-        </div>
-        <div class='poll-content'>
-          <p style='margin-bottom: 20px;'><i>I think that this stock is going to make us a lot of money.</i></p>
-          <div>
-            <div class='d-flex justify-content-between'>
-              <p style='color:gray'>Number of shares: </p>
-              <p>20</p>
-            </div>
-            <div class='d-flex justify-content-between'>
-              <p style='color:gray'>Cost per share: </p>
-              <p>$20</p>
-            </div>
-            <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
-              <p style='color:gray'>Total cost: </p>
-              <p>$4,000</p>
+      <% @polls.each do |poll| %>
+        <div id='polls-container' class='gray-shadow'>
+          <div class='poll-header'>
+            <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
+            <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker %></b></p>
+          </div>
+          <div class='poll-content'>
+            <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
+            <div>
+              <div class='d-flex justify-content-between'>
+                <p style='color:gray'>Number of shares: </p>
+                <p><%= poll.quantity %></p>
+              </div>
+              <div class='d-flex justify-content-between'>
+                <p style='color:gray'>Cost per share: </p>
+                <p>$<%= poll.price %></p>
+              </div>
+              <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
+                <p style='color:gray'>Total cost: </p>
+                <p>$<%= (poll.price.to_f * poll.quantity.to_i) %></p>
+              </div>
             </div>
           </div>
+          <div class='poll-vote'>
+            <% if poll.has_voted_by_current_user(current_user) %>
+              <p>
+                <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
+              </p>
+            <% else %>
+              <%= simple_form_for [poll, Vote.new] do |f| %>
+                <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+                <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+              <% end %>
+            <% end %>
+          </div>
+          <div>
+            <%= (poll.approval * 100).to_i %>%
+          </div>
         </div>
-        <div class='poll-vote'>
-          <a href='#' style='color:green;'>YES</a>
-          <a href='#' style='color:red;'>NO</a>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 
@@ -116,40 +135,6 @@
   </div>
 </div>
 
-
-<div>
-  <!-- vote in poll -->
-  <div class="create-form mx-auto">
-    <span>
-      <span style="font-size:24px; font-weight:bold;" >
-        <h3>Submit Vote</h3>
-      </span>
-      <p>
-      <!-- iterate through all polls -->
-      <% @polls.each do |poll| %>
-        <!-- Option 1: create poll show view to handle this route -->
-        <%= link_to poll.description, poll_path(poll) %>
-
-        <!-- Option 2: for each poll we can vote on the poll -->
-        <!-- future: put this in modal later -->
-
-        <% if poll.has_voted_by_current_user(current_user) %>
-          <p>
-            <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
-          </p>
-        <% else %>
-          <%= simple_form_for [poll, Vote.new] do |f| %>
-            <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
-            <%= f.button :submit, 'no', class: 'btn btn-primary' %>
-          <% end %>
-        <% end %>
-        <div>
-          <%= poll.approval %>
-        </div>
-      <% end %>
-      </p>
-  </div>
-</div>
 
 <%= render 'shared/modal_create_poll' %>
 
