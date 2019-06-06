@@ -58,22 +58,24 @@
 </div>
 
 
-<div class="modal fade" id="createGroup" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
+<div class="modal fade" id="createPoll" tabindex="-1" role="dialog" aria-labelledby="createPoll" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="createGroupLabel">Create a group</h5>
+        <h5 class="modal-title" id="createPollLabel">Create a poll</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [@group] do |f| %>
-        <%= f.input :name, maxlength: 20 %>
-        <%= f.input :description, style:'background-color:gray;' %>
-        <%= f.input :photo  %>
-        <%= f.input :initial_deposit, required: true %>
-        <%= f.button :submit, 'Create Group', class: "btn btn-primary btn-lg" %>
+        <%= simple_form_for [@group, @poll] do |f| %>
+        <%= f.input :description %>
+        <%= f.input :target_price %>
+        <%= f.input :stop_loss_price %>
+        <%= f.input :quantity %>
+        <%= f.input :expiration %>
+        <%= f.input :ticker %>
+        <%= f.button :submit, 'Create Poll', class: 'btn btn-primary'%>
         <% end %>
       </div>
     </div>

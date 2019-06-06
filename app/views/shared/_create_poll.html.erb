@@ -1,25 +1,17 @@
 <div class="create-form mx-auto">
-    <span>
-      <span style="font-size:24px; font-weight:bold;" >
-        <h3>Create Poll</h3>
-      </span>
-      <p>
-      <%= simple_form_for [@group, @poll] do |f| %>
-      <%= f.input :description %>
-      <%= f.input :target_price %>
-      <%= f.input :stop_loss_price %>
-      <%= f.input :quantity %>
-      <%= f.input :expiration %>
-      <%= f.input :ticker %>
-      <%= f.button :submit, 'Create Poll', class: 'btn btn-primary'%>
-      <% end %>
-    </p>
-  </div>
-
-
-
-
-
+    <span style="font-size:24px; font-weight:bold;" >
+      <h3>Create Poll</h3>
+    </span>
+    <%= simple_form_for [@group, @poll] do |f| %>
+    <%= f.input :description %>
+    <%= f.input :target_price %>
+    <%= f.input :stop_loss_price %>
+    <%= f.input :quantity %>
+    <%= f.input :expiration %>
+    <%= f.input :ticker %>
+    <%= f.button :submit, 'Create Poll', class: 'btn btn-primary'%>
+    <% end %>
+</div>
 
 
 

@@ -106,10 +106,13 @@
   display: flex;
   flex-direction: column;
   margin: 140px 0 0 30px;
-  a {
+  i {
     text-decoration: none;
     color: gray;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     font-size: 30px;
+    &:hover {
+      color: $lavender;
+    }
   }
 }
