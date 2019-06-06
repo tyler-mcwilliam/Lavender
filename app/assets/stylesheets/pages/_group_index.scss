@@ -22,6 +22,7 @@
   justify-content: space-around;
   border-radius: 5px;
   margin: 20px;
+  position:relative;
   img {
     width: 280px;
     height: 200px;
@@ -29,6 +30,20 @@
   }
   .fa-user {
     color: $lavender;
+  }
+  .fa-plus {
+    position: absolute;
+    color: white;
+    top: 50px;
+    left: 110px;
+    font-size: 100px;
+    opacity: 0;
+  }
+  &:hover > img {
+    opacity: .2;
+  }
+  &:hover > .fa-plus {
+    opacity: 1;
   }
 }
 
