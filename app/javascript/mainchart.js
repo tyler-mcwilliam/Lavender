@@ -22,7 +22,7 @@ chart.data = generatechartData();
 function generatechartData() {
   var chartData = [];
   var firstDate = new Date();
-  firstDate.setDate( firstDate.getDate() - 150 );
+  firstDate.setDate( firstDate.getDate() - 30 );
   var visits = -40;
   var b = 0.6;
   for ( var i = 0; i < 150; i++ ) {

@@ -57,29 +57,7 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="createGroup" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="createGroupLabel">Create a group</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for [@group] do |f| %>
-        <%= f.input :name, maxlength: 20 %>
-        <%= f.input :description, style:'background-color:gray;' %>
-        <%= f.input :photo  %>
-        <%= f.input :initial_deposit, required: true %>
-        <%= f.button :submit, 'Create Group', class: "btn btn-primary btn-lg" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%= render 'shared/modal_create_group' %>
 
 <div class="modal fade" id="depositMoney" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
