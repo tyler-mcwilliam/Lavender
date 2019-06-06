@@ -1,0 +1,11 @@
+<div class="banner d-flex flex-column justify-content-between" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(https://image.redbull.com/rbcom/010/2015-05-07/1331721593940_2/0010/1/2050/1367/1/a-remote-outhouse-in-the-cascade-mountains-in-washington-state-usa.jpg); background-attachment:fixed;">
+  <div class="form-inputs mx-auto text-white" style="width:240px; background-color:rgba(0,0,0,.5); padding: 20px;">
+    <%= simple_form_for @user do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.input :photo %>
+    <%= f.button :submit, "Submit Changes", class:'btn btn-primary form-actions mx-auto', style:'width:200px;' %>
+    <% end %>
+  </div>
+</div>

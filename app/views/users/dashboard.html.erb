@@ -8,7 +8,7 @@
         <div class='profile-info'>
           <div class='d-flex justify-content-between'>
             <h2>Welcome <%= current_user.first_name %>!</h2>
-            <a class='btn btn-primary gray-shadow' href='#'>Edit Profile</a>
+            <a class='btn btn-primary gray-shadow' data-toggle="modal"  data-target="#editProfile">Edit Profile</a>
           </div>
           <div>
             <p>Available Balance:</p>
@@ -97,3 +97,21 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "devise/registrations/edit" %>
+      </div>
+    </div>
+  </div>
+</div>
+
