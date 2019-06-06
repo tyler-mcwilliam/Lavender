@@ -83,6 +83,7 @@
 
     <div id='group-polls'>
       <h2>Polls</h2>
+      <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
       <% @polls.each do |poll| %>
         <div id='polls-container' class='gray-shadow'>
           <div class='poll-header'>
