@@ -116,6 +116,41 @@
   </div>
 </div>
 
+
+<div>
+  <!-- vote in poll -->
+  <div class="create-form mx-auto">
+    <span>
+      <span style="font-size:24px; font-weight:bold;" >
+        <h3>Submit Vote</h3>
+      </span>
+      <p>
+      <!-- iterate through all polls -->
+      <% @polls.each do |poll| %>
+        <!-- Option 1: create poll show view to handle this route -->
+        <%= link_to poll.description, poll_path(poll) %>
+
+        <!-- Option 2: for each poll we can vote on the poll -->
+        <!-- future: put this in modal later -->
+
+        <% if poll.has_voted_by_current_user(current_user) %>
+          <p>
+            <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
+          </p>
+        <% else %>
+          <%= simple_form_for [poll, Vote.new] do |f| %>
+            <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+            <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+        <div>
+          <%= poll.approval %>
+        </div>
+      <% end %>
+      </p>
+  </div>
+</div>
+
 <%= render 'shared/modal_create_poll' %>
 
 <script src="https://www.amcharts.com/lib/4/core.js"></script>

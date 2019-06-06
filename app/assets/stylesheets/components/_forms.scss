@@ -7,53 +7,95 @@
   background-color: $lavender;
 }
 
+#depositMoney {
+  border-radius: 5px;
+  background-color: rgba(37,37,37,.3);
+  .modal-content{
+    background-color: rgba(37,37,37,.3);
+  }
+  .close {
+    color:white;
+  }
+  input {
+    background-color: #c3c3c3;
+  }
+  .btn {
+    background-color: rgba(139,129,210,.3);
+    width: 100%;
+    border-radius: 5rem;
+    &:hover {
+    background-color: $lavender;
+    }
+  }
+}
+
+#withdrawMoney {
+  border-radius: 5px;
+  background-color: rgba(37,37,37,.3);
+  .modal-content{
+    background-color: rgba(37,37,37,.3);
+  }
+  .close {
+    color:white;
+  }
+  input {
+    background-color: #c3c3c3;
+  }
+  .btn {
+    background-color: rgba(139,129,210,.3);
+    width: 100%;
+    border-radius: 5rem;
+    &:hover {
+    background-color: $lavender;
+    }
+  }
+}
+
 #createGroup {
-  border-radius: 5px;
+ border-radius: 5px;
+ background-color: rgba(37,37,37,.3);
+ div {
   background-color: rgba(37,37,37,.3);
-  div {
-    background-color: rgba(37,37,37,.3);
+ }
+ .close {
+  color:white;
+ }
+ input {
+  background-color: #c3c3c3;
+ }
+ #group_description {
+  background-color: #c3c3c3;
+ }
+ .btn {
+  background-color: rgba(139,129,210,.3);
+  width: 100%;
+  border-radius: 5rem;
+  &:hover {
+  background-color: $lavender;
   }
-  .close {
-    color:white;
-  }
-  input {
-    background-color: #c3c3c3;
-  }
-  #group_description {
-    background-color: #c3c3c3;
-  }
-  .btn {
-    background-color: rgba(139,129,210,.3);
-    width: 100%;
-    border-radius: 5rem;
-    &:hover {
-    background-color: $lavender;
-    }
-  }
+ }
 }
-
 #createPoll {
-  border-radius: 5px;
+ border-radius: 5px;
+ background-color: rgba(37,37,37,.3);
+ div {
   background-color: rgba(37,37,37,.3);
-  div {
-    background-color: rgba(37,37,37,.3);
+ }
+ .close {
+  color:white;
+ }
+ input {
+  background-color: #c3c3c3;
+ }
+ #poll_description {
+  background-color: #c3c3c3;
+ }
+ .btn {
+  background-color: rgba(139,129,210,.3);
+  width: 100%;
+  border-radius: 5rem;
+  &:hover {
+  background-color: $lavender;
   }
-  .close {
-    color:white;
-  }
-  input {
-    background-color: #c3c3c3;
-  }
-  #poll_description {
-    background-color: #c3c3c3;
-  }
-  .btn {
-    background-color: rgba(139,129,210,.3);
-    width: 100%;
-    border-radius: 5rem;
-    &:hover {
-    background-color: $lavender;
-    }
-  }
+ }
 }
-
