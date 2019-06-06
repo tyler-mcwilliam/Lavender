@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   before_action :set_orders, only: [:show]
   before_action :set_positions, only: [:show]
   before_action :set_users, only: [:show]
+  before_action :set_user_group, only: [:show]
 
   def index
     @groups = Group.all
@@ -71,6 +72,13 @@ class GroupsController < ApplicationController
     @users = User.select do |user|
       user.groups.includes(@group)
     end
+  end
+
+  def set_user_group
+    @user_group = UserGroup.select do |user_group|
+      user_group.group == @group && user_group.user == current_user
+    end
+    @user_group = @user_group[0]
   end
 
   def group_params
