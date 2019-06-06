@@ -3,11 +3,7 @@
     <div class='dashboard-profile'>
       <div class='profile-card gray-shadow'>
         <div class='profile-photo text-center'>
-          <% if current_user.photo.nil? %>
-            <%= image_tag ('monsters/6.png'), class:'avatar-huge' %>
-          <% else %>
-            <%= image_tag current_user.photo, class:'avatar-huge' %>
-          <% end %>
+          <%= image_tag current_user.photo, class:'avatar-huge' %>
         </div>
         <div class='profile-info'>
           <div class='d-flex justify-content-between'>
