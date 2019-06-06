@@ -1,166 +1,148 @@
-<div id='group-show-div'>
-  <div id='group-performance'>
-    <div id='main-chart-header'>
-      <div>
-        <h1>Lavender <span style='font-size: 24px;'>$939,938</span></h1>
+<div class='container d-flex align-items-start justify-content-center'>
+  <div id='group-show-div'>
+    <div id='group-performance'>
+      <div id='main-chart-header'>
+        <div>
+          <h1>Lavender <span style='font-size: 24px;'>$939,938</span></h1>
+        </div>
+        <p>+$233.93 (+24.33%)</p>
       </div>
-      <p>+$233.93 (+24.33%)</p>
+      <div id="mainchartdiv" class='gray-shadow'></div>
+      <div id='group-stats' class='gray-shadow'>
+        <div id='group-shares'>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Shares:</p>
+            <p>25</p>
+          </div>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Share value:</p>
+            <p>$10/share</p>
+          </div>
+          <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
+            <p style='color:gray;'>Your share:</p>
+            <p>$250</p>
+          </div>
+        </div>
+        <div id='group-balance'>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Available Cash:</p>
+            <p>$2,500</p>
+          </div>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Investment value:</p>
+            <p>$25,000</p>
+          </div>
+          <div class='d-flex justify-content-between'style='border-top: 1px solid #8B81D2;'>
+            <p style='color:gray;'>Portfolio Value:</p>
+            <p>$27,500</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="mainchartdiv"></div>
-    <div id='group-stats'>
-      <div id='group-shares'>
-        <div class='d-flex justify-content-between'>
-          <p style='color:gray;'>Shares:</p>
-          <p>25</p>
-        </div>
-        <div class='d-flex justify-content-between'>
-          <p style='color:gray;'>Share value:</p>
-          <p>$10/share</p>
-        </div>
-        <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
-          <p style='color:gray;'>Your share:</p>
-          <p>$250</p>
+
+    <div id='group-positions'>
+      <div class='d-flex align-items-start justify-content-start'>
+        <h2>Positions</h2>
+        <div style='background-color: gray; border-radius: 5px; width: 150px; text-align: center; margin-left: 40px; font-size: 24px;'>
+            Dropdown
         </div>
       </div>
-      <div id='group-balance'>
-        <div class='d-flex justify-content-between'>
-          <p style='color:gray;'>Available Cash:</p>
-          <p>$2,500</p>
+      <div id='group-positions-content' class='gray-shadow'>
+        <div>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Shares:</p>
+            <p>30</p>
+          </div>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Equity value:</p>
+            <p>$1,032</p>
+          </div>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Average Cost:</p>
+            <p>$22/share</p>
+          </div>
         </div>
-        <div class='d-flex justify-content-between'>
-          <p style='color:gray;'>Investment value:</p>
-          <p>$25,000</p>
+        <div>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Today's Return:</p>
+            <p style='color:#219974'>+$30.23 (+2.5%)</p>
+          </div>
+          <div class='d-flex justify-content-between'>
+            <p style='color:gray;'>Total Return:</p>
+            <p style='color:#219974'>+$1,032 (+3.5%)</p>
+          </div>
         </div>
-        <div class='d-flex justify-content-between'style='border-top: 1px solid #8B81D2;'>
-          <p style='color:gray;'>Portfolio Value:</p>
-          <p>$27,500</p>
+      </div>
+    </div>
+
+    <div id='group-polls'>
+      <h2>Polls</h2>
+      <div id='polls-container' class='gray-shadow'>
+        <div class='poll-header'>
+          <p><b>Tony</b> wants to <b>BUY</b></p>
+          <p><b>20</b> shares of <b>APPL</b></p>
+        </div>
+        <div class='poll-content'>
+          <p style='margin-bottom: 20px;'><i>I think that this stock is going to make us a lot of money.</i></p>
+          <div>
+            <div class='d-flex justify-content-between'>
+              <p style='color:gray'>Number of shares: </p>
+              <p>20</p>
+            </div>
+            <div class='d-flex justify-content-between'>
+              <p style='color:gray'>Cost per share: </p>
+              <p>$20</p>
+            </div>
+            <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
+              <p style='color:gray'>Total cost: </p>
+              <p>$4,000</p>
+            </div>
+          </div>
+        </div>
+        <div class='poll-vote'>
+          <a href='#' style='color:green;'>YES</a>
+          <a href='#' style='color:red;'>NO</a>
         </div>
       </div>
     </div>
   </div>
 
-  <div id='group-positions'>
-    <div class='d-flex align-items-start justify-content-start'>
-      <h2>Positions</h2>
-      <div style='background-color: gray; border-radius: 5px; width: 150px; text-align: center; margin-left: 40px; font-size: 24px;'>
-          Dropdown
+  <div id='action-bar'>
+    <a href='#'>
+      <i class="fas fa-search"></i>
+    </a>
+    <a href='#'>
+      <i class="fas fa-money-bill-wave-alt"></i>
+    </a>
+    <a href='#'>
+      <i class="fas fa-cog"></i>
+    </a>
+  </div>
+</div>
+
+<div class="modal fade" id="createGroup" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createGroupLabel">Create a group</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>
-    <div id='group-positions-content'>
-      <div>
+      <div class="modal-body">
+        <%= simple_form_for [@group] do |f| %>
+        <%= f.input :name, maxlength: 20 %>
+        <%= f.input :description, style:'background-color:gray;' %>
+        <%= f.input :photo  %>
+        <%= f.input :initial_deposit, required: true %>
+        <%= f.button :submit, 'Create Group', class: "btn btn-primary btn-lg" %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-
-<div class="container">
-  <!-- displaying users of the group -->
-  <% @users.each do |user| %>
-    <%= user.first_name %>
-    <%= user.last_name %>
-  <% end %>
-  <!-- POSITIONS -->
-  <% @positions.each do |position| %>
-    <%= position.ticker %>
-  <% end %>
-  <!-- POLLS -->
-  <% @polls.each do |poll| %>
-    <%= poll.description %>
-  <% end %>
-  <!-- ORDERS -->
-  <% @orders.each do |order| %>
-    <%= order.ticker %>
-  <% end %>
-
-   <!-- new poll -->
-  <div class="create-form mx-auto">
-    <span>
-      <span style="font-size:24px; font-weight:bold;" >
-        <h3>Create Poll</h3>
-      </span>
-      <p>
-      <%= simple_form_for [@group, @poll] do |f| %>
-      <%= f.input :description %>
-      <%= f.input :target_price %>
-      <%= f.input :stop_loss_price %>
-      <%= f.input :quantity %>
-      <%= f.input :expiration %>
-      <%= f.input :ticker %>
-      <%= f.button :submit, 'Create Poll', class: 'btn btn-primary'%>
-      <% end %>
-    </p>
-  </div>
-
-  <!-- deposit -->
-  <div class="create-form mx-auto">
-    <span>
-      <span style="font-size:24px; font-weight:bold;" >
-        <h3>Deposit</h3>
-      </span>
-      <p>
-      <%#= simple_form_for [@user_group] do |f| %>
-        <%#= f.input :amount %>
-        <%#= f.button :submit, 'Deposit', class: 'btn btn-primary'%>
-      <%# end %>
-    </p>
-  </div>
-
-  <!-- withdraw -->
-  <div class="create-form mx-auto">
-    <span>
-      <span style="font-size:24px; font-weight:bold;" >
-        <h3>Withdraw</h3>
-      </span>
-      <p>
-      <%#= simple_form_for [@user_group] do |f| %>
-      <%#= f.input :amount %>
-      <%#= f.button :submit, 'Withdraw', class: 'btn btn-primary'%>
-      <%# end %>
-    </p>
-  </div>
-
-  <!-- vote in poll -->
-  <div class="create-form mx-auto">
-    <span>
-      <span style="font-size:24px; font-weight:bold;" >
-        <h3>Submit Vote</h3>
-      </span>
-      <p>
-      <!-- iterate through all polls -->
-      <% @polls.each do |poll| %>
-        <!-- Option 1: create poll show view to handle this route -->
-        <%= link_to poll.description, poll_path(poll) %>
-
-        <!-- Option 2: for each poll we can vote on the poll -->
-      <!-- future: put this in modal later -->
-        <%= simple_form_for [poll, Vote.new] do |f| %>
-          <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
-          <%= f.button :submit, 'no', class: 'btn btn-primary' %>
-        <% end %>
-      <% end %>
-    </p>
-  </div>
-
-</div>
-
