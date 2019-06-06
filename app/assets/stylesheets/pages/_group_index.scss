@@ -1,6 +1,6 @@
 #group-index-banner {
   background-color: $gray1;
-  height: 300px;
+  height: 40vh;
   margin-top:100px;
   span {
     color: $lavender;
@@ -10,6 +10,23 @@
   }
 }
 
-#group-cards-container {
+.group-cardd {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  background-color: $gray1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  img {
+    width: 280px;
+    height: 200px;
+    object-fit: cover;
+  }
+}
 
+#group-cards-container {
+  width: 100vw;
+  min-height: 60vh;
+  margin-bottom: -72px;
 }
