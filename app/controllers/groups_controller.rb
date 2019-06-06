@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    @user_group = UserGroup.new
   end
 
   def show

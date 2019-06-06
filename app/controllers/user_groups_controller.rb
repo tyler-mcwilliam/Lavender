@@ -4,6 +4,13 @@ class UserGroupsController < ApplicationController
     @user_group = UserGroup.new
   end
 
+  def create
+    @user_group = UserGroup.new(user_group_params)
+    @user_group.user_id = current_user
+    @user_group.group_id = params[:group_id]
+    @user_group.save
+  end
+
   def update
     # Currenty using params[:deposit] as a placeholder for user's initial deposit.
     # Assuming this is a param from join / create form.
@@ -26,5 +33,11 @@ class UserGroupsController < ApplicationController
   def update
     @user_group.share += transfer
     @user_group.user_contribution += transfer
+  end
+
+  private
+
+  def user_group_params
+    params.require(:user_group).permit(:user_id, :group_id, :user_contribution)
   end
 end
