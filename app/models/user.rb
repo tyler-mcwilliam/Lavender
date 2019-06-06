@@ -24,6 +24,12 @@ class User < ApplicationRecord
     end
   end
 
+  def vote_for_this_poll(poll)
+    the_vote = poll.votes.find { |vote| vote.user == self }
+
+    return the_vote.approve ? 'yes' : 'no'
+  end
+
   after_create :set_photo, :set_balance
 
   def set_photo

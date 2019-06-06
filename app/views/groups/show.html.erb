@@ -88,19 +88,16 @@
 
         <!-- Option 2: for each poll we can vote on the poll -->
         <!-- future: put this in modal later -->
-        <%= simple_form_for [poll, Vote.new] do |f| %>
-          <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
-          <%= f.button :submit, 'no', class: 'btn btn-primary' %>
-        <% end %>
-        <% poll.votes.each do |vote| %>
+
+        <% if poll.has_voted_by_current_user(current_user) %>
           <p>
-          <%= vote.user.first_name %> voted
-          <% if vote.approve == true %>
-            <%= "yes" %>
-          <% else %>
-            <%= "no" %>
-          <% end %>
+            <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
           </p>
+        <% else %>
+          <%= simple_form_for [poll, Vote.new] do |f| %>
+            <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+            <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+          <% end %>
         <% end %>
       <% end %>
       </p>
