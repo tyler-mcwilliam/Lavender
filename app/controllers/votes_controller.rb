@@ -17,8 +17,9 @@ class VotesController < ApplicationController
     # raise
     if @vote.save
 
-    # @poll.approval += @vote.voting_power if @vote.approve == true
-    # @poll.approval += @vote.voting_power if @vote.approve == false
+      @poll.approval += @vote.voting_power if @vote.approve == true
+      @poll.save
+      # @poll.approval += @vote.voting_power if @vote.approve == false
       redirect_to group_path(@group)
     end
   end
