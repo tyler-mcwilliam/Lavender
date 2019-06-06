@@ -6,7 +6,26 @@
   </div>
   <div id='group-cards-container' style='background-image:url(<%= asset_url ('bottomright.png') %>); background-position: right bottom; background-repeat: no-repeat;'>
     <div class='container-fluid d-flex flex-row justify-content-center flex-wrap' style='padding:50px 118px; margin-bottom: 100px;'>
-      <% Group.all.each do |group| %>
+      <% @groups.each do |group| %>
+        <div class="modal fade" id="joinGroup" tabindex="-1" role="dialog" aria-labelledby="joinGroup" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="joinGroupLabel">Join group</h5>
+                <button type="button" class="cXlose" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for [@user_group] do |f| %>
+                  <%= f.input :group_id, as: :hidden, input_html: { value: group.id } %>
+                  <%= f.input :user_contribution, required: true %>
+                  <%= f.button :submit, 'Join group', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
         <button id='join-group-button' type="button" class="btn btn-primary" data-toggle="modal" data-target="#joinGroup">
           <div class='group-cardd gray-shadow'>
             <%= image_tag 'group.jpg' %>
@@ -22,4 +41,3 @@
   </div>
 </span>
 
-<%= render 'shared/modal_join_group' %>

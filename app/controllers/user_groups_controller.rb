@@ -6,8 +6,7 @@ class UserGroupsController < ApplicationController
 
   def create
     @user_group = UserGroup.new(user_group_params)
-    @user_group.user_id = current_user
-    @user_group.group_id = params[:group_id]
+    @user_group.user_id = current_user.id
     @user_group.save
   end
 
