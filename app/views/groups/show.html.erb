@@ -84,13 +84,20 @@
         <%= link_to poll.description, poll_path(poll) %>
 
         <!-- Option 2: for each poll we can vote on the poll -->
-      <!-- future: put this in modal later -->
-        <%= simple_form_for [poll, Vote.new] do |f| %>
-          <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
-          <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+        <!-- future: put this in modal later -->
+
+        <% if poll.has_voted_by_current_user(current_user) %>
+          <p>
+            <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
+          </p>
+        <% else %>
+          <%= simple_form_for [poll, Vote.new] do |f| %>
+            <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+            <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+          <% end %>
         <% end %>
       <% end %>
-    </p>
+      </p>
   </div>
 
 </div>
