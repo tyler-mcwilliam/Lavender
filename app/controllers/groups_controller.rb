@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
 
   def set_orders
     @orders = Order.select do |order|
-      order.group_id == @group.id
+      order.group == @group
     end
   end
 

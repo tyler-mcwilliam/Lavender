@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_071546) do
+ActiveRecord::Schema.define(version: 2019_06_06_091632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,11 +35,10 @@ ActiveRecord::Schema.define(version: 2019_06_04_071546) do
     t.string "ticker"
     t.boolean "buy"
     t.bigint "poll_id"
-    t.bigint "position_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "filled"
     t.index ["poll_id"], name: "index_orders_on_poll_id"
-    t.index ["position_id"], name: "index_orders_on_position_id"
   end
 
   create_table "polls", force: :cascade do |t|
@@ -120,7 +119,6 @@ ActiveRecord::Schema.define(version: 2019_06_04_071546) do
 
   add_foreign_key "groups", "users", column: "creator_id"
   add_foreign_key "orders", "polls"
-  add_foreign_key "orders", "positions"
   add_foreign_key "polls", "groups"
   add_foreign_key "polls", "positions"
   add_foreign_key "polls", "users", column: "creator_id"

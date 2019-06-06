@@ -8,11 +8,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @poll = @order.poll
-    @order.ticker = @poll.ticker
-    @order.quantity = @poll.quantity
-    @order.buy = @poll.buy
+    # if the poll reaches more than 5, then create an order
+
   end
 
   def update
