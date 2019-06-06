@@ -140,6 +140,13 @@ function updateValues(dataItem) {
     series.dataFields.dateX = "date";
     let label = chart.map.getKey(key);
     label.text = chart.numberFormatter.format(dataItem[key + "ValueX"]);
+    // Color controls below
+    // if (dataItem.droppedFromOpen) {
+    //   label.fill = series.dropFromOpenState.properties.fill;
+    // }
+    // else {
+    //   label.fill = series.riseFromOpenState.properties.fill;
+    // }
   });
 }
 
@@ -165,19 +172,3 @@ chart.cursor.events.on("cursorpositionchanged", function(ev) {
 chart.cursor.events.on("hidden", function(ev) {
   updateValues(series.dataItems.last);
 });
-
-// Colors
-
-function updateValues(dataItem) {
-  am4core.array.each(["date", "value"], function(key) {
-    let series = chart.series.getIndex(0);
-    let label = chart.map.getKey(key);
-    label.text = chart.numberFormatter.format(dataItem[key]);
-    if (dataItem.droppedFromOpen) {
-      label.fill = series.dropFromOpenState.properties.fill;
-    }
-    else {
-      label.fill = series.riseFromOpenState.properties.fill;
-    }
-  });
-}
