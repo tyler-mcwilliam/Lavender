@@ -109,7 +109,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <h3>Funds available for withdrawal: $<%= current_user.available_balance %>.</h3>
+      <p>Funds available for withdrawal: $<%= current_user.available_balance %>.</p>
       <div class="modal-body">
         <%= simple_form_for [current_user], :url => update_user_path(@user.id), :method => :patch do |f| %>
             <%= f.input :withdrawal, required: true , placeholder: 'Number in Dollars'%>
