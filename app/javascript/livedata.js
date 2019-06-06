@@ -5,7 +5,6 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 
 /* Chart code */
 // Themes begin
-am4core.useTheme(am4themes_material);
 am4core.useTheme(am4themes_animated);
 // Themes end
 
