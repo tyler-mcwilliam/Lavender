@@ -28,7 +28,6 @@ class VotesController < ApplicationController
           filled: false,
           poll: @poll
         )
-
         @order.save
       end
       # @poll.approval += @vote.voting_power if @vote.approve == false
