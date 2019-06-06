@@ -12,6 +12,7 @@ class User < ApplicationRecord
   # validates :birthdate, presence: true
   # validates :address, presence: true
   validates :email, presence: true, uniqueness: true
+  attr_accessor :deposit, :withdrawal
 
   def self.from_omniauth(auth)
     # Creates a new user only if it doesn't exist
@@ -28,6 +29,13 @@ class User < ApplicationRecord
     the_vote = poll.votes.find { |vote| vote.user == self }
 
     return the_vote.approve ? 'yes' : 'no'
+  end
+    
+  def edit
+    current_user.available_balance += params[:deposit] unless params[:deposit].nil?
+    current_user.available_balance -= params[:withdrawal] unless params[:withdrawal].nil?
+    current_user.save!
+
   end
 
   after_create :set_photo, :set_balance
