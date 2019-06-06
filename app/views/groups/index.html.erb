@@ -5,18 +5,16 @@
     <h2>Start investing today!</h2>
   </div>
   <div id='group-cards-container' style='background-image:url(<%= asset_url ('bottomright.png') %>); background-position: right bottom; background-repeat: no-repeat;'>
-    <div style='padding:50px;'>
-      <row>
-        <% Group.all.each do |group| %>
-          <div class='group-cardd col-md-3 gray-shadow'>
-            <%= image_tag 'group.jpg' %>
-            <div class='d-flex justify-content-between align-items-center' style='width:300px;'>
-              <h3 style='margin-left: 10px;'><%= group.name %></h3>
-              <p style='margin: 0 10px 5px 0; font-size: 20px;'><i class="fas fa-user"></i> <%= group.users.count %></p>
-            </div>
+    <div class='container d-flex flex-row justify-content-start flex-wrap' style='padding:50px;'>
+      <% Group.all.each do |group| %>
+        <div class='group-cardd gray-shadow'>
+          <%= image_tag 'group.jpg' %>
+          <div class='d-flex justify-content-between align-items-center' style='width:300px;'>
+            <h3 style='margin-left: 10px;'><%= group.name %></h3>
+            <p style='margin: 0 10px 5px 0; font-size: 20px;'><i class="fas fa-user"></i> <%= group.users.count %></p>
           </div>
-        <% end %>
-      </row>
+        </div>
+      <% end %>
     </div>
   </div>
 </span>

@@ -1,6 +1,6 @@
 #dashboard-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-position: left top;
   background-repeat: no-repeat;
   margin-bottom: -72px;
@@ -17,6 +17,7 @@
     background-color: $gray1;
     border-radius: 5px;
     padding-bottom: 10px;
+    position: sticky;
   }
   .profile-photo {
     width: 400px;
@@ -72,6 +73,7 @@
   width: 700px;
   margin-top: 150px;
   margin-left: 50px;
+  margin-bottom: 100px;
 }
 
 .group-card {
