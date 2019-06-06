@@ -12,7 +12,7 @@
           </div>
           <div>
             <p>Available Balance:</p>
-            <p class='text-white'><%= current_user.available_balance %></p>
+            <p class='text-white'>$<%= current_user.available_balance %></p>
             <div class='group-buttons'>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#withdrawMoney">Withdraw</button>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#depositMoney">Deposit</button>
@@ -20,7 +20,7 @@
           </div>
           <div style='margin:0 !important;'>
             <p>Total Balance:
-              <span class='text-white'><%= current_user.total_balance %></span>
+              <span class='text-white'>$<%= current_user.total_balance %></span>
             </p>
           </div>
         </div>
