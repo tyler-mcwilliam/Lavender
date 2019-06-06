@@ -1,0 +1,118 @@
+#group-show-div {
+  width: 800px;
+  margin-top: 100px;
+  h1 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+#main-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  div {
+    display: flex;
+  }
+  p {
+    font-size: 24px;
+    color: #00ff00;
+  }
+}
+
+#mainchartdiv {
+  width: 100%;
+  height: 500px;
+  background-color: $gray1;
+  border-bottom: 3px solid $lavender;
+  border-radius: 5px;
+}
+
+#group-stats {
+  width: 800px;
+  height: 100px;
+  background-color: $gray1;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid $lavender;
+  border-radius: 5px;
+  div {
+    width: 350px;
+  }
+}
+
+#group-positions {
+  margin-top: 50px;
+}
+
+#group-positions-content {
+  padding: 20px;
+  background-color: $gray1;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $lavender;
+  div {
+    width: 350px;
+  }
+}
+
+#group-polls {
+  margin-top: 50px;
+}
+
+#polls-container {
+  width: 350px;
+  background-color: $gray1;
+  border-radius: 5px;
+  .poll-header {
+    width: 350px;
+    padding: 20px;
+    border-bottom: 1px solid $lavender;
+    p {
+      text-align: center;
+      font-size: 24px;
+    }
+  }
+  .poll-content {
+    width: 350px;
+    padding: 20px;
+    background-color: $gray2;
+    border-bottom: 1px solid $lavender;
+  }
+  .poll-vote {
+    width: 350px;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    a {
+      text-decoration: none;
+      font-size: 24px;
+      transition: 1s;
+      &:hover {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+#action-bar {
+  display: flex;
+  flex-direction: column;
+  margin: 140px 0 0 30px;
+  i {
+    text-decoration: none;
+    color: gray;
+    margin-bottom: 20px;
+    font-size: 30px;
+    &:hover {
+      color: $lavender;
+    }
+  }
+}

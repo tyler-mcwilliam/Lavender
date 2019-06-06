@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    # raise
   end
 
   def new
@@ -20,7 +21,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.creator = current_user
     @group.cash_value = params[:group]['initial_deposit']
-    @group.investment_value = params[:group]['initial_deposit']
+    @group.portfolio_value = params[:group]['initial_deposit']
     # @user_group = UserGroup.new(initial_deposit: params[:group]['initial_deposit'])
     # @user_group.group = @group
     # @user_group.user = current_user

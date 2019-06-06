@@ -12,7 +12,7 @@
           </div>
           <div>
             <p>Available Balance:</p>
-            <p class='text-white'><%= current_user.available_balance %></p>
+            <p class='text-white'>$<%= current_user.available_balance %></p>
             <div class='group-buttons'>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#withdrawMoney">Withdraw</button>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#depositMoney">Deposit</button>
@@ -20,7 +20,7 @@
           </div>
           <div style='margin:0 !important;'>
             <p>Total Balance:
-              <span class='text-white'><%= current_user.total_balance %></span>
+              <span class='text-white'>$<%= current_user.total_balance %></span>
             </p>
           </div>
         </div>
@@ -57,29 +57,7 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="createGroup" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="createGroupLabel">Create a group</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for [@group] do |f| %>
-        <%= f.input :name, maxlength: 20 %>
-        <%= f.input :description, style:'background-color:gray;' %>
-        <%= f.input :photo  %>
-        <%= f.input :initial_deposit, required: true %>
-        <%= f.button :submit, 'Create Group', class: "btn btn-primary btn-lg" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%= render 'shared/modal_create_group' %>
 
 <div class="modal fade" id="depositMoney" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
@@ -91,8 +69,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [@group] do |f| %>
-            <%= f.input :initial_deposit, required: true , placeholder: 'Number in Dollars', style:'background-color:gray;'%>
+        <%= simple_form_for [@user], :url => update_user_path(@user.id), :method => :patch do |f| %>
+            <%= f.input :deposit, required: true , placeholder: 'Number in Dollars', style:'background-color:gray;'%>
             <%= f.button :submit, 'Deposit Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
             <% end %>
       </div>
@@ -109,15 +87,17 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <p>Funds available for withdrawal: $<%= current_user.available_balance %>.</p>
       <div class="modal-body">
-        <%= simple_form_for [@group] do |f| %>
-            <%= f.input :initial_deposit, required: true , placeholder: 'Number in Dollars'%>
+        <%= simple_form_for [current_user], :url => update_user_path(@user.id), :method => :patch do |f| %>
+            <%= f.input :withdrawal, required: true , placeholder: 'Number in Dollars'%>
             <%= f.button :submit, 'Withdraw Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
             <% end %>
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -134,3 +114,4 @@
     </div>
   </div>
 </div>
+

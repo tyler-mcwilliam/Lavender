@@ -8,4 +8,10 @@ class Poll < ApplicationRecord
   validates :quantity, presence: true, numericality: true
   validates :ticker, presence: true
   validates :expiration, presence: true
+
+  # return true or false if poll has votes from current user
+  def has_voted_by_current_user(current_user)
+    # raise
+    self.votes.any? { |vote| vote.user == current_user }
+  end
 end

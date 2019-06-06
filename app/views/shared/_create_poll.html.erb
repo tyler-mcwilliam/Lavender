@@ -1,4 +1,41 @@
 <div class="create-form mx-auto">
+    <span style="font-size:24px; font-weight:bold;" >
+      <h3>Create Poll</h3>
+    </span>
+    <%= simple_form_for [@group, @poll] do |f| %>
+    <%= f.input :description %>
+    <%= f.input :target_price %>
+    <%= f.input :stop_loss_price %>
+    <%= f.input :quantity %>
+    <%= f.input :expiration %>
+    <%= f.input :ticker %>
+    <%= f.button :submit, 'Create Poll', class: 'btn btn-primary'%>
+    <% end %>
+</div>
+
+
+
+  <div class="container">
+  <!-- displaying users of the group -->
+  <% @users.each do |user| %>
+    <%= user.first_name %>
+    <%= user.last_name %>
+  <% end %>
+  <!-- POSITIONS -->
+  <% @positions.each do |position| %>
+    <%= position.ticker %>
+  <% end %>
+  <!-- POLLS -->
+  <% @polls.each do |poll| %>
+    <%= poll.description %>
+  <% end %>
+  <!-- ORDERS -->
+  <% @orders.each do |order| %>
+    <%= order.ticker %>
+  <% end %>
+
+   <!-- new poll -->
+  <div class="create-form mx-auto">
     <span>
       <span style="font-size:24px; font-weight:bold;" >
         <h3>Create Poll</h3>
@@ -15,3 +52,54 @@
       <% end %>
     </p>
   </div>
+
+  <!-- deposit -->
+  <div class="create-form mx-auto">
+    <span>
+      <span style="font-size:24px; font-weight:bold;" >
+        <h3>Deposit</h3>
+      </span>
+      <p>
+      <%#= simple_form_for [@user_group] do |f| %>
+        <%#= f.input :amount %>
+        <%#= f.button :submit, 'Deposit', class: 'btn btn-primary'%>
+      <%# end %>
+    </p>
+  </div>
+
+  <!-- withdraw -->
+  <div class="create-form mx-auto">
+    <span>
+      <span style="font-size:24px; font-weight:bold;" >
+        <h3>Withdraw</h3>
+      </span>
+      <p>
+      <%#= simple_form_for [@user_group] do |f| %>
+      <%#= f.input :amount %>
+      <%#= f.button :submit, 'Withdraw', class: 'btn btn-primary'%>
+      <%# end %>
+    </p>
+  </div>
+
+  <!-- vote in poll -->
+  <div class="create-form mx-auto">
+    <span>
+      <span style="font-size:24px; font-weight:bold;" >
+        <h3>Submit Vote</h3>
+      </span>
+      <p>
+      <!-- iterate through all polls -->
+      <% @polls.each do |poll| %>
+        <!-- Option 1: create poll show view to handle this route -->
+        <%= link_to poll.description, poll_path(poll) %>
+
+        <!-- Option 2: for each poll we can vote on the poll -->
+      <!-- future: put this in modal later -->
+        <%= simple_form_for [poll, Vote.new] do |f| %>
+          <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+          <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    </p>
+  </div>
+</div>
