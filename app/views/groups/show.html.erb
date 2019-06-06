@@ -136,7 +136,13 @@
   </div>
 </div>
 <!-- tony still needs to style this-->
-
+<div>
+    <% @group.orders.each do |order| %>
+      <h2>
+        <%= order.price %>
+      </h2>
+    <% end %>
+</div>
 
 <%= render 'shared/modal_create_poll' %>
 

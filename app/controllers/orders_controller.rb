@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
 
   def create
     # if the poll reaches more than 5, then create an order
-
   end
 
   def update
