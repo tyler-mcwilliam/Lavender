@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  mount_uploader :photo, PhotoUploader
   has_many :user_groups
   has_many :groups, through: :user_groups
   has_many :votes
@@ -12,6 +13,7 @@ class User < ApplicationRecord
   # validates :birthdate, presence: true
   # validates :address, presence: true
   validates :email, presence: true, uniqueness: true
+  
   attr_accessor :deposit, :withdrawal
 
   def self.from_omniauth(auth)
@@ -35,7 +37,6 @@ class User < ApplicationRecord
     current_user.available_balance += params[:deposit] unless params[:deposit].nil?
     current_user.available_balance -= params[:withdrawal] unless params[:withdrawal].nil?
     current_user.save!
-
   end
 
   after_create :set_photo, :set_balance

@@ -11,6 +11,7 @@
             <%= f.input :name, maxlength: 20 %>
             <%= f.input :description %>
             <%= f.input :photo  %>
+            <%= f.input :photo_cache, as: :hidden %>
             <%= f.input :initial_deposit, required: true %>
             <%= f.button :submit, 'Create Group', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
             <% end %>

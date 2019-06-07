@@ -7,7 +7,8 @@ class Group < ApplicationRecord
   has_many :orders, through: :polls
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :description, presence: true
-
+  mount_uploader :photo, PhotoUploader
+  
   attr_accessor :initial_deposit
 
   after_create :create_user_group
