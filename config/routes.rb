@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
   post '/user/:id', to: 'users#dashboard'
   patch '/users/:id', to: 'users#update', as: :update_user
-
+  patch '/user_groups/:id', to: 'user_groups#update', as: :update_user_group
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 
   resources :users
-  resources :user_groups, only: [:new, :create]
+  resources :user_groups, only: [:new, :create, :update]
 
   resources :groups, only: [:show, :create, :update, :edit, :index] do
     resources :polls, only: [:create]
