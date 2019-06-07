@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 
   resources :users
-  resources :user_groups, only: [:create]
+  resources :user_groups, only: [:new, :create]
 
   resources :groups, only: [:show, :create, :update, :edit, :index] do
     resources :polls, only: [:create]

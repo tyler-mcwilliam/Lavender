@@ -1,0 +1,63 @@
+#group-index-banner {
+  background-color: $gray1;
+  height: 30vh;
+  width: 100%;
+  margin-top:75px;
+  border-bottom: 5px solid $gray2;
+  span {
+    color: $lavender;
+  }
+  h2 {
+    font-size: 42px;
+  }
+}
+
+.group-cardd {
+  width: 300px;
+  height: 280px;
+  display: flex;
+  background-color: #181625;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 5px;
+  margin: 10px;
+  position:relative;
+  img {
+    width: 280px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .fa-user {
+    color: $lavender;
+  }
+  .fa-plus {
+    position: absolute;
+    color: $lavender;
+    top: 75px;
+    left: 125px;
+    font-size: 60px;
+    opacity: 0;
+  }
+  &:hover > img {
+    opacity: .2;
+  }
+  &:hover > .fa-plus {
+    opacity: 1;
+  }
+}
+
+#group-cards-container {
+  width: 100%;
+  min-height: 70vh;
+  margin-bottom: -72px;
+  display: flex;
+  justify-content: center;
+}
+
+.join-group-button {
+  border-color: transparent;
+  p {
+    color:white;
+  }
+}

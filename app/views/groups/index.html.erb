@@ -1,20 +1,54 @@
-<div class='d-flex flex-column justify-content-start align-items-start'>
-  <h1 style='font-family:Ropa Sans;margin: 100px 0;'>Investment Groups</h1>
-  <div class='dashboard-group'>
-    <% Group.all.each do |group| %>
-      <div class='group-card'>
-        <div class='group-photo'>
-          <%= image_tag 'group.jpg' %>
-        </div>
-        <div class='group-info'>
-          <div class='d-flex flex-column justify-content-start'>
-            <h3><%= group.name %></h3>
-            <p>Members: <%= group.users.count %></p>
-            <br>
-            <p><i><%= group.description %></i></p>
+<div class='d-flex flex-column justify-content-center' style='width:100%;'>
+  <div id='group-index-banner' class='d-flex
+  flex-column justify-content-center align-items-center'>
+    <h2>Join a <span>group<span>.</h2>
+    <h2>Start investing today!</h2>
+  </div>
+  <div id='group-cards-container' style='background-image:url(<%= asset_url ('bottomright.png') %>); background-position: right bottom; background-repeat: no-repeat;'>
+    <div class='container-fluid d-flex flex-row justify-content-center flex-wrap' style='padding:50px 118px; margin-bottom: 100px;'>
+      <% @groups.each do |group| %>
+        <button type="button" class="join-group-button btn" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
+          <div class='group-cardd gray-shadow'>
+            <%= image_tag 'group.jpg' %>
+            <div class='d-flex justify-content-between align-items-center' style='width:300px;'>
+              <h3 style='margin-left: 10px;'><%= group.name %></h3>
+              <p style='margin: 0 10px 5px 0; font-size: 20px;'><i class="fas fa-user"></i> <%= group.users.count %></p>
+            </div>
+            <i class="fas fa-plus"></i>
           </div>
-        </div>
+        </button>
+      <% end %>
+    </div>
+  </div>
+</span>
+
+<div class="modal fade modalForm" id="joinGroup" tabindex="-1" role="dialog" aria-labelledby="joinGroup" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="joinGroupLabel">Join group</h5>
+        <button type="button" class="cXlose" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    <% end %>
+      <div class="modal-body">
+        <%= simple_form_for [@user_group] do |f| %>
+          <%= f.input :group_id, as: :hidden, input_html: { value: '' } %>
+          <%= f.input :user_contribution, required: true %>
+          <%= f.button :submit, 'Join group', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  const joinGroupButtons = document.querySelectorAll('.join-group-button');
+  const joinGroupInput = document.getElementById('user_group_group_id');
+  joinGroupButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      joinGroupInput.value = button.dataset.group;
+      console.log('hi');
+    });
+  })
+</script>
