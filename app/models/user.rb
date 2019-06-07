@@ -13,6 +13,7 @@ class User < ApplicationRecord
   # validates :address, presence: true
   validates :email, presence: true, uniqueness: true
   attr_accessor :deposit, :withdrawal
+  mount_uploader :photo, PhotoUploader
 
   def self.from_omniauth(auth)
     # Creates a new user only if it doesn't exist
@@ -41,14 +42,20 @@ class User < ApplicationRecord
   after_create :set_photo, :set_balance
 
   def set_photo
-    @photos = ['monsters/1', 'monsters/2', 'monsters/3', 'monsters/4', 'monsters/5', 'monsters/6', 'monsters/7', 'monsters/8']
-    self.photo = @photos.sample
-    self.save!
+    if self.photo.nil?
+      @photos = ['monsters/1', 'monsters/2', 'monsters/3', 'monsters/4', 'monsters/5', 'monsters/6', 'monsters/7', 'monsters/8']
+      self.photo = @photos.sample
+      self.save!
+    end
   end
 
   def set_balance
     self.available_balance = 0
     self.total_balance = 0
     self.save
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :photo)
   end
 end
