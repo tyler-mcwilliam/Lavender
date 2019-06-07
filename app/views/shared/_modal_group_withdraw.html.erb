@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for [@group] do |f| %>
-          <%= f.input :initial_deposit, required: true , placeholder: 'Number in Dollars'%>
+          <%= f.input :initial_deposit, required: true, as: :decimal, placeholder: 'Number in Dollars'%>
           <%= f.button :submit, 'Withdraw Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
         <% end %>
       </div>
