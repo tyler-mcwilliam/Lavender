@@ -55,6 +55,9 @@
   justify-content: center;
 }
 
-.join-group-button p {
-  color:white;
+.join-group-button {
+  border-color: transparent;
+  p {
+    color:white;
+  }
 }

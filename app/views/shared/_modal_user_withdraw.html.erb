@@ -1,0 +1,19 @@
+<div class="modal fade modalForm" id="withdrawMoney" tabindex="-1" role="dialog" aria-labelledby="createGroup" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="withdrawMoneyLabel">Make a Withdrawal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <p>Funds available for withdrawal: $<%= current_user.available_balance %>.</p>
+      <div class="modal-body">
+        <%= simple_form_for [current_user], :url => update_user_path(@user.id), :method => :patch do |f| %>
+            <%= f.input :withdrawal, required: true , placeholder: 'Number in Dollars'%>
+            <%= f.button :submit, 'Withdraw Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
+            <% end %>
+      </div>
+    </div>
+  </div>
+</div>
