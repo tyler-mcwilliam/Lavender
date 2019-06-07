@@ -7,7 +7,7 @@
   <div id='group-cards-container' style='background-image:url(<%= asset_url ('bottomright.png') %>); background-position: right bottom; background-repeat: no-repeat;'>
     <div class='container-fluid d-flex flex-row justify-content-center flex-wrap' style='padding:50px 118px; margin-bottom: 100px;'>
       <% @groups.each do |group| %>
-        <button type="button" class="join-group-button btn btn-primary" data-toggle="modal" data-target="#joinGroup" data-id='<%= group.id %>'>
+        <button type="button" class="join-group-button btn btn-primary" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
           <div class='group-cardd gray-shadow'>
             <%= image_tag 'group.jpg' %>
             <div class='d-flex justify-content-between align-items-center' style='width:300px;'>
@@ -42,3 +42,13 @@
   </div>
 </div>
 
+<script>
+  const joinGroupButtons = document.querySelectorAll('.join-group-button');
+  const joinGroupInput = document.getElementById('user_group_group_id');
+  joinGroupButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      joinGroupInput.value = button.dataset.group;
+      console.log('hi');
+    });
+  })
+</script>

@@ -7,7 +7,11 @@ class UserGroupsController < ApplicationController
   def create
     @user_group = UserGroup.new(user_group_params)
     @user_group.user_id = current_user.id
-    @user_group.save
+    if @user_group.save!
+      redirect_to group_path(@user_group.group_id)
+    else
+      render :new;
+    end
   end
 
   def update
