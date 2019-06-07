@@ -1,5 +1,4 @@
 class UserGroupsController < ApplicationController
-  attr_accessor :deposit, :withdraw
   def new
     @user_group = UserGroup.new
   end
@@ -25,14 +24,16 @@ class UserGroupsController < ApplicationController
   def update
     # Currenty using params[:deposit] as a placeholder for user's initial deposit.
     # Assuming this is a param from join / create form.
+    @user_group.deposit(params[:user_group][:deposit]) unless params[:user_group][:deposit].nil?
+    @user_group.withdraw(params[:user_group][:withdrawal]) unless params[:user_group][:withdrawal].nil?
+    @user_group.initial_deposit(params[:initial_deposit]) unless params[:initial_deposit].nil?
+    @user_group.save
+  end
+
+  def initial_deposit(deposit)
     @user_group.user = current_user
-    deposit = @user_group.initial_deposit
     @group = Group.find(params[:group_id])
-    if @group.total_shares.zero?
-      newshares = deposit * 100
-    else
-      newshares = deposit / (@group.investment_value / @group.total_shares)
-    end
+    newshares = deposit * 100
     @group.cash_value += deposit
     @group.total_shares += newshares
     @user_group.user_contribution += deposit
@@ -41,14 +42,31 @@ class UserGroupsController < ApplicationController
     @user_group.save
   end
 
-  def update
-    @user_group.share += transfer
-    @user_group.user_contribution += transfer
+  def deposit(deposit)
+    @group = Group.find(params[:group_id])
+    newshares = deposit / (@group.investment_value / @group.total_shares)
+    @group.cash_value += deposit
+    @group.total_shares += newshares
+    @user_group.user_contribution += deposit
+    @user_group.user_share += newshares
+    @user_group.user_balance = @group.investment_value * (@user_group.user_share / @group.total_shares)
+    @user_group.save
+  end
+
+  def withdraw(withdrawal)
+    @group = self.group
+    cancelledshares = withdrawal / (@group.investment_value / @group.total_shares)
+    @group.cash_value -= withdrawal
+    @group.total_shares -= cancelledshares
+    @user_group.user_contribution -= withdrawal
+    @user_group.user_share -= cancelledshares
+    @user_group.user_balance = @group.investment_value * (@user_group.user_share / @group.total_shares)
+    @user_group.save
   end
 
   private
 
   def user_group_params
-    params.require(:user_group).permit(:user_id, :group_id, :user_contribution)
+    params.require(:user_group).permit(:user_id, :group_id, :user_contribution, :user_share)
   end
 end

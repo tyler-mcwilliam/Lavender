@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_action :set_orders, only: [:show]
   before_action :set_positions, only: [:show]
   before_action :set_users, only: [:show]
-  before_action :set_user_group, only: [:show]
+  before_action :set_user_group, only: [:show, :update]
 
   def index
     @groups = Group.all.reject do |group|
