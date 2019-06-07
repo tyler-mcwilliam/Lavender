@@ -6,8 +6,16 @@ class UserGroupsController < ApplicationController
 
   def create
     @user_group = UserGroup.new(user_group_params)
+    @user_group.user_contribution += params[:user_group][:initial_deposit].to_f
     @user_group.user_id = current_user.id
+    @group = @user_group.group
+    @user_group.user_share += params[:user_group][:initial_deposit].to_f / (@group.portfolio_value / @group.total_shares)
+    @group.total_shares += @user_group.user_share
+    current_user.available_balance -= params[:user_group][:initial_deposit].to_f
+    @group.cash_value += params[:user_group][:initial_deposit].to_f
     if @user_group.save!
+      @group.save
+      current_user.save
       redirect_to group_path(@user_group.group_id)
     else
       render dashboard_path

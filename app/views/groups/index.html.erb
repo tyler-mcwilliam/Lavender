@@ -34,7 +34,7 @@
       <div class="modal-body">
         <%= simple_form_for [@user_group] do |f| %>
           <%= f.input :group_id, as: :hidden, input_html: { value: '' } %>
-          <%= f.input :user_contribution, required: true %>
+          <%= f.input :initial_deposit, required: true %>
           <%= f.button :submit, 'Join group', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
         <% end %>
       </div>
