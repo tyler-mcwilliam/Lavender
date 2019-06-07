@@ -10,7 +10,7 @@ class UserGroupsController < ApplicationController
     if @user_group.save!
       redirect_to group_path(@user_group.group_id)
     else
-      render :new;
+      render :new
     end
   end
 
