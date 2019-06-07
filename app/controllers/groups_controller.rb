@@ -7,7 +7,9 @@ class GroupsController < ApplicationController
   before_action :set_user_group, only: [:show]
 
   def index
-    @groups = Group.all
+    @groups = Group.all.reject do |group|
+      group.users.include?(current_user)
+    end
     @user_group = UserGroup.new
   end
 
