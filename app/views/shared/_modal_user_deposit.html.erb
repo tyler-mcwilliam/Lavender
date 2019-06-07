@@ -9,9 +9,9 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for [current_user], :url => update_user_path(@user.id), :method => :patch do |f| %>
-            <%= f.input :deposit, required: true , placeholder: 'Number in Dollars', style:'background-color:gray;'%>
-            <%= f.button :submit, 'Deposit Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
-            <% end %>
+          <%= f.input :deposit, required: true, as: :decimal, placeholder: 'Number in Dollars', style:'background-color:gray;'%>
+          <%= f.button :submit, 'Deposit Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
+        <% end %>
       </div>
     </div>
   </div>
