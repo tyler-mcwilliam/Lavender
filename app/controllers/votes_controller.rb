@@ -25,7 +25,7 @@ class VotesController < ApplicationController
           quantity: @poll.quantity,
           ticker: @poll.ticker,
           buy: @poll.buy,
-          filled: false,
+#           filled: false,
           poll: @poll
         )
 
