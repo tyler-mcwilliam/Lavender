@@ -33,10 +33,10 @@
   }
   .fa-plus {
     position: absolute;
-    color: white;
-    top: 50px;
-    left: 110px;
-    font-size: 100px;
+    color: $lavender;
+    top: 60px;
+    left: 115px;
+    font-size: 80px;
     opacity: 0;
   }
   &:hover > img {
