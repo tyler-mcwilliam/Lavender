@@ -98,6 +98,22 @@
       <% end %>
     </div> -->
 
+    <!-- <div id='group-order'>
+      <h2>Orders</h2>
+      <% @group.orders.each do |order| %>
+        <div id='group-orders-content' class='gray-shadow'>
+            <div>
+              <div class='d-flex'>
+                <strong><%= order.ticker %></strong>
+                <p style='color:gray;'><b><%= order.quantity %></p>
+                <p>$<%= order.price %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div> -->
+
     <div id='group-polls'>
       <h2>Polls</h2>
       <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
