@@ -1,0 +1,146 @@
+#dynamic-dash-container {
+  width: 100%;
+  span {
+    font-size: 18px;
+  }
+}
+
+#side-bar {
+  height: 100%;
+  width: 275px;
+  background-color: $dark-gray;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#side-profile {
+  margin-top: 100px;
+  margin-bottom: 25px;
+  text-align: center;
+  img {
+    margin: auto;
+  }
+  > div {
+    padding: 20px;
+    background-color: $gray1;
+  }
+}
+
+#right-bar {
+  height: 100%;
+  width: 275px;
+  background-color: $dark-gray;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+#side-group {
+  margin-top: 100px;
+  #group-header {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .fa-users {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: gray;
+    }
+  }
+  .group-tabs {
+    background-color: $gray1;
+    height: 50px;
+    padding: 20px;
+    h2 {
+      color: gray;
+      margin: 0;
+      padding: 0;
+    }
+    &:hover {
+      background-color: #655d9c;
+      h2 {
+        color: white;
+      }
+    }
+  }
+  .member-tabs {
+    background-color: $gray2;
+    height: 50px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      margin-right: 5px;
+    }
+    h2 {
+      color: $lavender;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  // tooggle on and off for active tab
+  .active {
+    background-color: $lavender;
+    h2 {
+      color: white
+    }
+    &:hover {
+      background-color: $lavender;
+      h2 {
+        color: white;
+      }
+    }
+  }
+}
+
+#members-list {
+  padding: 15px 0;
+  background-color: $gray2;
+  border-bottom: 1px solid $lavender;
+}
+
+.transaction-buttons {
+  margin: 20px 20px 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .btn {
+  background-color: $gray1;
+  color: white;
+  width:100px;
+  border-radius: 10px;
+  border: 1px solid $lavender;
+    &:hover {
+      background-color: $lavender;
+    }
+  }
+}
+
+#watch-list {
+  >h2 {
+    padding: 0 20px;
+    color: white;
+  }
+  .watch-tabs {
+    background-color: $gray1;
+    height: 50px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h2 {
+      color: $lavender;
+      margin: 0;
+      padding: 0;
+    }
+    &:hover {
+      background-color: #655d9c;
+      h2 {
+        color: white;
+      }
+    }
+  }
+}

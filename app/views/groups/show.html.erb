@@ -1,162 +1,288 @@
-<div class='container d-flex align-items-start justify-content-center'>
-  <div id='group-show-div'>
-    <div id='group-performance'>
-      <div id='main-chart-header'>
-        <div>
-          <h1><%= @group.name %> <span style='font-size: 24px;'>$<%= @group.portfolio_value %></span></h1>
+<!-- master container -->
+<div id='dynamic-dash-container'>
+  <!-- sidebar container -->
+  <div id='side-bar'>
+    <!-- profile section -->
+    <div id='side-profile'>
+      <%= image_tag 'tony.jpg', class:'avatar-huge' %>
+      <h2>Tony</h2>
+      <div>
+        <div class='d-flex justify-content-between'>
+          <span style='color:gray;'>Available Balance:</span>
+          <span>$100</span>
         </div>
-        <p>+$233.93 (+24.33%)</p>
-      </div>
-      <div id="mainchartdiv" class='gray-shadow'></div>
-      <div id='group-stats' class='gray-shadow'>
-        <div id='group-shares'>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Shares:</p>
-            <p><%= @group.total_shares %></p>
-          </div>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Share value:</p>
-            <p>$<%= @group.portfolio_value / @group.total_shares %></p>
-          </div>
-          <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
-            <p style='color:gray;'>Your share:</p>
-            <p>$<%= (@group.portfolio_value / @group.total_shares) * @user_group.user_share %></p>
-          </div>
+        <div class='d-flex justify-content-between'>
+          <span style='color:gray;'>Total Balance:</span>
+          <span>$200</span>
         </div>
-        <div id='group-balance'>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Available Cash:</p>
-            <p>$<%= @group.cash_value %></p>
-          </div>
-          <div class='d-flex justify-content-between'>
-            <p style='color:gray;'>Investment value:</p>
-            <p>$<%= @group.investment_value %></p>
-          </div>
-          <div class='d-flex justify-content-between'style='border-top: 1px solid #8B81D2;'>
-            <p style='color:gray;'>Portfolio Value:</p>
-            <p>$<%= @group.portfolio_value %></p>
-          </div>
+        <div class='transaction-buttons'>
+          <button type="button" class="btn" data-toggle="modal" data-target="#withdrawMoney" style='margin-left:-20px;'>Withdraw</button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#depositMoney" style='margin-right:-20px'>Deposit</button>
         </div>
       </div>
     </div>
 
-    <div id='group-positions'>
-      <div class='d-flex align-items-start justify-content-start'>
-        <h2>Positions</h2>
-        <div style='background-color: gray; border-radius: 5px; width: 150px; text-align: center; margin-left: 40px; font-size: 24px;'>
-            Dropdown
+    <div id='watch-list'>
+      <h2>Watch List</h2>
+      <div class='watch-tabs'>
+        <h3>APPL</h3>
+        <h3 style='color:#219974;'>+2.03%</h3>
+      </div>
+      <div class='watch-tabs'>
+        <h3>TSLA</h3>
+        <h3 style='color:#ad512f;'>-4.33%</h3>
+      </div>
+      <div class='watch-tabs'>
+        <h3>BYND</h3>
+        <h3 style='color:#219974;'>+5.29%</h3>
+      </div>
+      <div class='watch-tabs'>
+        <h3>FB</h3>
+        <h3 style='color:#219974;'>+2.1%</h3>
+      </div>
+      <div class='watch-tabs'>
+        <h3>GE</h3>
+        <h3 style='color:#219974;'>-2.23%</h3>
+      </div>
+      <div class='watch-tabs'>
+        <h3>BABA</h3>
+        <h3 style='color:#219974;'>+1.45%</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- group view contaier -->
+  <div class='container d-flex align-items-start justify-content-center'>
+    <div id='group-show-div' style='margin-left:35px;'>
+      <div id='group-performance'>
+        <div id='main-chart-header'>
+          <div>
+            <h1><%= @group.name %> <span style='font-size: 24px;'>$<%= @group.portfolio_value %></span></h1>
+          </div>
+          <span>+$233.93 (+24.33%)</span>
+        </div>
+        <div id="mainchartdiv" class='gray-shadow'></div>
+        <div id='group-stats' class='gray-shadow'>
+          <div id='group-shares'>
+            <div class='d-flex justify-content-between'>
+              <span style='color:gray;'>Shares:</span>
+              <span><%= @group.total_shares %></span>
+            </div>
+            <div class='d-flex justify-content-between'>
+              <span style='color:gray;'>Share value:</span>
+              <span>$<%= @group.portfolio_value / @group.total_shares %></span>
+            </div>
+            <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
+              <span style='color:gray;'>Your share:</span>
+              <span>$<%= (@group.portfolio_value / @group.total_shares) * @user_group.user_share %></span>
+            </div>
+          </div>
+          <div id='group-balance'>
+            <div class='d-flex justify-content-between'>
+              <span style='color:gray;'>Available Cash:</span>
+              <span>$<%= @group.cash_value %></span>
+            </div>
+            <div class='d-flex justify-content-between'>
+              <span style='color:gray;'>Investment value:</span>
+              <span>$<%= @group.investment_value %></span>
+            </div>
+            <div class='d-flex justify-content-between'style='border-top: 1px solid #8B81D2;'>
+              <span style='color:gray;'>Portfolio Value:</span>
+              <span>$<%= @group.portfolio_value %></span>
+            </div>
+          </div>
         </div>
       </div>
-      <%= "No positions yet, what are you waiting for?" if @positions.count.zero? %>
-      <% @positions.each do |position| %>
-        <div id='group-positions-content' class='gray-shadow'>
-          <div>
-            <div class='d-flex justify-content-between'>
-              <p style='color:gray;'><b><%= position.ticker %></p>
-            </div>
-            <div class='d-flex justify-content-between'>
-              <p style='color:gray;'>Shares:</p>
-              <p><%= position.quantity %></p>
-            </div>
-            <div class='d-flex justify-content-between'>
-              <p style='color:gray;'>Equity value:</p>
-              <p>$<%= position.quantity * StockQuote::Stock.quote(position.ticker).latest_price %></p>
-            </div>
-            <div class='d-flex justify-content-between'>
-              <p style='color:gray;'>Average Cost:</p>
-              <p>$22/share</p>
-            </div>
-          </div>
-          <div>
-            <div class='d-flex justify-content-between'>
-              <p style='color:gray;'>Today's Return:</p>
-              <p style='color:#219974'>+$30.23 (+2.5%)</p>
-            </div>
-            <div class='d-flex justify-content-between'>
-              <p style='color:gray;'>Total Return:</p>
-              <p style='color:#219974'>+$1,032 (+3.5%)</p>
-            </div>
+
+      <div id='group-positions'>
+        <div class='d-flex align-items-start justify-content-start'>
+          <h2>Positions</h2>
+          <div style='background-color: gray; border-radius: 5px; width: 150px; text-align: center; margin-left: 40px; font-size: 24px;'>
+              Dropdown
           </div>
         </div>
-      <% end %>
-    </div>
-
-    <!-- <div id='group-watchlist'>
-      <h2>Watchlist</h2>
-      <% @group.watchlist.each do |ticker| %>
-        <div id='group-positions-content' class='gray-shadow'>
+        <%= "No positions yet, what are you waiting for?" if @positions.count.zero? %>
+        <% @positions.each do |position| %>
+          <div id='group-positions-content' class='gray-shadow'>
             <div>
-              <div class='d-flex'>
-                <i class="fas fa-times"></i>
-                <p style='color:gray;'><b><%= ticker %></p>
-                <p>$<%= StockQuote::Stock.quote(ticker).latest_price %></p>
+              <div class='d-flex justify-content-between'>
+                <span style='color:gray;'><b><%= position.ticker %></span>
+              </div>
+              <div class='d-flex justify-content-between'>
+                <span style='color:gray;'>Shares:</span>
+                <span><%= position.quantity %></span>
+              </div>
+              <div class='d-flex justify-content-between'>
+                <span style='color:gray;'>Equity value:</span>
+                <span>$<%= position.quantity * StockQuote::Stock.quote(position.ticker).latest_price %></span>
+              </div>
+              <div class='d-flex justify-content-between'>
+                <span style='color:gray;'>Average Cost:</span>
+                <span>$22/share</span>
+              </div>
+            </div>
+            <div>
+              <div class='d-flex justify-content-between'>
+                <span style='color:gray;'>Today's Return:</span>
+                <span style='color:#219974'>+$30.23 (+2.5%)</span>
+              </div>
+              <div class='d-flex justify-content-between'>
+                <span style='color:gray;'>Total Return:</span>
+                <span style='color:#219974'>+$1,032 (+3.5%)</span>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div> -->
+        <% end %>
+      </div>
 
-    <div id='group-polls'>
-      <h2>Polls</h2>
-      <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
-      <% @polls.each do |poll| %>
-        <div id='polls-container' class='gray-shadow'>
-          <div class='poll-header'>
-            <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
-            <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker %></b></p>
-          </div>
-          <div class='poll-content'>
-            <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
-            <div>
-              <div class='d-flex justify-content-between'>
-                <p style='color:gray'>Number of shares: </p>
-                <p><%= poll.quantity %></p>
-              </div>
-              <div class='d-flex justify-content-between'>
-                <p style='color:gray'>Cost per share: </p>
-                <p>$<%= poll.price %></p>
-              </div>
-              <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
-                <p style='color:gray'>Total cost: </p>
-                <p>$<%= (poll.price.to_f * poll.quantity.to_i) %></p>
+      <!-- <div id='group-watchlist'>
+        <h2>Watchlist</h2>
+        <% @group.watchlist.each do |ticker| %>
+          <div id='group-positions-content' class='gray-shadow'>
+              <div>
+                <div class='d-flex'>
+                  <i class="fas fa-times"></i>
+                  <span style='color:gray;'><b><%= ticker %></span>
+                  <span>$<%= StockQuote::Stock.quote(ticker).latest_price %></span>
+                </div>
               </div>
             </div>
           </div>
-          <div class='poll-vote'>
-            <% if poll.has_voted_by_current_user(current_user) %>
-              <p>
-                <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
-              </p>
-            <% else %>
-              <%= simple_form_for [poll, Vote.new] do |f| %>
-                <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
-                <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+        <% end %>
+      </div> -->
+
+      <div id='group-polls'>
+        <h2>Polls</h2>
+        <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
+        <% @polls.each do |poll| %>
+          <div id='polls-container' class='gray-shadow'>
+            <div class='poll-header'>
+              <span><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></span>
+              <span><b><%= poll.quantity %></b> shares of <b><%= poll.ticker %></b></span>
+            </div>
+            <div class='poll-content'>
+              <span style='margin-bottom: 20px;'><i><%= poll.description %></i></span>
+              <div>
+                <div class='d-flex justify-content-between'>
+                  <span style='color:gray'>Number of shares: </span>
+                  <span><%= poll.quantity %></span>
+                </div>
+                <div class='d-flex justify-content-between'>
+                  <span style='color:gray'>Cost per share: </span>
+                  <span>$<%= poll.price %></span>
+                </div>
+                <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
+                  <span style='color:gray'>Total cost: </span>
+                  <span>$<%= (poll.price.to_f * poll.quantity.to_i) %></span>
+                </div>
+              </div>
+            </div>
+            <div class='poll-vote'>
+              <% if poll.has_voted_by_current_user(current_user) %>
+                <span>
+                  <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
+                </span>
+              <% else %>
+                <%= simple_form_for [poll, Vote.new] do |f| %>
+                  <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+                  <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
+            <div>
+              <%= (poll.approval * 100).to_i %>%
+            </div>
           </div>
-          <div>
-            <%= (poll.approval * 100).to_i %>%
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id='action-bar'>
+        <i class="fas fa-search"></i>
+        <span>Search</span>
+      <div data-toggle="modal" data-target="#createPoll" data-whatever="@createPoll">
+        <i class="fas fa-money-bill-wave-alt"></i>
+        <span>Trade</span>
+      </div>
+      <i class="fas fa-cog"></i>
+      <br>
+      <div data-toggle="modal" data-target="#depositMoney" data-whatever="@depositMoney">
+       <i class="fas fa-plus"></i>
+      </div>
+      <div data-toggle="modal" data-target="#withdrawMoney" data-whatever="@withdrawMoney">
+        <i class="fas fa-minus"></i>
+      </div>
     </div>
   </div>
 
-  <div id='action-bar'>
-    <i class="fas fa-search"></i>
-    <div data-toggle="modal" data-target="#createPoll" data-whatever="@createPoll">
-      <i class="fas fa-money-bill-wave-alt"></i>
-    </div>
-    <i class="fas fa-cog"></i>
-    <br>
-    <div data-toggle="modal" data-target="#depositMoney" data-whatever="@depositMoney">
-     <i class="fas fa-plus"></i>
-    </div>
-    <div data-toggle="modal" data-target="#withdrawMoney" data-whatever="@withdrawMoney">
-      <i class="fas fa-minus"></i>
+  <!-- right container -->
+  <div id='right-bar'>
+    <!-- groups list section -->
+    <div id='side-group'>
+      <div id='group-header'>
+        <h2>Groups</h2>
+        <i class="fas fa-users"></i>
+      </div>
+      <div id='groups-list'>
+        <!-- group tabs -->
+        <div class='group-tabs d-flex align-items-center active' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseLavender" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <h2>Lavender</h2>
+        </div>
+
+        <div class="collapse" id="collapseLavender">
+          <%= image_tag 'monsters/6.png' %>
+          <div id="members-list">
+            <div class='member-tabs'>
+              <div class='d-flex justify-content-start align-items-center'>
+                <%= image_tag 'tony.jpg', class:'avatar' %>
+                <h3>Tony</h3>
+              </div>
+              <h3>25%</h3>
+            </div>
+
+            <div class='member-tabs'>
+              <div class='d-flex justify-content-start align-items-center'>
+                <%= image_tag 'nasser.jpg', class:'avatar' %>
+                <h3>Nasser</h3>
+              </div>
+              <h3>25%</h3>
+            </div>
+
+            <div class='member-tabs'>
+              <div class='d-flex justify-content-start align-items-center'>
+                <%= image_tag 'mike.jpg', class:'avatar' %>
+                <h3>Mike</h3>
+              </div>
+              <h3>25%</h3>
+            </div>
+
+            <div class='member-tabs'>
+              <div class='d-flex justify-content-start align-items-center'>
+                <%= image_tag 'tyler.jpg', class:'avatar' %>
+                <h3>Tyler</h3>
+              </div>
+              <h3>25%</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class='group-tabs d-flex align-items-center' data-tab_id='2' data-group_name='fuschia'>
+          <h2>Fuschia</h2>
+        </div>
+        <div class='group-tabs d-flex align-items-center' data-tab_id='3' data-group_name='maroon'>
+          <h2>Maroon</h2>
+        </div>
+        <div class='group-tabs d-flex align-items-center' data-tab_id='4' data-group_name='coral'>
+          <h2>Coral</h2>
+        </div>
+        <div class='transaction-buttons'>
+          <button type="button" class="btn gray-shadow" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create</button>
+          <%= link_to "Join", groups_path, class:'btn gray-shadow' %>
+        </div>
+      </div>
     </div>
   </div>
+
 </div>
 
 <%= render 'shared/modal_create_poll' %>

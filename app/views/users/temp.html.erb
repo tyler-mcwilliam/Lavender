@@ -1,0 +1,64 @@
+<div id='dashboard-container' style='background-image:url(<%= asset_url 'dashboard_background.png' %>);'>
+  <div class='container-fluid d-flex justify-content-center' >
+    <div class='dashboard-profile'>
+      <div class='profile-card gray-shadow'>
+        <div class='profile-photo text-center'>
+          <%= image_tag current_user.photo, class:'avatar-huge' %>
+        </div>
+        <div class='profile-info'>
+          <div class='d-flex justify-content-between'>
+            <h2>Welcome <%= current_user.first_name %>!</h2>
+            <a class='btn btn-primary gray-shadow' data-toggle="modal"  data-target="#editProfile">Edit Profile</a>
+          </div>
+          <div>
+            <p>Available Balance:</p>
+            <p class='text-white'>$<%= current_user.available_balance %></p>
+            <div class='transaction-buttons'>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#withdrawMoney" style='margin-left:-20px;'>Withdraw</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#depositMoney" style='margin-right:-20px'>Deposit</button>
+            </div>
+          </div>
+          <div style='margin:0 !important;'>
+            <p>Total Balance:
+              <span class='text-white'>$<%= current_user.total_balance %></span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class='group-buttons'>
+        <button type="button" class="btn btn-primary gray-shadow" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create a group</button>
+        <%= link_to "Join a group", groups_path, class:'btn btn-primary gray-shadow' %>
+      </div>
+    </div>
+
+    <div class='dashboard-group'>
+      <h3><%= "You are not in any groups, join one now!" if current_user.user_groups.count == 0 %></h3>
+      <% current_user.user_groups.each do |user_group| %>
+        <div class='group-card gray-shadow'>
+          <div class='group-photo'>
+            <%= image_tag 'group' %>
+          </div>
+          <div class='group-info'>
+            <div class='d-flex flex-column justify-content-start'>
+              <h3><%= link_to user_group.group.name, group_path(user_group.group_id) %></h3>
+              <div>
+                <p>Group Value: $<%= user_group.group.portfolio_value %></p>
+                <p>Ownership: <%= 100 * (user_group.user_share / user_group.group.total_shares)  %>%</p>
+                <p><i><%= user_group.group.description %></i></p>
+              </div>
+            </div>
+            <div class='d-flex flex-column'>
+              <h3 style='color:green; text-align:right;'>+23%</h3>
+              <p style='color:green; text-align:right;'>+$1,003</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/modal_create_group' %>
+<%= render 'shared/modal_edit_profile' %>
+<%= render 'shared/modal_user_deposit' %>
+<%= render 'shared/modal_user_withdraw' %>
