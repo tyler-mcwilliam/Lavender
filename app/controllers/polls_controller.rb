@@ -20,16 +20,8 @@ class PollsController < ApplicationController
     @poll.group = @group
     @poll.price = StockQuote::Stock.quote(@poll.ticker).latest_price
     redirect_to group_path(@group) if @poll.price.nil?
-    if @poll.group.cash_value < (@poll.quantity * @poll.price)
-      @poll.save!
-    else
-      redirect_to group_path(@group)
-    end
-    if @poll.save
-      redirect_to poll_path(@poll)
-    else
-      redirect_to group_path(@group)
-    end
+    @poll.save! if @poll.buy == true && @poll.group.cash_value < (@poll.quantity * @poll.price)
+    redirect_to group_path(@group)
   end
 
   def update
