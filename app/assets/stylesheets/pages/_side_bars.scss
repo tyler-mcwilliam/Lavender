@@ -16,8 +16,13 @@
 
 .dropdown-item {
   color: white !important;
+  font-size: 18px !important;
   &:hover {
     color: $gray1 !important;
+  }
+  &:focus {
+    background-color: $lavender !important;
+    color: white !important;
   }
 }
 
