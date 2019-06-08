@@ -121,12 +121,29 @@
     &:hover {
       color: #00e8a1;
     }
-
   }
   .fa-minus {
     color: #ab502f;
     &:hover {
       color:#ff5e24;
+    }
+  }
+
+  .action-icon{
+    position: relative;
+    span {
+      opacity: 0;
+      color: white;
+      position: absolute;
+      font-size: 24px;
+      top: 0px;
+      left: -10px;
+    }
+    &:hover > i {
+      color: $gray1;
+    }
+    &:hover > span {
+      opacity: 1;
     }
   }
 }

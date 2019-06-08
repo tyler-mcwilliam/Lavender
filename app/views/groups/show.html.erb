@@ -198,19 +198,30 @@
     </div>
 
     <div id='action-bar'>
+      <div class='action-icon'>
         <i class="fas fa-search"></i>
-        <span>Search</span>
-      <div data-toggle="modal" data-target="#createPoll" data-whatever="@createPoll">
+        <span id='search'>Search</span>
+      </div>
+
+      <div data-toggle="modal" data-target="#createPoll" data-whatever="@createPoll" id='action-trade' class='action-icon'>
         <i class="fas fa-money-bill-wave-alt"></i>
         <span>Trade</span>
       </div>
-      <i class="fas fa-cog"></i>
-      <br>
-      <div data-toggle="modal" data-target="#depositMoney" data-whatever="@depositMoney">
-       <i class="fas fa-plus"></i>
+
+      <div class='action-icon'>
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
       </div>
-      <div data-toggle="modal" data-target="#withdrawMoney" data-whatever="@withdrawMoney">
+
+      <br>
+
+      <div data-toggle="modal" data-target="#depositMoney" data-whatever="@depositMoney" class='action-icon'>
+        <i class="fas fa-plus"></i>
+        <span>Deposit</span>
+      </div>
+      <div data-toggle="modal" data-target="#withdrawMoney" data-whatever="@withdrawMoney" class='action-icon'>
         <i class="fas fa-minus"></i>
+        <span>Withdraw</span>
       </div>
     </div>
   </div>
