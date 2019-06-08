@@ -19,10 +19,10 @@ class PollsController < ApplicationController
     @poll.creator = current_user
     @poll.group = @group
     @poll.price = StockQuote::Stock.quote(@poll.ticker).latest_price
-    if @poll.group.cash_value < (@poll.quantity * StockQuote::Stock.quote(@poll.ticker).latest_price)
+    if @poll.group.cash_value < (@poll.quantity * @poll.price)
       @poll.save!
     else
-      redirect_to root
+      redirect_to group_path(@group)
     end
     if @poll.save
       redirect_to poll_path(@poll)
