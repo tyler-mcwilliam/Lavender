@@ -255,122 +255,27 @@
       </div>
 
       <div id='groups-list'>
-        <div class='group-tabs-container active'>
-          <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseLavender" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <h2>Lavender</h2>
-          </div>
-          <div class="collapse show" id="collapseLavender">
+        <% @groups.each do |group| %>
+          <div class='group-tabs-container active' data-group_id='<%= group.id %>'>
+            <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='<%= group.name %>' data-toggle="collapse" href="#collapse<%= group.name %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <h2><%= group.name.capitalize %></h2>
+            </div>
+            <div class="collapse show" id="collapse<%= group.name %>">
               <%= image_tag 'monsters/6.png' %>
-            <div id="members-list">
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'tony.jpg', class:'avatar' %>
-                  <h3>Tony</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'nasser.jpg', class:'avatar' %>
-                  <h3>Nasser</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'mike.jpg', class:'avatar' %>
-                  <h3>Mike</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'tyler.jpg', class:'avatar' %>
-                  <h3>Tyler</h3>
-                </div>
-                <h3>25%</h3>
+              <div id="members-list">
+                <% group.users.each do |user| %>
+                  <div class='member-tabs'>
+                    <div class='d-flex justify-content-start align-items-center'>
+                      <%= image_tag 'tony.jpg', class:'avatar' %>
+                      <h3><%= user.first_name.capitalize %></h3>
+                    </div>
+                    <h3>100%</h3>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class='group-tabs-container'>
-          <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseFuschia" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <h2>Fuschia</h2>
-          </div>
-          <div class="collapse" id="collapseFuschia">
-              <%= image_tag 'monsters/3.png' %>
-            <div id="members-list">
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'tony.jpg', class:'avatar' %>
-                  <h3>Tony</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'nasser.jpg', class:'avatar' %>
-                  <h3>Nasser</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'mike.jpg', class:'avatar' %>
-                  <h3>Mike</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'tyler.jpg', class:'avatar' %>
-                  <h3>Tyler</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class='group-tabs-container'>
-          <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseLeWagon" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <h2>Le Wagon</h2>
-          </div>
-          <div class="collapse" id="collapseLeWagon">
-             <%= image_tag 'monsters/7.png' %>
-            <div id="members-list">
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'tony.jpg', class:'avatar' %>
-                  <h3>Tony</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'nasser.jpg', class:'avatar' %>
-                  <h3>Nasser</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'mike.jpg', class:'avatar' %>
-                  <h3>Mike</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-              <div class='member-tabs'>
-                <div class='d-flex justify-content-start align-items-center'>
-                  <%= image_tag 'tyler.jpg', class:'avatar' %>
-                  <h3>Tyler</h3>
-                </div>
-                <h3>25%</h3>
-              </div>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
