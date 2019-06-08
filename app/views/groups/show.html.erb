@@ -1,13 +1,13 @@
 <!-- master container -->
 <div id='dynamic-dash-container'>
   <!-- left-bar container -->
-  <div id='left-bar'>
+  <div id='left-bar' class='gray-shadow'>
     <!-- profile section -->
     <div id='side-profile'>
       <%= image_tag 'tony.jpg', class:'avatar-huge' %>
       <h2>Tony</h2>
       <!-- balances container -->
-      <div>
+      <div class='gray-shadow'>
         <div class='d-flex justify-content-between'>
           <span style='color:gray;'>Available Balance:</span>
           <span>$100</span>
@@ -25,7 +25,7 @@
     </div>
 
     <!-- watchlist container -->
-    <div id='watch-list'>
+    <div id='watch-list' class='gray-shadow'>
       <div id='watch-list-header'>
         <h2>Watch List</h2>
         <i class="fas fa-plus"></i>
@@ -237,12 +237,21 @@
   </div>
 
   <!-- right container -->
-  <div id='right-bar'>
+  <div id='right-bar' class='gray-shadow'>
     <!-- groups list section -->
     <div id='side-group'>
       <div id='group-header'>
         <h2>Groups</h2>
-        <i class="fas fa-users"></i>
+        <div class="dropdown">
+          <button class="dropdown-toggle" type="button" id="groupAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-users"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="groupAction">
+            <a class="dropdown-item" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create a group</a>
+            <%= link_to "Join", groups_path, class:'dropdown-item' %>
+          </div>
+        </div>
+
       </div>
 
       <div id='groups-list'>
@@ -323,11 +332,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class='transaction-buttons'>
-        <button type="button" class="btn gray-shadow" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create</button>
-        <%= link_to "Join", groups_path, class:'btn gray-shadow' %>
       </div>
     </div>
   </div>
