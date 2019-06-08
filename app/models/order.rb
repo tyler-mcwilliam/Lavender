@@ -23,6 +23,7 @@ class Order < ApplicationRecord
     end
     @position.return = (@position.current_price * @position.quantity) - @position.cost_basis
     @position.save!
+    @position.destroy if @position.quantity == 0
     self.filled = true
     self.save!
   end
