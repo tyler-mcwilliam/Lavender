@@ -125,7 +125,7 @@
             </div>
           </div>
           <div class='poll-vote'>
-            <%= poll.votes.each do |vote| %>
+            <% poll.votes.each do |vote| %>
               <p><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>.</p>
             <% end %>
             <% if poll.has_voted_by_current_user(current_user) %>
