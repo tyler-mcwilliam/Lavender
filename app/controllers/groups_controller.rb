@@ -62,7 +62,7 @@ class GroupsController < ApplicationController
 
   def set_orders
     @orders = Order.select do |order|
-      order.group == @group
+      order.poll.group == @group
     end
   end
 

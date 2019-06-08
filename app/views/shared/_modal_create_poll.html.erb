@@ -9,12 +9,12 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for [@group, @poll] do |f| %>
-        <%= f.input :description %>
-        <%= f.input :buy, as: :radio_buttons, collection: [[true, 'buy'], [false, 'sell']] %>
-        <%= f.input :quantity %>
-        <%= f.input :expiration %>
-        <%= f.input :ticker %>
-        <%= f.button :submit, 'Create Poll', class: 'btn btn-primary'%>
+          <%= f.input :expiration %>
+          <%= f.input :ticker %>
+          <%= f.input :buy, as: :radio_buttons, collection: [[true, 'buy'], [false, 'sell']], label: 'Buy or Sell?', :label_method => :last, :value_method => :first %>
+          <%= f.input :quantity %>
+          <%= f.input :description %>
+          <%= f.button :submit, 'Create Poll', class: 'btn btn-primary'%>
         <% end %>
       </div>
     </div>

@@ -1,18 +1,19 @@
 class Order < ApplicationRecord
   belongs_to :poll
-  belongs_to :group
   # belongs_to :position, class_name: "Position"
 
   after_create :execute
 
   def execute
-    @position = Position.find(ticker == self.ticker)
-    if Position.find(ticker == self.ticker).nil?
+    @poll = self.poll
+    @group = self.poll.group
+    @position = @group.positions.where(:ticker == self.ticker).first
+    if @position.nil?
       @position = Position.new(
         ticker: @poll.ticker,
         quantity: @poll.quantity,
         current_price: StockQuote::Stock.quote(self.ticker).latest_price,
-        group_id: self.group_id
+        group_id: self.poll.group_id
       )
       @position.cost_basis = (@position.quantity * @position.current_price)
     else

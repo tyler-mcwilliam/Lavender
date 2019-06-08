@@ -52,7 +52,7 @@
         <div id='group-positions-content' class='gray-shadow'>
           <div>
             <div class='d-flex justify-content-between'>
-              <p style='color:gray;'><b><%= position.ticker %></p>
+              <p style='color:gray;'><b><%= position.ticker.upcase %></p>
             </div>
             <div class='d-flex justify-content-between'>
               <p style='color:gray;'>Shares:</p>
@@ -82,7 +82,7 @@
     </div>
 
 
-    <!-- <div id='group-watchlist'>
+ <!--    <div id='group-watchlist'>
       <h2>Watchlist</h2>
       <% @group.watchlist.each do |ticker| %>
         <div id='group-positions-content' class='gray-shadow'>
@@ -98,7 +98,7 @@
       <% end %>
     </div> -->
 
-    <!-- <div id='group-order'>
+<!--     <div id='group-order'>
       <h2>Orders</h2>
       <% @group.orders.each do |order| %>
         <div id='group-orders-content' class='gray-shadow'>
@@ -121,7 +121,7 @@
         <div id='polls-container' class='gray-shadow'>
           <div class='poll-header'>
             <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
-            <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker %></b></p>
+            <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker.upcase %></b></p>
           </div>
           <div class='poll-content'>
             <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
@@ -142,7 +142,7 @@
           </div>
           <div class='poll-vote'>
             <% poll.votes.each do |vote| %>
-              <p><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>.</p>
+              <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= vote.voting_power %>%)</i></p>
             <% end %>
             <% if poll.has_voted_by_current_user(current_user) %>
               <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
