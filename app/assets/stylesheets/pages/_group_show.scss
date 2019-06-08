@@ -106,7 +106,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 140px 0 0 30px;
+  margin: 140px 0 0 20px;
   i {
     text-decoration: none;
     color: gray;
@@ -116,20 +116,7 @@
       color: $lavender;
     }
   }
-  .fa-plus {
-    color: #219974;
-    &:hover {
-      color: #00e8a1;
-    }
-  }
-  .fa-minus {
-    color: #ab502f;
-    &:hover {
-      color:#ff5e24;
-    }
-  }
-
-  .action-icon{
+  .action-icon {
     position: relative;
     span {
       opacity: 0;

@@ -120,10 +120,22 @@
 }
 
 #watch-list {
-  >h2 {
+  #watch-list-header {
     padding: 0 20px;
-    color: white;
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px solid $lavender;
+    h2 {
+      color: white;
+    }
+    .fa-plus {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: gray;
+      &:hover {
+        color: white;
+      }
+    }
   }
   .watch-tabs {
     background-color: $gray1;
@@ -142,6 +154,9 @@
       h2 {
         color: white;
       }
+    }
+    h3 {
+      padding: 0;
     }
   }
 }
