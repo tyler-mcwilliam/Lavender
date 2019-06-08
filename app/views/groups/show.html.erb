@@ -244,13 +244,13 @@
         <h2>Groups</h2>
         <i class="fas fa-users"></i>
       </div>
+
       <div id='groups-list'>
-        <!-- group tabs -->
-        <div class='group-tabs-container'>
-          <div class='group-tabs d-flex align-items-center active' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseLavender" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <div class='group-tabs-container active'>
+          <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseLavender" role="button" aria-expanded="false" aria-controls="collapseExample">
             <h2>Lavender</h2>
           </div>
-          <div class="collapse" id="collapseLavender">
+          <div class="collapse show" id="collapseLavender">
             <%= image_tag 'monsters/6.png' %>
             <div id="members-list">
               <div class='member-tabs'>
@@ -286,20 +286,41 @@
         </div>
 
         <div class='group-tabs-container'>
-          <div class='group-tabs d-flex align-items-center' data-tab_id='2' data-group_name='fuschia'>
+          <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseFuschia" role="button" aria-expanded="false" aria-controls="collapseExample">
             <h2>Fuschia</h2>
           </div>
-        </div>
-
-        <div class='group-tabs-container'>
-          <div class='group-tabs d-flex align-items-center' data-tab_id='3' data-group_name='maroon'>
-            <h2>Maroon</h2>
-          </div>
-        </div>
-
-        <div class='group-tabs-container'>
-          <div class='group-tabs d-flex align-items-center' data-tab_id='4' data-group_name='coral'>
-            <h2>Coral</h2>
+          <div class="collapse" id="collapseFuschia">
+            <%= image_tag 'monsters/3.png' %>
+            <div id="members-list">
+              <div class='member-tabs'>
+                <div class='d-flex justify-content-start align-items-center'>
+                  <%= image_tag 'tony.jpg', class:'avatar' %>
+                  <h3>Tony</h3>
+                </div>
+                <h3>25%</h3>
+              </div>
+              <div class='member-tabs'>
+                <div class='d-flex justify-content-start align-items-center'>
+                  <%= image_tag 'nasser.jpg', class:'avatar' %>
+                  <h3>Nasser</h3>
+                </div>
+                <h3>25%</h3>
+              </div>
+              <div class='member-tabs'>
+                <div class='d-flex justify-content-start align-items-center'>
+                  <%= image_tag 'mike.jpg', class:'avatar' %>
+                  <h3>Mike</h3>
+                </div>
+                <h3>25%</h3>
+              </div>
+              <div class='member-tabs'>
+                <div class='d-flex justify-content-start align-items-center'>
+                  <%= image_tag 'tyler.jpg', class:'avatar' %>
+                  <h3>Tyler</h3>
+                </div>
+                <h3>25%</h3>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -325,8 +346,16 @@
   const groups = document.getElementById('groups-list');
   const groupTabs = document.querySelectorAll('.group-tabs-container');
   groupTabs.forEach((group) => {
-    group.addEventListener('click', () => {
-      console.log('hi')
+    group.addEventListener('click', (e) => {
+      const tab = e.currentTarget
+      if (tab === groups.firstElementChild) {
+        console.log('this is already the first child');
+      } else {
+        groups.firstElementChild.classList.remove('active');
+        groups.firstElementChild.getElementsByClassName(' collapse')[0].classList.remove('show');
+        groups.insertAdjacentElement('afterbegin', tab);
+        groups.firstChild.classList.add('active');
+      };
     });
   })
 </script>

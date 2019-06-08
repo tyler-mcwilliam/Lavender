@@ -83,14 +83,16 @@
   }
   // tooggle on and off for active tab
   .active {
-    background-color: $lavender;
-    h2 {
-      color: white
-    }
-    &:hover {
+    .group-tabs {
       background-color: $lavender;
       h2 {
-        color: white;
+        color: white
+      }
+      &:hover {
+        background-color: $lavender;
+        h2 {
+          color: white;
+        }
       }
     }
   }
