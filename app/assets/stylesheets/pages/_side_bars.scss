@@ -125,6 +125,10 @@
   }
 }
 
+.collapse > img {
+  width: 100%;
+}
+
 #members-list {
   padding: 15px 0;
   background-color: $gray2;
@@ -192,6 +196,3 @@
   }
 }
 
-.collapse > img {
-  width: 100%;
-}
