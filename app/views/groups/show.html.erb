@@ -320,3 +320,13 @@
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<script>
+  const groups = document.getElementById('groups-list');
+  const groupTabs = document.querySelectorAll('.group-tabs-container');
+  groupTabs.forEach((group) => {
+    group.addEventListener('click', () => {
+      console.log('hi')
+    });
+  })
+</script>
