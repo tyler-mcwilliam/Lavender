@@ -19,17 +19,18 @@ class VotesController < ApplicationController
 
       @poll.approval += @vote.voting_power if @vote.approve == true
       @poll.save
-      if true # limit check/need to find out how we are going to register 51%
+      if @poll.approval > 0.51 # limit check/need to find out how we are going to register 51%
         @order = Order.new(
           price: @poll.price,
           quantity: @poll.quantity,
           ticker: @poll.ticker,
           buy: @poll.buy,
-#           filled: false,
+          filled: false,
           poll: @poll
         )
 
         @order.save
+        @poll.destroy
       end
       # @poll.approval += @vote.voting_power if @vote.approve == false
       redirect_to group_path(@group)
