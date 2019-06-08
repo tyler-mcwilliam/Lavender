@@ -126,16 +126,19 @@
           </div>
           <div class='poll-vote'>
             <%= poll.votes.each do |vote| %>
-              <p><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %></p>
-            <%= end %>
-            <% unless poll.has_voted_by_current_user(current_user) %>
+              <p><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>.</p>
+            <% end %>
+            <% if poll.has_voted_by_current_user(current_user) %>
+              <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
+            <% else %>
               <%= simple_form_for [poll, Vote.new] do |f| %>
                 <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
                 <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+              <% end %>
             <% end %>
           </div>
           <div>
-            <strong><%= (poll.approval * 100).to_i %>% approved </strong>
+            <%= (poll.approval * 100).to_i %>%
           </div>
         </div>
       <% end %>
