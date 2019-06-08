@@ -19,6 +19,7 @@ class PollsController < ApplicationController
     @poll.creator = current_user
     @poll.group = @group
     @poll.price = StockQuote::Stock.quote(@poll.ticker).latest_price
+    redirect_to group_path(@group) if @poll.price.nil?
     if @poll.group.cash_value < (@poll.quantity * @poll.price)
       @poll.save!
     else
