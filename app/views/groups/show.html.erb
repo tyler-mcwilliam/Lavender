@@ -1,11 +1,12 @@
 <!-- master container -->
 <div id='dynamic-dash-container'>
-  <!-- sidebar container -->
-  <div id='side-bar'>
+  <!-- left-bar container -->
+  <div id='left-bar'>
     <!-- profile section -->
     <div id='side-profile'>
       <%= image_tag 'tony.jpg', class:'avatar-huge' %>
       <h2>Tony</h2>
+      <!-- balances container -->
       <div>
         <div class='d-flex justify-content-between'>
           <span style='color:gray;'>Available Balance:</span>
@@ -15,6 +16,7 @@
           <span style='color:gray;'>Total Balance:</span>
           <span>$200</span>
         </div>
+        <!-- transaction buttons -->
         <div class='transaction-buttons'>
           <button type="button" class="btn" data-toggle="modal" data-target="#withdrawMoney" style='margin-left:-20px;'>Withdraw</button>
           <button type="button" class="btn" data-toggle="modal" data-target="#depositMoney" style='margin-right:-20px'>Deposit</button>
@@ -22,8 +24,10 @@
       </div>
     </div>
 
+    <!-- watchlist container -->
     <div id='watch-list'>
       <h2>Watch List</h2>
+      <!-- watch tabs -->
       <div class='watch-tabs'>
         <h3>APPL</h3>
         <h3 style='color:#219974;'>+2.03%</h3>
@@ -55,6 +59,7 @@
   <div class='container d-flex align-items-start justify-content-center'>
     <div id='group-show-div' style='margin-left:35px;'>
       <div id='group-performance'>
+
         <div id='main-chart-header'>
           <div>
             <h1><%= @group.name.capitalize %> <span style='font-size: 24px;'>$<%= @group.portfolio_value %></span></h1>
@@ -198,27 +203,29 @@
     </div>
 
     <div id='action-bar'>
+      <!-- search -->
       <div class='action-icon'>
         <i class="fas fa-search"></i>
         <span id='search'>Search</span>
       </div>
-
+      <!-- trade -->
       <div data-toggle="modal" data-target="#createPoll" data-whatever="@createPoll" id='action-trade' class='action-icon'>
         <i class="fas fa-money-bill-wave-alt"></i>
         <span>Trade</span>
       </div>
-
+      <!-- settings -->
       <div class='action-icon'>
         <i class="fas fa-cog"></i>
         <span>Settings</span>
       </div>
 
       <br>
-
+      <!-- deposit -->
       <div data-toggle="modal" data-target="#depositMoney" data-whatever="@depositMoney" class='action-icon'>
         <i class="fas fa-plus"></i>
         <span>Deposit</span>
       </div>
+      <!-- withdraw -->
       <div data-toggle="modal" data-target="#withdrawMoney" data-whatever="@withdrawMoney" class='action-icon'>
         <i class="fas fa-minus"></i>
         <span>Withdraw</span>
@@ -236,60 +243,67 @@
       </div>
       <div id='groups-list'>
         <!-- group tabs -->
-        <div class='group-tabs d-flex align-items-center active' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseLavender" role="button" aria-expanded="false" aria-controls="collapseExample">
-          <h2>Lavender</h2>
-        </div>
-
-        <div class="collapse" id="collapseLavender">
-          <%= image_tag 'monsters/6.png' %>
-          <div id="members-list">
-            <div class='member-tabs'>
-              <div class='d-flex justify-content-start align-items-center'>
-                <%= image_tag 'tony.jpg', class:'avatar' %>
-                <h3>Tony</h3>
+        <div class='group-tabs-container'>
+          <div class='group-tabs d-flex align-items-center active' data-tab_id='1' data-group_name='lavender' data-toggle="collapse" href="#collapseLavender" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <h2>Lavender</h2>
+          </div>
+          <div class="collapse" id="collapseLavender">
+            <%= image_tag 'monsters/6.png' %>
+            <div id="members-list">
+              <div class='member-tabs'>
+                <div class='d-flex justify-content-start align-items-center'>
+                  <%= image_tag 'tony.jpg', class:'avatar' %>
+                  <h3>Tony</h3>
+                </div>
+                <h3>25%</h3>
               </div>
-              <h3>25%</h3>
-            </div>
-
-            <div class='member-tabs'>
-              <div class='d-flex justify-content-start align-items-center'>
-                <%= image_tag 'nasser.jpg', class:'avatar' %>
-                <h3>Nasser</h3>
+              <div class='member-tabs'>
+                <div class='d-flex justify-content-start align-items-center'>
+                  <%= image_tag 'nasser.jpg', class:'avatar' %>
+                  <h3>Nasser</h3>
+                </div>
+                <h3>25%</h3>
               </div>
-              <h3>25%</h3>
-            </div>
-
-            <div class='member-tabs'>
-              <div class='d-flex justify-content-start align-items-center'>
-                <%= image_tag 'mike.jpg', class:'avatar' %>
-                <h3>Mike</h3>
+              <div class='member-tabs'>
+                <div class='d-flex justify-content-start align-items-center'>
+                  <%= image_tag 'mike.jpg', class:'avatar' %>
+                  <h3>Mike</h3>
+                </div>
+                <h3>25%</h3>
               </div>
-              <h3>25%</h3>
-            </div>
-
-            <div class='member-tabs'>
-              <div class='d-flex justify-content-start align-items-center'>
-                <%= image_tag 'tyler.jpg', class:'avatar' %>
-                <h3>Tyler</h3>
+              <div class='member-tabs'>
+                <div class='d-flex justify-content-start align-items-center'>
+                  <%= image_tag 'tyler.jpg', class:'avatar' %>
+                  <h3>Tyler</h3>
+                </div>
+                <h3>25%</h3>
               </div>
-              <h3>25%</h3>
             </div>
           </div>
         </div>
 
-        <div class='group-tabs d-flex align-items-center' data-tab_id='2' data-group_name='fuschia'>
-          <h2>Fuschia</h2>
+        <div class='group-tabs-container'>
+          <div class='group-tabs d-flex align-items-center' data-tab_id='2' data-group_name='fuschia'>
+            <h2>Fuschia</h2>
+          </div>
         </div>
-        <div class='group-tabs d-flex align-items-center' data-tab_id='3' data-group_name='maroon'>
-          <h2>Maroon</h2>
+
+        <div class='group-tabs-container'>
+          <div class='group-tabs d-flex align-items-center' data-tab_id='3' data-group_name='maroon'>
+            <h2>Maroon</h2>
+          </div>
         </div>
-        <div class='group-tabs d-flex align-items-center' data-tab_id='4' data-group_name='coral'>
-          <h2>Coral</h2>
+
+        <div class='group-tabs-container'>
+          <div class='group-tabs d-flex align-items-center' data-tab_id='4' data-group_name='coral'>
+            <h2>Coral</h2>
+          </div>
         </div>
-        <div class='transaction-buttons'>
-          <button type="button" class="btn gray-shadow" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create</button>
-          <%= link_to "Join", groups_path, class:'btn gray-shadow' %>
-        </div>
+      </div>
+
+      <div class='transaction-buttons'>
+        <button type="button" class="btn gray-shadow" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create</button>
+        <%= link_to "Join", groups_path, class:'btn gray-shadow' %>
       </div>
     </div>
   </div>
