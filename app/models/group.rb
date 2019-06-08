@@ -5,6 +5,7 @@ class Group < ApplicationRecord
   has_many :user_groups
   has_many :users, through: :user_groups
   has_many :orders, through: :polls
+  has_one :chatroom
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :description, presence: true
 
