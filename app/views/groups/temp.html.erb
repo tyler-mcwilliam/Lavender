@@ -81,6 +81,7 @@
       <% end %>
     </div>
 
+
     <!-- <div id='group-watchlist'>
       <h2>Watchlist</h2>
       <% @group.watchlist.each do |ticker| %>
@@ -90,6 +91,22 @@
                 <i class="fas fa-times"></i>
                 <p style='color:gray;'><b><%= ticker %></p>
                 <p>$<%= StockQuote::Stock.quote(ticker).latest_price %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div> -->
+
+    <!-- <div id='group-order'>
+      <h2>Orders</h2>
+      <% @group.orders.each do |order| %>
+        <div id='group-orders-content' class='gray-shadow'>
+            <div>
+              <div class='d-flex'>
+                <strong><%= order.ticker %></strong>
+                <p style='color:gray;'><b><%= order.quantity %></p>
+                <p>$<%= order.price %></p>
               </div>
             </div>
           </div>
@@ -124,10 +141,11 @@
             </div>
           </div>
           <div class='poll-vote'>
+            <% poll.votes.each do |vote| %>
+              <p><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>.</p>
+            <% end %>
             <% if poll.has_voted_by_current_user(current_user) %>
-              <p>
-                <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
-              </p>
+              <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
             <% else %>
               <%= simple_form_for [poll, Vote.new] do |f| %>
                 <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
@@ -158,6 +176,8 @@
     </div>
   </div>
 </div>
+
+<%= render 'shared/chat' %>
 
 <%= render 'shared/modal_create_poll' %>
 <%= render 'shared/modal_group_deposit' %>
