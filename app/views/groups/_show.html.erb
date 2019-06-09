@@ -2,6 +2,7 @@
 <div class='container d-flex align-items-start justify-content-center'>
   <div id='group-show-div' style='margin-left:35px;'>
     <div id='group-performance'>
+
       <div id='main-chart-header'>
         <div>
           <h1><%= @group.name.capitalize %> <span style='font-size: 24px;'>$<%= @group.portfolio_value %></span></h1>
@@ -53,11 +54,7 @@
         <div id='group-positions-content' class='gray-shadow'>
           <div>
             <div class='d-flex justify-content-between'>
-
-              <p style='color:gray;'><b><%= position.ticker.upcase %></p>
-
               <span style='color:gray;'><b><%= position.ticker %></span>
-
             </div>
             <div class='d-flex justify-content-between'>
               <span style='color:gray;'>Shares:</span>
@@ -86,17 +83,15 @@
       <% end %>
     </div>
 
-
-    <div id='group-watchlist'>
+    <!-- <div id='group-watchlist'>
       <h2>Watchlist</h2>
       <% @group.watchlist.each do |ticker| %>
         <div id='group-positions-content' class='gray-shadow'>
             <div>
               <div class='d-flex'>
                 <i class="fas fa-times"></i>
-
-                <p style='color:gray;'><b><%= ticker %></p>
-                <p>$<%= StockQuote::Stock.quote(ticker).latest_price %></p>
+                <span style='color:gray;'><b><%= ticker %></span>
+                <span>$<%= StockQuote::Stock.quote(ticker).latest_price %></span>
               </div>
             </div>
           </div>
@@ -104,39 +99,14 @@
       <% end %>
     </div> -->
 
-    <div id='group-order'>
-      <h2>Orders</h2>
-      <% @group.orders.each do |order| %>
-        <div id='group-orders-content' class='gray-shadow'>
-            <div>
-              <div class='d-flex'>
-                <strong><%= order.ticker %></strong>
-                <p style='color:gray;'><b><%= order.quantity %></p>
-                <p>$<%= order.price %></p>
-
-                <span style='color:gray;'><b><%= ticker %></span>
-                <span>$<%= StockQuote::Stock.quote(ticker).latest_price %></span>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
     <div id='group-polls'>
       <h2>Polls</h2>
       <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
       <% @polls.each do |poll| %>
         <div id='polls-container' class='gray-shadow'>
           <div class='poll-header'>
-
-            <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
-            <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker.upcase %></b></p>
-
             <span><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></span>
             <span><b><%= poll.quantity %></b> shares of <b><%= poll.ticker %></b></span>
-
           </div>
           <div class='poll-content'>
             <span style='margin-bottom: 20px;'><i><%= poll.description %></i></span>
@@ -156,10 +126,6 @@
             </div>
           </div>
           <div class='poll-vote'>
-            <% poll.votes.each do |vote| %>
-              <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= vote.voting_power %>%)</i></p>
-            <% end %>
-
             <% if poll.has_voted_by_current_user(current_user) %>
               <span>
                 <%= current_user.first_name %> voted <%= current_user.vote_for_this_poll(poll) %>
@@ -209,16 +175,3 @@
     </div>
   </div>
 </div>
-
-<div class="chatbar">
-  <%= render 'shared/chat' %>
-</div>
-
-<%= render 'shared/modal_create_poll' %>
-<%= render 'shared/modal_group_deposit' %>
-<%= render 'shared/modal_group_withdraw' %>
-
-
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
