@@ -8,6 +8,7 @@ class Group < ApplicationRecord
   has_one :chatroom
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :description, presence: true
+  mount_uploader :photo, PhotoUploader
 
   attr_accessor :initial_deposit
 
