@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="chat bg-secondary d-inline-block text-left text-white mb-2">
           <div class="chat-bubble" style='display: flex'>
-            <%= image_tag current_user.photo, class: "avatar dropdown-toggle" %>
+            <%= image_tag chat.user.photo, class: "avatar dropdown-toggle" %>
             <div>
               <small class="chat-username"><i>At <%= chat.created_at.strftime("%I:%M%p") %> <%= chat.user.first_name %> said:</i></small>
               <p class="m-0 chat-message"><%= chat.message %></p>
