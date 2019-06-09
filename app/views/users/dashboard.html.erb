@@ -1,10 +1,9 @@
-<!-- master container -->
 <div id='dynamic-dash-container'>
   <!-- left-bar container -->
   <div id='left-bar' class='gray-shadow'>
     <!-- profile section -->
     <div id='side-profile'>
-      <%= image_tag current_user.photo, class:'avatar-huge' %>
+      <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
       <h2><%= current_user.first_name %></h2>
       <!-- balances container -->
       <div class='gray-shadow'>
