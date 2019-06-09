@@ -9,13 +9,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable,
          omniauth_providers: [:google_oauth2]
+
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :email, presence: true, uniqueness: true
   # validates :birthdate, presence: true
   # validates :address, presence: true
-  validates :email, presence: true, uniqueness: true
-  attr_accessor :deposit, :withdrawal
   mount_uploader :photo, PhotoUploader
+
+  attr_accessor :deposit, :withdrawal
 
   def self.from_omniauth(auth)
     # Creates a new user only if it doesn't exist
@@ -40,15 +42,17 @@ class User < ApplicationRecord
     current_user.save!
   end
 
-  after_create :set_photo, :set_balance
+  after_create :set_balance
 
-  def set_photo
-    if self.photo.nil?
-      @photos = ['monsters/1', 'monsters/2', 'monsters/3', 'monsters/4', 'monsters/5', 'monsters/6', 'monsters/7', 'monsters/8']
-      self.photo = @photos.sample
-      self.save!
-    end
-  end
+  private
+
+  # def set_photo
+  #   if self.photo.file.nil?
+  #     @photos = ['monsters/1', 'monsters/2', 'monsters/3', 'monsters/4', 'monsters/5', 'monsters/6', 'monsters/7', 'monsters/8']
+  #     self.photo = @photos.sample
+  #     self.save!
+  #   end
+  # end
 
   def set_balance
     self.available_balance = 0

@@ -1,10 +1,14 @@
 <div id='dynamic-dash-container'>
   <!-- left-bar container -->
-  <div id='left-bar' class='gray-shadow'>
+  <div id='left-bar' class='gray-shadow fade-in-fast'>
     <!-- profile section -->
     <div id='side-profile'>
-      <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
-      <h2><%= current_user.first_name %></h2>
+      <% if current_user.photo.file.nil? %>
+        <%= image_tag 'monsters/6.png', class:'avatar-huge' %>
+      <% else %>
+        <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
+      <% end %>
+      <h2><%= current_user.first_name.capitalize %></h2>
       <!-- balances container -->
       <div class='gray-shadow'>
         <div class='d-flex justify-content-between'>
@@ -59,10 +63,15 @@
 
   <!-- group view contaier -->
   <div id='group-view-container'>
+    <div style='height:90vh;' class='d-flex flex-column justify-content-center align-items-center fade-in'>
+      <h1 class='fade-in' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>Welcome</span> <%= current_user.first_name %>!</h1>
+      <h2 class='fade-in' style='font-size:30px;'>Click on a <span style='font-size:30px; color:#8B81D2;'>group</span> to begin.</h2>
+      <i class="fas fa-arrow-circle-right fade-in" style='font-size:30px;'></i>
+    </div>
   </div>
 
   <!-- right container -->
-  <div id='right-bar' class='gray-shadow'>
+  <div id='right-bar' class='gray-shadow fade-in-fast'>
     <!-- groups list section -->
     <div id='side-group'>
       <div id='group-header'>
@@ -81,18 +90,22 @@
       <div id='groups-list'>
         <% @groups.each do |group| %>
           <div class='group-tabs-container' data-group_id='<%= group.id %>'>
-            <%= link_to group_path(group), method: :get, remote: true do %>
+            <%= link_to group_path(group), class:'group-link', method: :get, remote: true do %>
               <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='<%= group.name %>' data-toggle="collapse" href="#collapse<%= group.name %>" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <h2><%= group.name.capitalize %></h2>
               </div>
             <% end %>
             <div class="collapse" id="collapse<%= group.name %>">
-              <%= image_tag 'monsters/6.png' %>
+              <% if group.photo.file.nil? %>
+                <%= image_tag 'breath.jpg' %>
+              <% else %>
+                <%= cl_image_tag group.photo %>
+              <% end %>
               <div id="members-list">
                 <% group.users.each do |user| %>
                   <div class='member-tabs'>
                     <div class='d-flex justify-content-start align-items-center'>
-                      <%= image_tag user.photo, class:'avatar' %>
+                      <%= cl_image_tag user.photo, class:'avatar' %>
                       <h3><%= user.first_name.capitalize %></h3>
                     </div>
                     <h3>20%</h3>
@@ -119,26 +132,27 @@
 <script>
   const groups = document.getElementById('groups-list');
   const groupTabs = document.querySelectorAll('.group-tabs-container');
-  // const groupView = document.getElementById('group-view-container');
 
-  window.addEventListener('load', (e) => {
-    groups.firstElementChild.classList.add('active');
-    groups.firstElementChild.getElementsByClassName('collapse')[0].classList.add('show');
-  })
+  // window.addEventListener('load', (e) => {
+  //   groups.firstElementChild.getElementsByClassName('collapse')[0].classList.add('show');
+  // })
 
   groupTabs.forEach((group) => {
     group.addEventListener('click', (e) => {
       const tab = e.currentTarget
       if (tab === groups.firstElementChild) {
         console.log('this is already the first child');
+        groups.firstElementChild.classList.add('active');
+        groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
+        // groups.firstElementChild.getElementsByClassName('group-link')[0].toggleAttribute('href');
       } else {
+        // groups.firstElementChild.getElementsByClassName('group-link')[0].toggleAttribute('href');
         groups.firstElementChild.classList.remove('active');
         groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
         groups.insertAdjacentElement('afterbegin', tab);
         groups.firstElementChild.classList.add('active');
         groups.firstElementChild.getElementsByClassName('collapse')[0].classList.add('show');
       };
-      // const group_id = tab.dataset.group_id;
     });
   })
 </script>
