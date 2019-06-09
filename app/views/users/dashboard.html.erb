@@ -82,7 +82,7 @@
       <div id='groups-list'>
         <% @groups.each do |group| %>
           <div class='group-tabs-container' data-group_id='<%= group.id %>'>
-            <%= link_to group_path(group), method: :get, remote: true do %>
+            <%= link_to group_path(group), class:'group-link', method: :get, remote: true do %>
               <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='<%= group.name %>' data-toggle="collapse" href="#collapse<%= group.name %>" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <h2><%= group.name.capitalize %></h2>
               </div>
@@ -120,7 +120,6 @@
 <script>
   const groups = document.getElementById('groups-list');
   const groupTabs = document.querySelectorAll('.group-tabs-container');
-  // const groupView = document.getElementById('group-view-container');
 
   window.addEventListener('load', (e) => {
     groups.firstElementChild.classList.add('active');
@@ -132,14 +131,16 @@
       const tab = e.currentTarget
       if (tab === groups.firstElementChild) {
         console.log('this is already the first child');
+        groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
+        // groups.firstElementChild.getElementsByClassName('group-link')[0].toggleAttribute('href');
       } else {
+        // groups.firstElementChild.getElementsByClassName('group-link')[0].toggleAttribute('href');
         groups.firstElementChild.classList.remove('active');
         groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
         groups.insertAdjacentElement('afterbegin', tab);
         groups.firstElementChild.classList.add('active');
         groups.firstElementChild.getElementsByClassName('collapse')[0].classList.add('show');
       };
-      // const group_id = tab.dataset.group_id;
     });
   })
 </script>
