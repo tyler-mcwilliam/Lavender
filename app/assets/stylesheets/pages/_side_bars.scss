@@ -39,6 +39,11 @@
   }
 }
 
+#group-view-container {
+  position: relative;
+  z-index: -1;
+}
+
 #right-bar {
   height: 100%;
   width: 300px;
