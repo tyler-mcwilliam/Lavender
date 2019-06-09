@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_050825) do
     t.bigint "poll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "filled"
+    t.boolean "filled", default: false
     t.index ["poll_id"], name: "index_orders_on_poll_id"
   end
 
