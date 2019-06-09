@@ -8,3 +8,25 @@
 .disable {
   pointer-events: none;
 }
+
+@keyframes fadein {
+  100% {opacity: 1;}
+}
+
+.fade-in-fast {
+  opacity: 0;
+  animation: fadein 0.3s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadein 1s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+
