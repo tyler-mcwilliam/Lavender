@@ -76,6 +76,12 @@
       color: gray;
     }
   }
+  #group-tabs-container {
+    text-decoration:none !important;
+    a {
+      text-decoration:none !important;
+    }
+  }
   .group-tabs {
     background-color: $gray1;
     height: 50px;
