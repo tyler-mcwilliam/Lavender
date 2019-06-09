@@ -1,10 +1,9 @@
-<!-- master container -->
 <div id='dynamic-dash-container'>
   <!-- left-bar container -->
   <div id='left-bar' class='gray-shadow fade-in-fast'>
     <!-- profile section -->
     <div id='side-profile'>
-      <%= image_tag 'tony.jpg', class:'avatar-huge' %>
+      <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
       <h2><%= current_user.first_name.capitalize %></h2>
       <!-- balances container -->
       <div class='gray-shadow'>
@@ -98,10 +97,10 @@
                 <% group.users.each do |user| %>
                   <div class='member-tabs'>
                     <div class='d-flex justify-content-start align-items-center'>
-                      <%= image_tag 'tony.jpg', class:'avatar' %>
+                      <%= image_tag user.photo, class:'avatar' %>
                       <h3><%= user.first_name.capitalize %></h3>
                     </div>
-                    <h3>100%</h3>
+                    <h3>20%</h3>
                   </div>
                 <% end %>
               </div>

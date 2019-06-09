@@ -16,6 +16,7 @@
                       input_html: { autocomplete: "family_name" }%>
           <%= f.input :birthdate, required: true %>
           <%= f.input :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
           <%= f.input :address %>
           <%= f.input :email,
                       required: true,
