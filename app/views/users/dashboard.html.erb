@@ -3,7 +3,11 @@
   <div id='left-bar' class='gray-shadow fade-in-fast'>
     <!-- profile section -->
     <div id='side-profile'>
-      <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
+      <% if current_user.photo.file.nil? %>
+        <%= image_tag 'monsters/6.png', class:'avatar-huge' %>
+      <% else %>
+        <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
+      <% end %>
       <h2><%= current_user.first_name.capitalize %></h2>
       <!-- balances container -->
       <div class='gray-shadow'>
@@ -92,12 +96,16 @@
               </div>
             <% end %>
             <div class="collapse" id="collapse<%= group.name %>">
-              <%= image_tag 'monsters/6.png' %>
+              <% if group.photo.file.nil? %>
+                <%= image_tag 'breath.jpg' %>
+              <% else %>
+                <%= cl_image_tag group.photo %>
+              <% end %>
               <div id="members-list">
                 <% group.users.each do |user| %>
                   <div class='member-tabs'>
                     <div class='d-flex justify-content-start align-items-center'>
-                      <%= image_tag user.photo, class:'avatar' %>
+                      <%= cl_image_tag user.photo, class:'avatar' %>
                       <h3><%= user.first_name.capitalize %></h3>
                     </div>
                     <h3>20%</h3>
