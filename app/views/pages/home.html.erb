@@ -1,7 +1,7 @@
 <div id='landing-banner' style="background-image:linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%),url(<%= asset_url 'landing_background.jpg' %>)">
   <div id =
   'banner-text' class='container d-flex justify-content-center align-items-center'>
-      <%= image_tag 'banner-text.png', style:'width:100%;' %>
+      <%= image_tag 'banner-text.png', style:'width:90%;' %>
   </div>
 </div>
 
@@ -87,3 +87,10 @@
     </div>
   </div>
 </div>
+
+<script>
+  const infoCards = document.getElementById('info-cards')
+  document.addEventListener('scroll', () => {
+    console.log('hi');
+  })
+</script>

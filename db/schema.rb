@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_091632) do
+ActiveRecord::Schema.define(version: 2019_06_08_050825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_chatrooms_on_group_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "message"
+    t.bigint "chatroom_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_chats_on_chatroom_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -26,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_091632) do
     t.bigint "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "watchlist", default: ["AAPL", "GE", "F", "MSFT", "AMD", "FIT", "GPRO", "FB", "TWTR", "NFLX"], array: true
     t.index ["creator_id"], name: "index_groups_on_creator_id"
   end
 
@@ -117,6 +135,9 @@ ActiveRecord::Schema.define(version: 2019_06_06_091632) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
+  add_foreign_key "chatrooms", "groups"
+  add_foreign_key "chats", "chatrooms"
+  add_foreign_key "chats", "users"
   add_foreign_key "groups", "users", column: "creator_id"
   add_foreign_key "orders", "polls"
   add_foreign_key "polls", "groups"

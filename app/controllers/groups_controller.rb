@@ -4,15 +4,20 @@ class GroupsController < ApplicationController
   before_action :set_orders, only: [:show]
   before_action :set_positions, only: [:show]
   before_action :set_users, only: [:show]
-  before_action :set_user_group, only: [:show]
+  before_action :set_user_group, only: [:show, :update]
 
   def index
-    @groups = Group.all
+    @groups = Group.all.reject do |group|
+      group.users.include?(current_user)
+    end
     @user_group = UserGroup.new
   end
 
   def show
-    # raise
+    respond_to do |format|
+      format.html { render 'show' }
+      format.js
+    end
   end
 
   def new
@@ -24,6 +29,7 @@ class GroupsController < ApplicationController
     @group.creator = current_user
     @group.cash_value = params[:group]['initial_deposit']
     @group.portfolio_value = params[:group]['initial_deposit']
+    @group.chatroom = Chatroom.new
     # @user_group = UserGroup.new(initial_deposit: params[:group]['initial_deposit'])
     # @user_group.group = @group
     # @user_group.user = current_user
@@ -59,7 +65,7 @@ class GroupsController < ApplicationController
 
   def set_orders
     @orders = Order.select do |order|
-      order.group == @group
+      order.poll.group == @group
     end
   end
 

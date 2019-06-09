@@ -10,16 +10,15 @@ class VotesController < ApplicationController
 
     @poll = Poll.find(params[:poll_id])
     @group = @poll.group
-    @vote.voting_power = current_user.user_groups.find(@group.id).user_share / @group.total_shares
+    @vote.voting_power = current_user.user_groups.where(@group.id == :group_id).first.user_share.to_f / @group.total_shares
     @vote.poll = @poll
     @vote.user = current_user
 
     # raise
     if @vote.save
-
       @poll.approval += @vote.voting_power if @vote.approve == true
       @poll.save
-      if true # limit check/need to find out how we are going to register 51%
+      if @poll.approval > 0.45 # limit check/need to find out how we are going to register 51%
         @order = Order.new(
           price: @poll.price,
           quantity: @poll.quantity,
@@ -28,8 +27,7 @@ class VotesController < ApplicationController
           filled: false,
           poll: @poll
         )
-
-        @order.save
+        @order.save!
       end
       # @poll.approval += @vote.voting_power if @vote.approve == false
       redirect_to group_path(@group)

@@ -10,6 +10,7 @@ gem 'rails', '5.2.3'
 gem 'redis'
 gem 'stock_quote'
 gem 'sortable-rails'
+gem 'jquery-rails'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
@@ -19,6 +20,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'omniauth-google-oauth2'
 gem 'bootstrap'
+
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 

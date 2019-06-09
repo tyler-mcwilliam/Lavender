@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'chats/index'
+  get 'chats/new'
+  get 'chats/create'
+  get 'chats/show'
+  get 'chatrooms/index'
+  get 'chatrooms/new'
+  get 'chatrooms/create'
+  get 'chatrooms/show'
   root to: 'pages#home'
 
   get '/users' => 'users#dashboard', as: :user_root # creates user_root_path
@@ -6,7 +14,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
   post '/user/:id', to: 'users#dashboard'
   patch '/users/:id', to: 'users#update', as: :update_user
-
+  patch '/user_groups/:id', to: 'user_groups#update', as: :update_user_group
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
@@ -16,7 +24,7 @@ Rails.application.routes.draw do
 
 
   resources :users
-  resources :user_groups, only: [:new, :create]
+  resources :user_groups, only: [:new, :create, :update]
 
   resources :groups, only: [:show, :create, :update, :edit, :index] do
     resources :polls, only: [:create]
@@ -25,4 +33,7 @@ Rails.application.routes.draw do
   resources :polls, only: [:show] do
     resources :votes, only: [:create]
   end
+
+  resources :chatrooms
+  resources :chats
 end

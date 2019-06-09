@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :user_groups
   has_many :groups, through: :user_groups
   has_many :votes
+  has_many :chats
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable,
          omniauth_providers: [:google_oauth2]
@@ -31,12 +33,11 @@ class User < ApplicationRecord
 
     return the_vote.approve ? 'yes' : 'no'
   end
-    
+
   def edit
     current_user.available_balance += params[:deposit] unless params[:deposit].nil?
     current_user.available_balance -= params[:withdrawal] unless params[:withdrawal].nil?
     current_user.save!
-
   end
 
   after_create :set_photo, :set_balance

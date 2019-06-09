@@ -16,9 +16,9 @@
   div {
     display: flex;
   }
-  p {
+  span {
     font-size: 24px;
-    color: #00ff00;
+    color: #219974;
   }
 }
 
@@ -48,6 +48,7 @@
 
 #group-positions {
   margin-top: 50px;
+  border-bottom: 1px solid $lavender;
 }
 
 #group-positions-content {
@@ -71,6 +72,7 @@
   width: 350px;
   background-color: $gray1;
   border-radius: 5px;
+  border-bottom: 1px solid $lavender;
   .poll-header {
     width: 350px;
     padding: 20px;
@@ -106,7 +108,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 140px 0 0 30px;
+  margin: 140px 0 0 20px;
   i {
     text-decoration: none;
     color: gray;
@@ -116,17 +118,21 @@
       color: $lavender;
     }
   }
-  .fa-plus {
-    color: #219974;
-    &:hover {
-      color: #00e8a1;
+  .action-icon {
+    position: relative;
+    span {
+      opacity: 0;
+      color: white;
+      position: absolute;
+      font-size: 24px;
+      top: 0px;
+      left: -10px;
     }
-
-  }
-  .fa-minus {
-    color: #ab502f;
-    &:hover {
-      color:#ff5e24;
+    &:hover > i {
+      color: $gray1;
+    }
+    &:hover > span {
+      opacity: 1;
     }
   }
 }

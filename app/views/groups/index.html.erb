@@ -6,6 +6,7 @@
   </div>
   <div id='group-cards-container' style='background-image:url(<%= asset_url ('bottomright.png') %>); background-position: right bottom; background-repeat: no-repeat;'>
     <div class='container-fluid d-flex flex-row justify-content-center flex-wrap' style='padding:50px 118px; margin-bottom: 100px;'>
+      <h3><%= "No available groups for you to join, maybe you should start one?!" if @groups.count.zero? %></h3>
       <% @groups.each do |group| %>
         <button type="button" class="join-group-button btn" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
           <div class='group-cardd gray-shadow'>
@@ -34,7 +35,7 @@
       <div class="modal-body">
         <%= simple_form_for [@user_group] do |f| %>
           <%= f.input :group_id, as: :hidden, input_html: { value: '' } %>
-          <%= f.input :user_contribution, required: true %>
+          <%= f.input :initial_deposit, required: true %>
           <%= f.button :submit, 'Join group', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
         <% end %>
       </div>
