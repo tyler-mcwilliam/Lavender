@@ -14,7 +14,10 @@ class GroupsController < ApplicationController
   end
 
   def show
-    # raise
+    respond_to do |format|
+      format.html { render 'show' }
+      format.js
+    end
   end
 
   def new
