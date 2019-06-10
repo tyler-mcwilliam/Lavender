@@ -24,8 +24,8 @@
         </div>
         <!-- transaction buttons -->
         <div class='transaction-buttons'>
-          <button type="button" class="btn" data-toggle="modal" data-target="#withdrawMoney" style='margin-left:-20px;'>Withdraw</button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#depositMoney" style='margin-right:-20px'>Deposit</button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#userWithdraw" style='margin-left:-20px;'>Withdraw</button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#userDeposit" style='margin-right:-20px'>Deposit</button>
         </div>
       </div>
     </div>
@@ -68,7 +68,11 @@
   <div id='group-view-container'>
     <div style='height:90vh;' class='d-flex flex-column justify-content-center align-items-center fade-in-delay2'>
       <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>Welcome</span> <%= current_user.first_name.capitalize %>!</h1>
-      <h2 class='fade-in-delay2' style='font-size:30px;'>Click on a <span style='font-size:30px; color:#8B81D2;'>group</span> to begin.</h2>
+      <% if current_user.groups.size == 0 %>
+        <h2 class='fade-in-delay2' style='font-size:30px;'>Click on a <span style='font-size:30px; color:#8B81D2;'>group</span> to begin.</h2>
+      <% else %>
+        <h2 class='fade-in-delay2' style='font-size:30px;'>Create or join a <span style='font-size:30px; color:#8B81D2;'>group</span> to begin.</h2>
+      <% end %>
       <i class="fas fa-arrow-circle-right fade-in-delay2" style='font-size:30px; margin-top:20px;'></i>
     </div>
   </div>
@@ -129,11 +133,9 @@
 </div>
 
 <%= render 'shared/modal_create_group' %>
+<%= render 'shared/modal_edit_profile' %>
 <%= render 'shared/modal_user_deposit' %>
 <%= render 'shared/modal_user_withdraw' %>
-<%= render 'shared/modal_edit_profile' %>
-
-
 
 <script>
   const groups = document.getElementById('groups-list');
