@@ -10,7 +10,7 @@ class VotesController < ApplicationController
 
     @poll = Poll.find(params[:poll_id])
     @group = @poll.group
-    @vote.voting_power = current_user.user_groups.where(@group.id == :group_id).first.user_share.to_f / @group.total_shares
+    @vote.voting_power = current_user.user_groups.where(@group.id == :group_id).first.user_share.to_f/ @group.total_shares
     @vote.poll = @poll
     @vote.user = current_user
 
