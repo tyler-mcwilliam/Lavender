@@ -16,11 +16,11 @@
       <div class='gray-shadow'>
         <div class='d-flex justify-content-between'>
           <span style='color:gray;'>Available Balance:</span>
-          <span>$100</span>
+          <span>$<%= current_user.available_balance %></span>
         </div>
         <div class='d-flex justify-content-between'>
           <span style='color:gray;'>Total Balance:</span>
-          <span>$200</span>
+          <span>$<%= current_user.total_balance %></span>
         </div>
         <!-- transaction buttons -->
         <div class='transaction-buttons'>
@@ -67,9 +67,9 @@
   <!-- group view contaier -->
   <div id='group-view-container'>
     <div style='height:90vh;' class='d-flex flex-column justify-content-center align-items-center fade-in-delay2'>
-      <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>Welcome</span> <%= current_user.first_name %>!</h1>
+      <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>Welcome</span> <%= current_user.first_name.capitalize %>!</h1>
       <h2 class='fade-in-delay2' style='font-size:30px;'>Click on a <span style='font-size:30px; color:#8B81D2;'>group</span> to begin.</h2>
-      <i class="fas fa-arrow-circle-right fade-in-delay2" style='font-size:30px;'></i>
+      <i class="fas fa-arrow-circle-right fade-in-delay2" style='font-size:30px; margin-top:20px;'></i>
     </div>
   </div>
 
@@ -108,10 +108,14 @@
                 <% group.users.each do |user| %>
                   <div class='member-tabs'>
                     <div class='d-flex justify-content-start align-items-center'>
-                      <%= cl_image_tag user.photo, class:'avatar' %>
+                      <% if user.photo.file.nil? %>
+                        <%= image_tag 'monsters/6.png', class:'avatar' %>
+                      <% else %>
+                        <%= cl_image_tag user.photo, class:'avatar' %>
+                      <% end %>
                       <h3><%= user.first_name.capitalize %></h3>
                     </div>
-                    <h3>20%</h3>
+                    <h3><%= (user.user_groups.where(group.id == :group_id).first.user_share.to_f / group.total_shares) * 100 %>%</h3>
                   </div>
                 <% end %>
               </div>
@@ -129,9 +133,7 @@
 <%= render 'shared/modal_user_withdraw' %>
 <%= render 'shared/modal_edit_profile' %>
 
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 
 <script>
   const groups = document.getElementById('groups-list');
@@ -148,9 +150,7 @@
         console.log('this is already the first child');
         groups.firstElementChild.classList.add('active');
         groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
-        // groups.firstElementChild.getElementsByClassName('group-link')[0].toggleAttribute('href');
       } else {
-        // groups.firstElementChild.getElementsByClassName('group-link')[0].toggleAttribute('href');
         groups.firstElementChild.classList.remove('active');
         groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
         groups.insertAdjacentElement('afterbegin', tab);

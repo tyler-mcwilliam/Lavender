@@ -1,3 +1,16 @@
+/**
+ * ---------------------------------------
+ * This demo was created using amCharts 4.
+ *
+ * For more information visit:
+ * https://www.amcharts.com/
+ *
+ * Documentation is available at:
+ * https://www.amcharts.com/docs/v4/
+ * ---------------------------------------
+ */
+
+// Themes begin
 function mainChart() {
   am4core.useTheme(am4themes_animated);
   // Themes end
@@ -162,13 +175,4 @@ function mainChart() {
   });
 }
 
-console.log('hi');
-
-function refreshGroup(innerHTML) {
-  const groupView = document.getElementById('group-view-container');
-  groupView.innerHTML = innerHTML;
-}
-
-refreshGroup("<%= j render 'groups/show' %>");
-mainChart();
-
+export { mainChart };
