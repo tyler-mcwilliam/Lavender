@@ -1,0 +1,10 @@
+.lavender-button {
+  background-color: $gray1;
+  border-radius: 10px;
+  border: 3px solid $lavender;
+  color: white;
+  &:hover {
+  background-color: $lavender;
+  color: white;
+  }
+}
