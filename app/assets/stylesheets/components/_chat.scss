@@ -39,10 +39,12 @@ justify-content: center;
   }
 }
 .chat-bubble {
+  // width: 40px;
+  // border-radius: 50%;
   border-radius: 3px;
 }
 .chats {
-  height: 23vh;
+  height: 15vh;
   overflow: scroll;
 }
 .dashboard-sidebar-chat {

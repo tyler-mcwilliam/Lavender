@@ -85,34 +85,34 @@
 
 <!--     <div id='group-watchlist'>
       <h2>Watchlist</h2>
-      <% @group.watchlist.each do |ticker| %>
+      <%# @group.watchlist.each do |ticker| %>
         <div id='group-positions-content' class='gray-shadow'>
             <div>
               <div class='d-flex'>
                 <i class="fas fa-times"></i>
-                <p style='color:gray;'><b><%= ticker %></p>
-                <p>$<%= StockQuote::Stock.quote(ticker).latest_price %></p>
+                <p style='color:gray;'><b><%#= ticker %></p>
+                <p>$<%#= StockQuote::Stock.quote(ticker).latest_price %></p>
               </div>
             </div>
           </div>
         </div>
-      <% end %>
+      <%# end %>
     </div> -->
 
 <!--     <div id='group-order'>
       <h2>Orders</h2>
-      <% @group.orders.each do |order| %>
+      <%# @group.orders.each do |order| %>
         <div id='group-orders-content' class='gray-shadow'>
             <div>
               <div class='d-flex'>
-                <strong><%= order.ticker %></strong>
-                <p style='color:gray;'><b><%= order.quantity %></p>
-                <p>$<%= order.price %></p>
+                <strong><%#= order.ticker %></strong>
+                <p style='color:gray;'><b><%#= order.quantity %></p>
+                <p>$<%#= order.price %></p>
               </div>
             </div>
           </div>
         </div>
-      <% end %>
+      <%# end %>
     </div> -->
 
     <div id='group-polls'>
