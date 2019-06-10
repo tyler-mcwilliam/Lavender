@@ -103,72 +103,72 @@ chart.cursor.lineY.strokeDasharray = "";
 //   series.tooltipText = from;
 // });
 
-// Create info block
-let info = chart.plotContainer.createChild(am4core.Container);
-info.width = 320;
-info.height = 60;
-info.x = 10;
-info.y = 10;
-info.padding(10, 10, 10, 10);
-info.background.fill = am4core.color("#000");
-info.background.fillOpacity = 0.1;
-info.layout = "grid";
+// // Create info block
+// let info = chart.plotContainer.createChild(am4core.Container);
+// info.width = 320;
+// info.height = 60;
+// info.x = 10;
+// info.y = 10;
+// info.padding(10, 10, 10, 10);
+// info.background.fill = am4core.color("#000");
+// info.background.fillOpacity = 0.1;
+// info.layout = "grid";
 
-// Add labels to it
-function createLabel(field, title) {
-  let titleLabel = info.createChild(am4core.Label);
-  titleLabel.text = title + ":";
-  titleLabel.marginRight = 5;
-  titleLabel.minWidth = 60;
+// // Add labels to it
+// function createLabel(field, title) {
+//   let titleLabel = info.createChild(am4core.Label);
+//   titleLabel.text = title + ":";
+//   titleLabel.marginRight = 5;
+//   titleLabel.minWidth = 60;
 
-  let valueLabel = info.createChild(am4core.Label);
-  valueLabel.id = field;
-  valueLabel.text = "-";
-  valueLabel.minWidth = 50;
-  valueLabel.marginRight = 30;
-  valueLabel.fontWeight = "bolder";
-}
+//   let valueLabel = info.createChild(am4core.Label);
+//   valueLabel.id = field;
+//   valueLabel.text = "-";
+//   valueLabel.minWidth = 50;
+//   valueLabel.marginRight = 30;
+//   valueLabel.fontWeight = "bolder";
+// }
 
-createLabel("date", "DATE");
-createLabel("value", "VALUE");
+// // createLabel("date", "DATE");
+// // createLabel("value", "VALUE");
 
-// Update field values
-function updateValues(dataItem) {
-  am4core.array.each(["date", "value"], function(key) {
-    let series = chart.series.getIndex(0);
-    series.dataFields.valueY = "visits";
-    series.dataFields.dateX = "date";
-    let label = chart.map.getKey(key);
-    label.text = chart.numberFormatter.format(dataItem[key + "ValueX"]);
-    // Color controls below
-    // if (dataItem.droppedFromOpen) {
-    //   label.fill = series.dropFromOpenState.properties.fill;
-    // }
-    // else {
-    //   label.fill = series.riseFromOpenState.properties.fill;
-    // }
-  });
-}
+// // Update field values
+// function updateValues(dataItem) {
+//   am4core.array.each(["date", "value"], function(key) {
+//     let series = chart.series.getIndex(0);
+//     series.dataFields.valueY = "visits";
+//     series.dataFields.dateX = "date";
+//     let label = chart.map.getKey(key);
+//     label.text = chart.numberFormatter.format(dataItem[key + "ValueX"]);
+//     // Color controls below
+//     // if (dataItem.droppedFromOpen) {
+//     //   label.fill = series.dropFromOpenState.properties.fill;
+//     // }
+//     // else {
+//     //   label.fill = series.riseFromOpenState.properties.fill;
+//     // }
+//   });
+// }
 
-// Set initial values
+// // Set initial values
 
-chart.events.on("ready", function(ev) {
-  updateValues(series.dataItems.last);
-});
+// chart.events.on("ready", function(ev) {
+//   updateValues(series.dataItems.last);
+// });
 
-// Follow cursor
+// // Follow cursor
 
-chart.cursor.events.on("cursorpositionchanged", function(ev) {
-  var dataItem = dateAxis.getSeriesDataItem(
-    series,
-    dateAxis.toAxisPosition(chart.cursor.xPosition),
-    true
-  );
-  updateValues(dataItem);
-});
+// chart.cursor.events.on("cursorpositionchanged", function(ev) {
+//   var dataItem = dateAxis.getSeriesDataItem(
+//     series,
+//     dateAxis.toAxisPosition(chart.cursor.xPosition),
+//     true
+//   );
+//   updateValues(dataItem);
+// });
 
-// Reset when cursor leaves
+// // Reset when cursor leaves
 
-chart.cursor.events.on("hidden", function(ev) {
-  updateValues(series.dataItems.last);
-});
+// chart.cursor.events.on("hidden", function(ev) {
+//   updateValues(series.dataItems.last);
+// });
