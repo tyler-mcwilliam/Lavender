@@ -69,9 +69,9 @@
     <div style='height:90vh;' class='d-flex flex-column justify-content-center align-items-center fade-in-delay2'>
       <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>Welcome</span> <%= current_user.first_name.capitalize %>!</h1>
       <% if current_user.groups.size == 0 %>
-        <div class="transaction-buttons fade-in-delay2">
-          <button type="button" class="btn m-2" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create a Group</button>
-          <button type="button" class="btn"><%= link_to "Join the Group", groups_path %></button>
+        <div class="fade-in-delay2 d-flex justify-content-between" style='margin-top: 20px; width: 280px;'>
+          <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:120px;'>Create a Group</button>
+          <button type="button" class="btn lavender-button" style='width:120px;'><%= link_to "Join the Group", groups_path %></button>
         </div>
       <% end %>
     </div>
