@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.string "message"
+    t.text "message"
     t.bigint "chatroom_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "watchlist", default: ["AAPL", "GE", "F", "MSFT", "AMD", "FIT", "GPRO", "FB", "TWTR", "NFLX"], array: true
-    t.text "performance", default: "{ (Date.today - 1) => 0.0 }"
+    t.text "performance"
     t.index ["creator_id"], name: "index_groups_on_creator_id"
   end
 
