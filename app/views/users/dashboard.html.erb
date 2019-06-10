@@ -24,8 +24,8 @@
         </div>
         <!-- transaction buttons -->
         <div class='transaction-buttons'>
-          <button type="button" class="btn" data-toggle="modal" data-target="#withdrawMoney" style='margin-left:-20px;'>Withdraw</button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#depositMoney" style='margin-right:-20px'>Deposit</button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#userWithdraw" style='margin-left:-20px;'>Withdraw</button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#userDeposit" style='margin-right:-20px'>Deposit</button>
         </div>
       </div>
     </div>
@@ -78,6 +78,8 @@
       <% else %>
         <h2 class='fade-in-delay2' style='font-size:30px;'>Create or join a <span style='font-size:30px; color:#8B81D2;'>group</span> to begin.</h2>
       <% end %>
+    </div>
+  </div>
     </div>
   </div>
 Collapse
@@ -143,11 +145,9 @@ Message Input
 </div>
 
 <%= render 'shared/modal_create_group' %>
+<%= render 'shared/modal_edit_profile' %>
 <%= render 'shared/modal_user_deposit' %>
 <%= render 'shared/modal_user_withdraw' %>
-<%= render 'shared/modal_edit_profile' %>
-
-
 
 <script>
   const groups = document.getElementById('groups-list');
