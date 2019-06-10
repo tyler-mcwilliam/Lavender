@@ -25,7 +25,7 @@ class UserGroupsController < ApplicationController
     @user_group = UserGroup.find(params[:user_group][:user_group_id])
     @user_group.deposits(params[:user_group][:deposit].to_f) unless params[:user_group][:deposit].nil?
     @user_group.withdraw(params[:user_group][:withdrawal].to_f) unless params[:user_group][:withdrawal].nil?
-    @user_group.fitst_deposit(params[:initial_deposit].to_f) unless params[:initial_deposit].nil?
+    @user_group.first_deposit(params[:initial_deposit].to_f) unless params[:initial_deposit].nil?
     @user_group.save!
     redirect_to dashboard_path
   end
