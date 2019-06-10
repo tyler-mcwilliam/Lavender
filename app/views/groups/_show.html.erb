@@ -5,7 +5,7 @@
 
       <div id='main-chart-header'>
         <div>
-          <h1><%= @group.name.capitalize %> <span style='font-size: 24px;'>$<%= @group.portfolio_value %></span></h1>
+          <h1><%= @group.name.capitalize %> <span style='font-size: 24px;'><%=  humanized_money_with_symbol @group.portfolio_value %></span></h1>
         </div>
         <span>+$233.93 (+24.33%)</span>
       </div>
@@ -18,25 +18,25 @@
           </div>
           <div class='d-flex justify-content-between'>
             <span style='color:gray;'>Share value:</span>
-            <span>$<%= (@group.portfolio_value / @group.total_shares) %></span>
+            <span><%=  humanized_money_with_symbol (@group.portfolio_value / @group.total_shares) %></span>
           </div>
           <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
             <span style='color:gray;'>Your share:</span>
-            <span>$<%= ((@group.portfolio_value / @group.total_shares) * @user_group.user_share) %></span>
+            <span><%=  humanized_money_with_symbol ((@group.portfolio_value / @group.total_shares) * @user_group.user_share) %></span>
           </div>
         </div>
         <div id='group-balance'>
           <div class='d-flex justify-content-between'>
             <span style='color:gray;'>Available Cash:</span>
-            <span>$<%= @group.cash_value %></span>
+            <span><%=  humanized_money_with_symbol @group.cash_value %></span>
           </div>
           <div class='d-flex justify-content-between'>
             <span style='color:gray;'>Investment value:</span>
-            <span>$<%= @group.investment_value %></span>
+            <span><%=  humanized_money_with_symbol @group.investment_value %></span>
           </div>
           <div class='d-flex justify-content-between'style='border-top: 1px solid #8B81D2;'>
             <span style='color:gray;'>Portfolio Value:</span>
-            <span>$<%= @group.portfolio_value %></span>
+            <span><%=  humanized_money_with_symbol @group.portfolio_value %></span>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
             </div>
             <div class='d-flex justify-content-between'>
               <span style='color:gray;'>Equity value:</span>
-              <span>$<%= position.quantity * StockQuote::Stock.quote(position.ticker).latest_price %></span>
+              <span><%= humanized_money_with_symbol position.quantity * StockQuote::Stock.quote(position.ticker).latest_price %></span>
             </div>
             <div class='d-flex justify-content-between'>
               <span style='color:gray;'>Average Cost:</span>
@@ -114,46 +114,48 @@
         </div>
       <%# end %>
     </div> -->
-    <div id='group-polls'>
-      <h2>Polls</h2>
-      <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
-      <% @polls.each do |poll| %>
-        <div id='polls-container' class='gray-shadow'>
-          <div class='poll-header' data-poll_id='<%= poll.id %>' data-toggle="collapse" href="#collapse<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
-            <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker.upcase %></b></p>
-          </div>
-          <div class='poll-content collapse' id="collapse<%= poll.id %>">
-            <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
-            <div>
-              <div class='d-flex justify-content-between'>
-                <p style='color:gray'>Number of shares: </p>
-                <p><%= poll.quantity %></p>
-              </div>
-              <div class='d-flex justify-content-between'>
-                <p style='color:gray'>Cost per share: </p>
-                <p>$<%= poll.price %></p>
-              </div>
-              <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
-                <p style='color:gray'>Total cost: </p>
-                <p>$<%= (poll.price.to_f * poll.quantity.to_i) %></p>
-              </div>
+    <div class='d-flex justify-content-between'>
+      <div id='group-polls'>
+        <h2>Polls</h2>
+        <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
+        <% @polls.each do |poll| %>
+          <div id='polls-container' class='gray-shadow'>
+            <div class='poll-header' data-poll_id='<%= poll.id %>' data-toggle="collapse" href="#collapse<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
+              <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker.upcase %></b></p>
             </div>
-            <div class='poll-vote'>
-              <% poll.votes.each do |vote| %>
-                <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= vote.voting_power %>%)</i></p>
-              <% end %>
-              <% if poll.has_voted_by_current_user(current_user) %>
-                <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
-              <% else %>
-                <%= simple_form_for [poll, Vote.new] do |f| %>
-                  <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
-                  <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+            <div class='poll-content collapse' id="collapse<%= poll.id %>">
+              <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
+              <div>
+                <div class='d-flex justify-content-between'>
+                  <p style='color:gray'>Number of shares: </p>
+                  <p><%= poll.quantity %></p>
+                </div>
+                <div class='d-flex justify-content-between'>
+                  <p style='color:gray'>Cost per share: </p>
+                  <p><%= humanized_money_with_symbol poll.price %></p>
+                </div>
+                <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
+                  <p style='color:gray'>Total cost: </p>
+                  <p><%= humanized_money_with_symbol (poll.price.to_f * poll.quantity.to_i) %></p>
+                </div>
+              </div>
+              <div class='poll-vote'>
+                <% poll.votes.each do |vote| %>
+                  <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= vote.voting_power %>%)</i></p>
                 <% end %>
-              <% end %>
-            </div>
-            <div>
-              <%= (poll.approval * 100).to_i %>%
+                <% if poll.has_voted_by_current_user(current_user) %>
+                  <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
+                <% else %>
+                  <%= simple_form_for [poll, Vote.new] do |f| %>
+                    <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+                    <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div>
+                <%= (poll.approval * 100).to_i %>%
+              </div>
             </div>
           </div>
         <% end %>
