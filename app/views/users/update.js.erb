@@ -5,6 +5,10 @@ function refreshBalance(newBalance) {
   depositModal.classList.remove('show');
   depositModal.setAttribute('style', 'display:none;');
   depositModal.setAttribute('aria-hidden', 'true;');
+  withdrawModal = document.getElementById('userWithdraw');
+  withdrawModal.classList.remove('show');
+  withdrawModal.setAttribute('style', 'display:none;');
+  withdrawModal.setAttribute('aria-hidden', 'true;');
   document.querySelector('.modal-backdrop').classList.remove('modal-backdrop');
   document.querySelector('.modal-open').classList.remove('modal-open');
 }
