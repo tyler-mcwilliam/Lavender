@@ -18,7 +18,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     @poll.creator = current_user
     @poll.group = @group
-    @poll.price = StockQuote::Stock.quote(@poll.ticker).latest_price
+    @poll.price_cents = (StockQuote::Stock.quote(@poll.ticker).latest_price.to_f.round(2) * 100).to_i
     redirect_to group_path(@group) if @poll.price.nil?
     @poll.save! if @poll.buy == true && @poll.group.cash_value > (@poll.quantity * @poll.price)
     @poll.save! if @poll.buy == false # && @poll.group.positions.include?  group has a position with high enough quantity to sell

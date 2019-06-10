@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.available_balance += params[:user][:deposit].to_f unless params[:user][:deposit].nil?
-    current_user.available_balance -= params[:user][:withdrawal].to_f unless params[:user][:withdrawal].nil?
+    current_user.available_balance_cents += (params[:user][:deposit].to_f.round(2) * 100).to_i unless params[:user][:deposit].nil? || params[:user][:deposit].to_f < 0
+    current_user.available_balance_cents -= (params[:user][:withdrawal].to_f.round(2) * 100).to_i unless params[:user][:withdrawal].nil? || params[:user][:deposit].to_f < 0
     current_user.save!
     redirect_to dashboard_path
   end

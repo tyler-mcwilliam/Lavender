@@ -24,7 +24,7 @@ class UserGroupsController < ApplicationController
   def update
     # Currenty using params[:deposit] as a placeholder for user's initial deposit.
     # Assuming this is a param from join / create form.
-    @user_group.deposit(params[:user_group][:deposit]) unless params[:user_group][:deposit].nil?
+    @user_group.deposit(params[:user_group][:deposit].to_f.round(2) * 100).to_i) unless params[:user_group][:deposit].nil?
     @user_group.withdraw(params[:user_group][:withdrawal]) unless params[:user_group][:withdrawal].nil?
     @user_group.initial_deposit(params[:initial_deposit]) unless params[:initial_deposit].nil?
     @user_group.save
@@ -44,7 +44,7 @@ class UserGroupsController < ApplicationController
 
   def deposit(deposit)
     @group = Group.find(params[:group_id])
-    newshares = deposit / (@group.investment_value / @group.total_shares)
+    newshares = deposit / (@group.investment_value_cents / @group.total_shares)
     @group.cash_value += deposit
     @group.total_shares += newshares
     @user_group.user_contribution += deposit
