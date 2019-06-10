@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
     t.string "name"
     t.string "photo"
     t.text "description"
-    t.float "portfolio_value", default: 0.0
-    t.float "cash_value", default: 0.0
-    t.float "investment_value", default: 0.0
+    t.integer "portfolio_value_cents", default: 0, null: false
+    t.integer "cash_value_cents", default: 0, null: false
+    t.integer "investment_value_cents", default: 0, null: false
     t.integer "total_shares", default: 0
     t.bigint "creator_id"
     t.datetime "created_at", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.float "price"
+    t.integer "price_cents"
     t.integer "quantity"
     t.string "ticker"
     t.boolean "buy"
@@ -62,12 +62,12 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
 
   create_table "polls", force: :cascade do |t|
     t.text "description"
-    t.float "approval", default: 0.0
-    t.float "target_price"
-    t.float "stop_loss_price"
+    t.float "approval", default: 0.0, null: false
+    t.integer "target_price_cents"
+    t.integer "stop_loss_price_cents"
     t.boolean "buy"
     t.integer "quantity"
-    t.float "price"
+    t.integer "price_cents"
     t.datetime "expiration"
     t.string "ticker"
     t.bigint "group_id"
@@ -82,10 +82,10 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
 
   create_table "positions", force: :cascade do |t|
     t.string "ticker"
-    t.integer "quantity", default: 0
-    t.float "cost_basis"
-    t.float "current_price"
-    t.float "return"
+    t.integer "quantity", default: 0, null: false
+    t.integer "cost_basis_cents"
+    t.integer "current_price_cents"
+    t.integer "return_cents"
     t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,9 +95,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
   create_table "user_groups", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
-    t.float "user_contribution", default: 0.0
-    t.integer "user_share", default: 0
-    t.float "user_balance", default: 0.0
+    t.integer "user_contribution_cents", default: 0, null: false
+    t.integer "user_share", default: 0, null: false
+    t.integer "user_balance_cents", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_user_groups_on_group_id"
@@ -116,8 +116,8 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
     t.string "last_name"
     t.date "birthdate"
     t.string "photo"
-    t.float "available_balance"
-    t.float "total_balance"
+    t.integer "total_balance_cents", default: 0, null: false
+    t.integer "available_balance_cents", default: 0, null: false
     t.string "address"
     t.string "google_token"
     t.string "google_refresh_token"

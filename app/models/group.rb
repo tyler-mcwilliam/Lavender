@@ -10,6 +10,9 @@ class Group < ApplicationRecord
   validates :description, presence: true
   mount_uploader :photo, PhotoUploader
   serialize :performance
+  monetize :portfolio_value_cents
+  monetize :cash_value_cents
+  monetize :investment_value_cents
 
   attr_accessor :initial_deposit
 
