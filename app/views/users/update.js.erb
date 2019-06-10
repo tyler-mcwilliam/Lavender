@@ -9,4 +9,4 @@ function refreshBalance(newBalance) {
   document.querySelector('.modal-open').classList.remove('modal-open');
 }
 
-refreshBalance('$<%= j (current_user.available_balance_cents * 0.01).to_s %>');
+refreshBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
