@@ -6,7 +6,7 @@ class UserGroup < ApplicationRecord
 
   attr_accessor :initial_deposit, :deposit, :withdrawal
 
-  def initial_deposit(deposit)
+  def first_deposit(deposit)
     self.user = current_user
     @group = Group.find(params[:group_id])
     newshares = deposit * 100
