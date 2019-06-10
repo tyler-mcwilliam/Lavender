@@ -3,11 +3,14 @@
   <div id='left-bar' class='gray-shadow fade-in'>
     <!-- profile section -->
     <div id='side-profile'>
-      <% if current_user.photo.file.nil? %>
-        <%= image_tag 'monsters/6.png', class:'avatar-huge' %>
-      <% else %>
-        <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
-      <% end %>
+      <div id='side-profile-photo'>
+        <% if current_user.photo.file.nil? %>
+          <%= image_tag 'monsters/6.png', class:'avatar-huge' %>
+        <% else %>
+          <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
+        <% end %>
+        <i class="fas fa-edit" data-toggle="modal" data-target="#editProfile"></i>
+      </div>
       <h2><%= current_user.first_name.capitalize %></h2>
       <!-- balances container -->
       <div class='gray-shadow'>
@@ -128,6 +131,7 @@
 <%= render 'shared/modal_create_group' %>
 <%= render 'shared/modal_user_deposit' %>
 <%= render 'shared/modal_user_withdraw' %>
+<%= render 'shared/modal_edit_profile' %>
 
 
 
