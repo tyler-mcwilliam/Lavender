@@ -24,7 +24,7 @@
         <%= f.input :message, class: "form-control", required: true, label: false %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :chatroom_id, value: @group.chatroom.id %>
-        <div style="display: none"><%= f.submit %></div>
+        <%= f.submit %>
       </div>
     <% end %>
   </div>
