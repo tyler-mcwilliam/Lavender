@@ -106,9 +106,15 @@
     width: 350px;
     padding: 20px;
     border-bottom: 1px solid $lavender;
+    position: relative;
     p {
       text-align: center;
       font-size: 24px;
+    }
+    .approval-rate {
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
   }
   .poll-content {
@@ -118,10 +124,9 @@
     border-bottom: 1px solid $lavender;
   }
   .poll-vote {
-    width: 350px;
+    width: 310px;
     display: flex;
     justify-content: space-around;
-    padding: 20px;
     a {
       text-decoration: none;
       font-size: 24px;

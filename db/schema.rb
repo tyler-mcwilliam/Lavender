@@ -114,7 +114,8 @@ ActiveRecord::Schema.define(version: 2019_06_10_040753) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.date "birthdate"
+    t.date "date_of_birth"
+    t.boolean "is_female", default: false
     t.string "photo"
     t.integer "total_balance_cents", default: 0, null: false
     t.integer "available_balance_cents", default: 0, null: false

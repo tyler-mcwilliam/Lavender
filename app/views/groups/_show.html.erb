@@ -123,6 +123,9 @@
             <div class='poll-header' data-poll_id='<%= poll.id %>' data-toggle="collapse" href="#collapse<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
               <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
               <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker.upcase %></b></p>
+              <div class='approval-rate'>
+                <%= (poll.approval * 100).to_i %>%
+              </div>
             </div>
             <div class='poll-content collapse' id="collapse<%= poll.id %>">
               <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
@@ -152,9 +155,6 @@
                     <%= f.button :submit, 'no', class: 'btn btn-primary' %>
                   <% end %>
                 <% end %>
-              </div>
-              <div>
-                <%= (poll.approval * 100).to_i %>%
               </div>
             </div>
           </div>

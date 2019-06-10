@@ -14,7 +14,9 @@
           <%= f.input :last_name,
                       required: true,
                       input_html: { autocomplete: "family_name" }%>
-          <%= f.input :birthdate, required: true %>
+          <%= f.input :date_of_birth, required: true, start_year: Time.now.year - 80, end_year: Time.now.year %>
+          <%= f.check_box :is_female, {}, true %> <%= f.label :is_female, "Female" %> 
+          <%= f.check_box :is_female, {}, false %> <%= f.label :is_female, "Male" %>
           <%= f.input :photo %>
           <%= f.input :photo_cache, as: :hidden %>
           <%= f.input :address %>
