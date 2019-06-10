@@ -23,10 +23,9 @@ class Group < ApplicationRecord
     @user_group.group = self
     @user_group.user = self.creator
     @user_group.user_contribution = self.cash_value
-    @user_group.user_share = (self.cash_value * 100)
-    self.total_shares = (self.cash_value * 100)
+    @user_group.user_share = self.total_shares
     @user_group.user_balance = self.cash_value
-    @user_group.save
-    self.save
+    @user_group.save!
+    self.save!
   end
 end
