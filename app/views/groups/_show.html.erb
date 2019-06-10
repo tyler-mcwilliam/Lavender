@@ -120,11 +120,11 @@
       <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
       <% @polls.each do |poll| %>
         <div id='polls-container' class='gray-shadow'>
-          <div class='poll-header'>
+          <div class='poll-header' data-poll_id='<%= poll.id %>' data-toggle="collapse" href="#collapse<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
             <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
             <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker.upcase %></b></p>
           </div>
-          <div class='poll-content'>
+          <div class='poll-content collapse' id="collapse<%= poll.id %>">
             <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
             <div>
               <div class='d-flex justify-content-between'>
