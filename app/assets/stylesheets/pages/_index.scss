@@ -4,3 +4,29 @@
 @import 'group_show';
 @import 'group_index';
 @import 'side_bars';
+
+.disable {
+  pointer-events: none;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadein 1s 0s 1 normal forwards;
+}
+
+.fade-in-delay1 {
+  opacity: 0;
+  animation: fadein 1s 0.5s 1 normal forwards;
+}
+
+.fade-in-delay2 {
+  opacity: 0;
+  animation: fadein 1s 1s 1 normal forwards;
+}
+
+
+@keyframes fadein {
+  100% {opacity: 1;}
+}
+
+

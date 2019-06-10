@@ -7,7 +7,7 @@
 
 #left-bar {
   height: 100%;
-  width: 275px;
+  width: 300px;
   background-color: $dark-gray;
   position: fixed;
   top: 0;
@@ -39,9 +39,14 @@
   }
 }
 
+#group-view-container {
+  position: relative;
+  z-index: -1;
+}
+
 #right-bar {
   height: 100%;
-  width: 275px;
+  width: 300px;
   background-color: $dark-gray;
   position: fixed;
   top: 0;
@@ -132,6 +137,11 @@
       }
     }
   }
+}
+
+#groups-list {
+  border-top: 1px solid $lavender;
+  border-bottom: 1px solid $lavender;
 }
 
 .collapse > img {
