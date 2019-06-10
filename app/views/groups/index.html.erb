@@ -6,10 +6,10 @@
   </div>
   <div id='group-cards-container' style='background-image:url(<%= asset_url ('bottomright.png') %>); background-position: right bottom; background-repeat: no-repeat;'>
     <div class='container-fluid d-flex flex-row justify-content-center align-items-start flex-wrap' style='padding:50px 118px; margin-bottom: 100px;'>
-      <% if @groups.count.zero? %> 
-        <div class="d-flex flex-column justify-content-center">
+      <% if @groups.count.zero? %>
+        <div class="d-flex flex-column justify-content-center align-items-center">
           <h3>No available groups for you to join, maybe you should start one?!</h3>
-          <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create a Group</button>
+          <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:125px; margin-top: 20px;'>Create a Group</button>
         </div>
       <% else %>
         <% @groups.each do |group| %>
