@@ -1,0 +1,31 @@
+function closeModals() {
+  depositModal = document.getElementById('groupDeposit');
+  depositModal.classList.remove('show');
+  depositModal.setAttribute('style', 'display:none;');
+  depositModal.setAttribute('aria-hidden', 'true;');
+  withdrawModal = document.getElementById('groupWithdraw');
+  withdrawModal.classList.remove('show');
+  withdrawModal.setAttribute('style', 'display:none;');
+  withdrawModal.setAttribute('aria-hidden', 'true;');
+  document.querySelector('.modal-backdrop').classList.remove('modal-backdrop');
+  document.querySelector('.modal-open').classList.remove('modal-open');
+}
+
+function refreshGroupPortfolio(newBalance) {
+  port1 = document.getElementById('group_portfolio1');
+  port2 = document.getElementById('group_portfolio2');
+  port1.innerHTML = newBalance;
+  port2.innerHTML = newBalance;
+  closeModals();
+}
+
+function refreshGroupAvailable(newBalance) {
+  avail = document.getElementById('group_cash');
+  group.innerHTML = newBalance;
+  closeModals();
+}
+
+
+refreshGroupPortfolio('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
+refreshGroupAvailable('<%= j number_to_currency(Group.find(@user_group.group_id).cash_value_cents * 0.01) %>');
+
