@@ -162,3 +162,24 @@
     });
   })
 </script>
+
+<script>
+  const userDeposit = document.getElementById('groups-list');
+  const groupTabs = document.querySelectorAll('.group-tabs-container');
+  groupTabs.forEach((group) => {
+    group.addEventListener('click', (e) => {
+      const tab = e.currentTarget
+      if (tab === groups.firstElementChild) {
+        console.log('this is already the first child');
+        groups.firstElementChild.classList.add('active');
+        groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
+      } else {
+        groups.firstElementChild.classList.remove('active');
+        groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
+        groups.insertAdjacentElement('afterbegin', tab);
+        groups.firstElementChild.classList.add('active');
+        groups.firstElementChild.getElementsByClassName('collapse')[0].classList.add('show');
+      };
+    });
+  })
+</script>
