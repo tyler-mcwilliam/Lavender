@@ -22,6 +22,8 @@ class Order < ApplicationRecord
       @position.quantity -= self.quantity if self.buy == false
       @position.cost_basis -= (self.quantity * StockQuote::Stock.quote(self.ticker).latest_price) if self.buy == false
     end
+    @group.cash_value -= (self.price * self.quantity) if self.buy == true
+    @group.cash_value += (self.price * self.quantity) if self.buy == false
     @position.return = (@position.current_price * @position.quantity) - @position.cost_basis
     @position.save!
     @position.destroy if @position.quantity == 0

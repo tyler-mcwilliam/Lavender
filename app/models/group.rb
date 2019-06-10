@@ -9,6 +9,7 @@ class Group < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :description, presence: true
   mount_uploader :photo, PhotoUploader
+  serialize :performance
 
   attr_accessor :initial_deposit
 

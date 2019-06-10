@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_08_050825) do
+ActiveRecord::Schema.define(version: 2019_06_10_040753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_050825) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "watchlist", default: ["AAPL", "GE", "F", "MSFT", "AMD", "FIT", "GPRO", "FB", "TWTR", "NFLX"], array: true
+    t.text "performance", default: "{ (Date.today - 1) => 0.0 }"
     t.index ["creator_id"], name: "index_groups_on_creator_id"
   end
 
