@@ -22,7 +22,7 @@ class PollsController < ApplicationController
     redirect_to group_path(@group) if @poll.price.nil?
     @poll.save! if @poll.buy == true && @poll.group.cash_value > (@poll.quantity * @poll.price)
     @poll.save! if @poll.buy == false # && @poll.group.positions.include?  group has a position with high enough quantity to sell
-    redirect_to group_path(@group)
+    redirect_to dashboard_path
   end
 
   def update
