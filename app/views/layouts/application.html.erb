@@ -10,15 +10,14 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <link href="https://fonts.googleapis.com/css?family=Ropa+Sans&display=swap" rel="stylesheet">
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-  </head>
-  <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+  </head>
+  <body class='<%= controller_name %> <%= action_name %>'>
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/flashes' %>
 
     <%= yield %>
     <%= javascript_include_tag 'application' %>
