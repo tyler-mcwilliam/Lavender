@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
       group.users.include?(current_user)
     end
     @user_group = UserGroup.new
+    @group = Group.new
   end
 
   def show
