@@ -119,7 +119,7 @@
                       <% end %>
                       <h3><%= user.first_name.capitalize %></h3>
                     </div>
-                    <h3><%= (user.user_groups.where(group.id == :group_id).first.user_share.to_f / group.total_shares) * 100 %>%</h3>
+                    <h3><%= (user.user_groups.where(group.id == :group_id).first.user_share.to_f / group.total_shares).round(2) * 100 %>%</h3>
                   </div>
                 <% end %>
               </div>

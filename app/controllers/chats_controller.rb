@@ -10,7 +10,7 @@ class ChatsController < ApplicationController
   def create
     @chat = Chat.new(chat_params)
     @chat.save!
-    redirect_to group_path(@chat.chatroom.group_id)
+    redirect_to dashboard_path
   end
 
   def show
