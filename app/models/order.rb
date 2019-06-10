@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :poll
   # belongs_to :position, class_name: "Position"
+  monetize :price_cents
 
   after_create :execute
 

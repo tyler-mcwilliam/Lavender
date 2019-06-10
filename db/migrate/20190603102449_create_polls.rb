@@ -2,12 +2,12 @@ class CreatePolls < ActiveRecord::Migration[5.2]
   def change
     create_table :polls do |t|
       t.text :description
-      t.float :approval, default: 0
-      t.float :target_price
-      t.float :stop_loss_price
+      t.float :approval, null: false, default: 0
+      t.integer :target_price_cents
+      t.integer :stop_loss_price_cents
       t.boolean :buy
       t.integer :quantity
-      t.float :price
+      t.integer :price_cents
       t.datetime :expiration
       t.string :ticker
       t.references :group, foreign_key: true

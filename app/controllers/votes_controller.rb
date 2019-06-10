@@ -30,7 +30,7 @@ class VotesController < ApplicationController
         @order.save!
       end
       # @poll.approval += @vote.voting_power if @vote.approve == false
-      redirect_to group_path(@group)
+      redirect_to dashboard_path
     end
   end
 end
