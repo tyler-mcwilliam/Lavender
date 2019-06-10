@@ -8,6 +8,9 @@ class Poll < ApplicationRecord
   validates :quantity, presence: true, numericality: true
   validates :ticker, presence: true
   validates :expiration, presence: true
+  monetize :target_price_cents
+  monetize :stop_loss_price_cents
+  monetize :price_cents
 
   # return true or false if poll has votes from current user
   def has_voted_by_current_user(current_user)

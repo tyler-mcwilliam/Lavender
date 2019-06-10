@@ -17,6 +17,9 @@ class User < ApplicationRecord
   # validates :address, presence: true
   mount_uploader :photo, PhotoUploader
 
+  monetize :available_balance_cents
+  monetize :total_balance_cents
+
   attr_accessor :deposit, :withdrawal
 
   def self.from_omniauth(auth)
@@ -27,7 +30,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.remote_photo_url = auth.info.image
       user.password = Devise.friendly_token[0, 20]
-      user.save
+      user.save!
     end
   end
 
@@ -43,7 +46,7 @@ class User < ApplicationRecord
     current_user.save!
   end
 
-  after_create :set_balance
+  # after_create :set_balance
 
   private
 
@@ -55,13 +58,9 @@ class User < ApplicationRecord
   #   end
   # end
 
-  def set_balance
-    self.available_balance = 0
-    self.total_balance = 0
-    self.save
-  end
-
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :photo)
-  end
+  # def set_balance
+  #   self.available_balance = 0
+  #   self.total_balance = 0
+  #   self.save
+  # end
 end
