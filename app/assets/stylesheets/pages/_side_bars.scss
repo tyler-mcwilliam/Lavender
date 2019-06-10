@@ -30,12 +30,25 @@
   margin-top: 100px;
   margin-bottom: 25px;
   text-align: center;
-  img {
-    margin: auto;
-  }
   > div {
     padding: 20px;
     background-color: $gray1;
+  }
+}
+
+#side-profile-photo {
+  position: relative;
+  img {
+    margin:auto;
+  }
+  .fa-edit {
+    color: gray;
+    position: absolute;
+    bottom: 20px;
+    right:55px;
+    &:hover {
+      color: white;
+    }
   }
 }
 
