@@ -114,31 +114,29 @@
         </div>
       <%# end %>
     </div> -->
-    <div class='d-flex justify-content-between'>
-      <div id='group-polls'>
-        <h2>Polls</h2>
-        <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
-        <% @polls.each do |poll| %>
-          <div id='polls-container' class='gray-shadow'>
-            <div class='poll-header'>
-              <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
-              <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker.upcase %></b></p>
-            </div>
-            <div class='poll-content'>
-              <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
-              <div>
-                <div class='d-flex justify-content-between'>
-                  <p style='color:gray'>Number of shares: </p>
-                  <p><%= poll.quantity %></p>
-                </div>
-                <div class='d-flex justify-content-between'>
-                  <p style='color:gray'>Cost per share: </p>
-                  <p>$<%= poll.price %></p>
-                </div>
-                <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
-                  <p style='color:gray'>Total cost: </p>
-                  <p>$<%= (poll.price.to_f * poll.quantity.to_i) %></p>
-                </div>
+    <div id='group-polls'>
+      <h2>Polls</h2>
+      <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
+      <% @polls.each do |poll| %>
+        <div id='polls-container' class='gray-shadow'>
+          <div class='poll-header' data-poll_id='<%= poll.id %>' data-toggle="collapse" href="#collapse<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <p><b><%= poll.creator.first_name %></b> wants to <b><%= 'BUY' if poll.buy == true %><%= 'SELL' if poll.buy == false %></b></p>
+            <p><b><%= poll.quantity %></b> shares of <b><%= poll.ticker.upcase %></b></p>
+          </div>
+          <div class='poll-content collapse' id="collapse<%= poll.id %>">
+            <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
+            <div>
+              <div class='d-flex justify-content-between'>
+                <p style='color:gray'>Number of shares: </p>
+                <p><%= poll.quantity %></p>
+              </div>
+              <div class='d-flex justify-content-between'>
+                <p style='color:gray'>Cost per share: </p>
+                <p>$<%= poll.price %></p>
+              </div>
+              <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
+                <p style='color:gray'>Total cost: </p>
+                <p>$<%= (poll.price.to_f * poll.quantity.to_i) %></p>
               </div>
             </div>
             <div class='poll-vote'>
