@@ -114,7 +114,6 @@
         </div>
       <%# end %>
     </div> -->
-
     <div id='group-polls'>
       <h2>Polls</h2>
       <%= "No current polls, start the discussion now!" if @polls.count.zero? %>
@@ -140,25 +139,46 @@
                 <p>$<%= (poll.price.to_f * poll.quantity.to_i) %></p>
               </div>
             </div>
-          </div>
-          <div class='poll-vote'>
-            <% poll.votes.each do |vote| %>
-              <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= vote.voting_power %>%)</i></p>
-            <% end %>
-            <% if poll.has_voted_by_current_user(current_user) %>
-              <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
-            <% else %>
-              <%= simple_form_for [poll, Vote.new] do |f| %>
-                <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
-                <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+            <div class='poll-vote'>
+              <% poll.votes.each do |vote| %>
+                <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= vote.voting_power %>%)</i></p>
               <% end %>
-            <% end %>
+              <% if poll.has_voted_by_current_user(current_user) %>
+                <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
+              <% else %>
+                <%= simple_form_for [poll, Vote.new] do |f| %>
+                  <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+                  <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+                <% end %>
+              <% end %>
+            </div>
+            <div>
+              <%= (poll.approval * 100).to_i %>%
+            </div>
           </div>
-          <div>
-            <%= (poll.approval * 100).to_i %>%
+        <% end %>
+      </div>
+
+      <div id='group-orders'>
+        <h2>Open Orders</h2>
+        <div id='orders-container'>
+          <h3>APPL <span style='color:#219974; font-size:24px;'>BUY</span></h3>
+          <div id='orders-content'>
+            <div>
+              <span style='color:gray;'>Quantity:</span>
+              <span>10</span>
+            </div>
+            <div>
+              <span style='color:gray;'>Price/share:</span>
+              <span>$10</span>
+            </div>
+            <div style='border-top: 1px solid #8B81D2'>
+              <span style='color:gray;'>Total Price:</span>
+              <span>$100.00</span>
+            </div>
           </div>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 

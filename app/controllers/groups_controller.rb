@@ -30,13 +30,12 @@ class GroupsController < ApplicationController
     @group.creator = current_user # Assign group to user
     @group.cash_value = params[:group]['initial_deposit'].to_f # Assign initial Cash Value
     @group.portfolio_value = params[:group]['initial_deposit'].to_f # Assign initial portfolio Value
+    @group.total_shares = params[:group]['initial_deposit'].to_i * 100
     @group.chatroom = Chatroom.new # Create a chatroom for the group
     @group.performance = {} # Create and empty hash for the group
     today = DateTime.now.to_s # Needs work here
     @group.performance[:today] = @group.portfolio_value # Store initial performance value
-    # @user_group = UserGroup.new(initial_deposit: params[:group]['initial_deposit'])
-    # @user_group.group = @group
-    # @user_group.user = current_user
+    @group.save!
     if @group.save
       redirect_to dashboard_path
     else
