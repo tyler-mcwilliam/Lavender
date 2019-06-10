@@ -64,9 +64,9 @@
   <!-- group view contaier -->
   <div id='group-view-container'>
     <div style='height:90vh;' class='d-flex flex-column justify-content-center align-items-center fade-in-delay2'>
-      <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>Welcome</span> <%= current_user.first_name %>!</h1>
+      <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>Welcome</span> <%= current_user.first_name.capitalize %>!</h1>
       <h2 class='fade-in-delay2' style='font-size:30px;'>Click on a <span style='font-size:30px; color:#8B81D2;'>group</span> to begin.</h2>
-      <i class="fas fa-arrow-circle-right fade-in-delay2" style='font-size:30px;'></i>
+      <i class="fas fa-arrow-circle-right fade-in-delay2" style='font-size:30px; margin-top:20px;'></i>
     </div>
   </div>
 
@@ -106,7 +106,7 @@
                   <div class='member-tabs'>
                     <div class='d-flex justify-content-start align-items-center'>
                       <% if user.photo.file.nil? %>
-                        <%= image_tag 'monsters/6.png' %>
+                        <%= image_tag 'monsters/6.png', class:'avatar' %>
                       <% else %>
                         <%= cl_image_tag user.photo, class:'avatar' %>
                       <% end %>
@@ -129,9 +129,7 @@
 <%= render 'shared/modal_user_deposit' %>
 <%= render 'shared/modal_user_withdraw' %>
 
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 
 <script>
   const groups = document.getElementById('groups-list');
@@ -148,9 +146,7 @@
         console.log('this is already the first child');
         groups.firstElementChild.classList.add('active');
         groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
-        // groups.firstElementChild.getElementsByClassName('group-link')[0].toggleAttribute('href');
       } else {
-        // groups.firstElementChild.getElementsByClassName('group-link')[0].toggleAttribute('href');
         groups.firstElementChild.classList.remove('active');
         groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
         groups.insertAdjacentElement('afterbegin', tab);
