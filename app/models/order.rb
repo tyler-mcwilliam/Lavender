@@ -3,34 +3,33 @@ class Order < ApplicationRecord
   # belongs_to :position, class_name: "Position"
   monetize :price_cents
 
-  after_create :execute
+  after_create :execute, :post_to_alpaca
 
   def execute
     @poll = self.poll
     @group = self.poll.group
-    @position = @group.positions.where(:ticker == self.ticker).first
+    @position = @group.positions.find { |position| position.ticker == self.ticker}
     if @position.nil?
       @position = Position.new(
         ticker: @poll.ticker,
         quantity: @poll.quantity,
-        current_price: StockQuote::Stock.quote(self.ticker).latest_price,
+        current_price_cents: (StockQuote::Stock.quote(self.ticker).latest_price.to_f * 100).to_i,
         group_id: self.poll.group_id
       )
-      @position.cost_basis = (@position.quantity * @position.current_price)
+      @position.cost_basis_cents = (@position.quantity * @position.current_price)
     else
       @position.quantity += self.quantity if self.buy == true
-      @position.cost_basis += (self.quantity * StockQuote::Stock.quote(self.ticker).latest_price) if self.buy == true
+      @position.cost_basis_cents += (self.quantity * (StockQuote::Stock.quote(self.ticker).latest_price.to_f * 100).to_i) if self.buy == true
       @position.quantity -= self.quantity if self.buy == false
-      @position.cost_basis -= (self.quantity * StockQuote::Stock.quote(self.ticker).latest_price) if self.buy == false
+      @position.cost_basis_cents -= (self.quantity * (StockQuote::Stock.quote(self.ticker).latest_price.to_f * 100).to_i) if self.buy == false
     end
-    @group.cash_value -= (self.price * self.quantity) if self.buy == true
-    @group.cash_value += (self.price * self.quantity) if self.buy == false
-    @position.return = (@position.current_price * @position.quantity) - @position.cost_basis
+    @group.cash_value_cents -= (self.price_cents * self.quantity) if self.buy == true
+    @group.cash_value_cents += (self.price_cents * self.quantity) if self.buy == false
+    @position.return = (@position.current_price_cents * @position.quantity) - @position.cost_basis_cents
     @position.save!
     @position.destroy if @position.quantity.zero?
-    self.save!
     self.filled = true
-    self.post_to_alpaca
+    self.save!
   end
 
   def post_to_alpaca
