@@ -15,7 +15,11 @@
         <% @groups.each do |group| %>
         <button type="button" class="join-group-button btn" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
           <div class='group-cardd gray-shadow'>
-            <%= image_tag 'group.jpg' %>
+            <% if group.photo.file.nil? %>
+                <%= image_tag 'creategroupdefault.jpg' %>
+              <% else %>
+                <%= cl_image_tag group.photo %>
+              <% end %>
             <div class='d-flex justify-content-between align-items-center' style='width:300px;'>
               <h3 style='margin-left: 10px;'><%= group.name %></h3>
               <p style='margin: 0 10px 5px 0; font-size: 20px;'><i class="fas fa-user"></i> <%= group.users.count %></p>
