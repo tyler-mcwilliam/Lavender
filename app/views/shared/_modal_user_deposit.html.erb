@@ -8,8 +8,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [current_user], :url => update_user_path(@user.id), :method => :patch do |f| %>
-          <%= f.input :deposit, required: true, placeholder: 'Number in Dollars', style:'background-color:gray;'%>
+        <%= simple_form_for [current_user], :url => update_user_path(@user.id), remote: true, :method => :patch do |f| %>
+          <%= f.input :deposit, required: true, placeholder: 'Number in Dollars', style:'background-color:gray;', autocomplete: false%>
           <%= f.button :submit, 'Deposit Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
         <% end %>
       </div>

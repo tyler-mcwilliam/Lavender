@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
   end
 
   def dashboard
@@ -17,8 +18,14 @@ class UsersController < ApplicationController
   def update
     current_user.available_balance_cents += cents(params[:user][:deposit]) unless params[:user][:deposit].nil? || params[:user][:deposit].to_f < 0
     current_user.available_balance_cents -= cents(params[:user][:withdrawal]) unless params[:user][:withdrawal].nil? || params[:user][:deposit].to_f < 0
-    current_user.save!
-    redirect_to dashboard_path
+    if @current_user.save
+      respond_to do |format|
+        format.html { redirect_to dashboard_path }
+        format.js
+      end
+    else
+      redirect_to dashboard_path
+    end
   end
 
   private

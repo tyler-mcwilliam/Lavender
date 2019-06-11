@@ -10,26 +10,26 @@ class UserGroup < ApplicationRecord
     self.user = current_user
     @group = Group.find(params[:group_id])
     newshares = deposit * 100
-    @group.cash_value += deposit
+    @group.cash_value_cents += deposit
     @group.total_shares += newshares
-    self.user_contribution += deposit
+    self.user_contribution_cents += deposit
     self.user_share += newshares
-    self.user_balance = @group.portfolio_value * (self.user_share / @group.total_shares)
+    self.user_balance_cents = @group.portfolio_value_cents * (self.user_share / @group.total_shares)
     self.save!
   end
 
   def deposits(deposit)
     @group = self.group
     @user = self.user
-    newshares = deposit / (@group.portfolio_value / @group.total_shares)
-    @group.cash_value += deposit
+    newshares = deposit / (@group.portfolio_value_cents / @group.total_shares)
+    @group.cash_value_cents += deposit
     @group.total_shares += newshares
-    self.user_contribution += deposit
+    self.user_contribution_cents += deposit
     self.user_share += newshares
-    @group.portfolio_value = @group.cash_value + @group.investment_value
-    self.user_balance = @group.portfolio_value * (self.user_share / @group.total_shares)
-    self.user.available_balance -= deposit
-    self.user.total_balance -= deposit
+    @group.portfolio_value_cents = @group.cash_value_cents + @group.investment_value_cents
+    self.user_balance_cents = @group.portfolio_value_cents * (self.user_share / @group.total_shares)
+    self.user.available_balance_cents -= deposit
+    self.user.total_balance_cents -= deposit
     @group.save!
     @user.save!
     self.save!
@@ -38,15 +38,15 @@ class UserGroup < ApplicationRecord
   def withdraw(withdrawal)
     @group = self.group
     @user = self.user
-    cancelledshares = withdrawal / (@group.portfolio_value / @group.total_shares)
-    @group.cash_value -= withdrawal
+    cancelledshares = withdrawal / (@group.portfolio_value_cents / @group.total_shares)
+    @group.cash_value_cents -= withdrawal
     @group.total_shares -= cancelledshares
-    self.user_contribution -= withdrawal
+    self.user_contribution_cents -= withdrawal
     self.user_share -= cancelledshares
-    @group.portfolio_value = @group.cash_value + @group.investment_value
-    self.user_balance = @group.portfolio_value * (self.user_share / @group.total_shares)
-    @user.available_balance += withdrawal
-    @user.total_balance += withdrawal
+    @group.portfolio_value_cents = @group.cash_value_cents + @group.investment_value_cents
+    self.user_balance_cents = @group.portfolio_value_cents * (self.user_share / @group.total_shares)
+    @user.available_balance_cents += withdrawal
+    @user.total_balance_cents += withdrawal
     @group.save!
     @user.save!
     self.save!

@@ -16,3 +16,19 @@
     }
   }
 }
+
+.signup-button {
+  background-color: $lavender;
+  color: white;
+  text-decoration: none;
+  font-size:30px;
+  border-radius: 40px;
+  width: 125px;
+  padding: 0;
+  margin: 8px 0;
+  &:hover{
+    background-color: #534d7f;
+    color:white;
+    text-decoration: none;
+  }
+}

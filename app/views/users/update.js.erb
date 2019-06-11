@@ -1,0 +1,25 @@
+function closeModal() {
+  depositModal = document.getElementById('userDeposit');
+  depositModal.classList.remove('show');
+  depositModal.setAttribute('style', 'display:none;');
+  depositModal.setAttribute('aria-hidden', 'true;');
+  withdrawModal = document.getElementById('userWithdraw');
+  withdrawModal.classList.remove('show');
+  withdrawModal.setAttribute('style', 'display:none;');
+  withdrawModal.setAttribute('aria-hidden', 'true;');
+  document.querySelector('.modal-backdrop').classList.remove('modal-backdrop');
+  document.querySelector('.modal-open').classList.remove('modal-open');
+}
+
+function refreshBalance(string) {
+  const str = string.split('');
+  const balance = document.getElementById('user-available-balance');
+  balance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? balance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+refreshBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
+closeModal();
