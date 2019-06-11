@@ -1,3 +1,6 @@
+require 'uri'
+require 'net/http'
+
 class UsersController < ApplicationController
   def new
   end

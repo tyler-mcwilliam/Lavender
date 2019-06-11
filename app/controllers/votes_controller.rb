@@ -22,7 +22,7 @@ class VotesController < ApplicationController
         @order = Order.new(
           price: @poll.price,
           quantity: @poll.quantity,
-          ticker: @poll.ticker,
+          ticker: @poll.ticker.upcase,
           buy: @poll.buy,
           filled: false,
           poll: @poll
