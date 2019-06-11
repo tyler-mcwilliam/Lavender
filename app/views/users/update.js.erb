@@ -1,6 +1,4 @@
-function refreshBalance(newBalance) {
-  availableUserBalance = document.getElementById('user-available-balance');
-  availableUserBalance.innerHTML = newBalance;
+function closeModal() {
   depositModal = document.getElementById('userDeposit');
   depositModal.classList.remove('show');
   depositModal.setAttribute('style', 'display:none;');
@@ -13,4 +11,15 @@ function refreshBalance(newBalance) {
   document.querySelector('.modal-open').classList.remove('modal-open');
 }
 
+function refreshBalance(string) {
+  const str = string.split('');
+  const balance = document.getElementById('user-available-balance');
+  balance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? balance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
 refreshBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
+closeModal();

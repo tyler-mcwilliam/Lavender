@@ -2,7 +2,6 @@
 <div class='container d-flex align-items-start justify-content-center'>
   <div id='group-show-div' style='margin-left:35px;'>
     <div id='group-performance'>
-
       <div id='main-chart-header'>
         <div>
           <h1><%= @group.name.capitalize %> <span id='group_portfolio1' style='font-size: 24px;'><%=  humanized_money_with_symbol @group.portfolio_value %></span></h1>
@@ -28,7 +27,7 @@
         <div id='group-balance'>
           <div class='d-flex justify-content-between'>
             <span style='color:gray;'>Available Cash:</span>
-            <span id='group_cash'><%=  humanized_money_with_symbol @group.cash_value %></span>
+            <span id = 'group_cash_value'><%=  humanized_money_with_symbol @group.cash_value %></span>
           </div>
           <div class='d-flex justify-content-between'>
             <span style='color:gray;'>Investment value:</span>

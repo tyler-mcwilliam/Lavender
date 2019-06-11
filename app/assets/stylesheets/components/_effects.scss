@@ -1,0 +1,17 @@
+.gray-shadow {
+  box-shadow: 0px 0px 5px 2px $gray2;
+}
+
+.disable {
+  pointer-events: none;
+}
+
+.glow {
+  animation: glow 3s 0s 1 alternate;
+  animation-timing-function: ease-out;
+}
+
+@keyframes glow {
+  50% {color: white;}
+  100% {color: $lavender-green}
+}
