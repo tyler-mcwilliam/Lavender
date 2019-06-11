@@ -7,7 +7,6 @@ class UserGroup < ApplicationRecord
   attr_accessor :initial_deposit, :deposit, :withdrawal
 
   def first_deposit(deposit)
-    deposit *= 100
     self.user = current_user
     @group = Group.find(params[:group_id])
     newshares = deposit * 100
@@ -20,7 +19,6 @@ class UserGroup < ApplicationRecord
   end
 
   def deposits(deposit)
-    deposit *= 100
     @group = self.group
     @user = self.user
     newshares = deposit / (@group.portfolio_value_cents / @group.total_shares)
@@ -38,7 +36,6 @@ class UserGroup < ApplicationRecord
   end
 
   def withdraw(withdrawal)
-    withdrawal *= 100
     @group = self.group
     @user = self.user
     cancelledshares = withdrawal / (@group.portfolio_value_cents / @group.total_shares)
