@@ -21,6 +21,6 @@ class ApplicationController < ActionController::Base
       user_share = group.user_groups.where(user_id == current_user.id).user_share
       total_balance_cents += ((group.portfolio_value_cents / group.total_shares) * user_share)
     end
-    total_balance_cents = current_user.available_balance_cents + total_balance_cents
+    current_user.available_balance_cents + total_balance_cents
   end
 end
