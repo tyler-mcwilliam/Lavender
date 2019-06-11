@@ -1,13 +1,3 @@
-#dashboard-container {
-  width: 100%;
-  min-height: 100vh;
-  background-position: left top;
-  background-repeat: no-repeat;
-  margin-bottom: -72px;
-  display: flex;
-  justify-content: center;
-}
-
 .dashboard-profile {
   width: 400px;
   margin-top: 150px;
@@ -49,6 +39,18 @@
       }
     }
   }
+}
+
+#group-view-container {
+  width: 45vw;
+  margin: auto;
+}
+
+#polls-orders {
+  width: 45vw;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .group-buttons {
@@ -120,9 +122,4 @@
   .fa-plus-circle {
   color: $lavender;
   }
-}
-
-#group-view-container {
-  width: 800px;
-  margin: auto;
 }

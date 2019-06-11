@@ -109,57 +109,19 @@
     </div>
   </div>
 
-  <!-- right container -->
-  <div id='right-bar' class='gray-shadow fade-in-delay1'>
-    <!-- groups list section -->
-    <div id='side-group'>
-      <div id='group-header'>
-        <h2>Groups</h2>
-        <div class="dropdown">
-          <button class="dropdown-toggle" type="button" id="groupAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-users"></i>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="groupAction">
-            <a class="dropdown-item" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup">Create a group</a>
-            <%= link_to "Join a group", groups_path, class:'dropdown-item' %>
-          </div>
-        </div>
-      </div>
-
-      <div id='groups-list'>
-        <% @groups.each do |group| %>
-          <div class='group-tabs-container' data-group_id='<%= group.id %>'>
-            <%= link_to group_path(group), class:'group-link', method: :get, remote: true do %>
-              <div class='group-tabs d-flex align-items-center' data-tab_id='1' data-group_name='<%= group.name %>' data-toggle="collapse" href="#collapse<%= group.name %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <h2><%= group.name.capitalize %></h2>
-              </div>
-            <% end %>
-            <div class="collapse" id="collapse<%= group.name %>">
-              <% if group.photo.file.nil? %>
-                <%= image_tag 'creategroupdefault.jpg' %>
-              <% else %>
-                <%= cl_image_tag group.photo %>
-              <% end %>
-              <div id="members-list">
-                <% group.users.each do |user| %>
-                  <div class='member-tabs'>
-                    <div class='d-flex justify-content-start align-items-center'>
-                      <% if user.photo.file.nil? %>
-                        <%= image_tag 'monsters/6.png', class:'avatar' %>
-                      <% else %>
-                        <%= cl_image_tag user.photo, class:'avatar' %>
-                      <% end %>
-                      <h3><%= user.first_name.capitalize %></h3>
-                    </div>
-                    <h3><%= (user.user_groups.where(group.id == :group_id).first.user_share.to_f / group.total_shares) * 100 %>%</h3>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+  <!-- polls and orders container -->
+  <div id ='polls-orders'>
+    <!-- polls container -->
+    <div id='group-polls'>
     </div>
+    <!-- orders container -->
+    <div id='group-orders'>
+    </div>
+  </div>
+
+  <!-- right-bar container -->
+  <div id='right-bar' class='gray-shadow fade-in-delay1'>
+    <%= render 'partials/groups_container' %>
   </div>
 
 </div>

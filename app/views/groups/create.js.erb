@@ -1,0 +1,23 @@
+function refreshGroupBar(groups) {
+  const rightBar = document.getElementById('right-bar');
+  rightBar.innerHTML = groups;
+}
+
+function closeModal() {
+  groupModal = document.getElementById('createGroup');
+  groupModal.classList.remove('show');
+  groupModal.setAttribute('style', 'display:none;');
+  groupModal.setAttribute('aria-hidden', 'true;');
+  document.querySelector('.modal-backdrop').classList.remove('modal-backdrop');
+  document.querySelector('.modal-open').classList.remove('modal-open');
+}
+
+function clickTab() {
+  const tab = document.querySelector('[data-group_id="<%= @group.id %>"]')
+  tab.getElementsByClassName('group-link')[0].click();
+}
+
+refreshGroupBar("<%= j render 'partials/groups_container' %>");
+closeModal();
+clickTab();
+

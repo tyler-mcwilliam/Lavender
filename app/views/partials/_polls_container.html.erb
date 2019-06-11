@@ -1,0 +1,57 @@
+<h2>Polls</h2>
+<%= "No current polls, start the discussion now!" if @group.polls.count.zero? %>
+<% @group.polls.each do |poll| %>
+  <div id='polls-container' class='gray-shadow'>
+    <div class='poll-header' data-poll_id='<%= poll.id %>' data-toggle="collapse" href="#collapse<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <p><span style='font-size:24px;'><%= poll.creator.first_name.capitalize %></span> wants to
+        <span id='poll-buy'>
+          <%= 'BUY' if poll.buy == true %>
+        </span>
+        <span id='poll-sell'>
+          <%= 'SELL' if poll.buy == false %>
+        </span>
+      </p>
+      <p><%= poll.quantity %></b>
+        <% if poll.quantity == 1 %>
+          share
+        <% else %>
+          shares
+        <% end %>
+        of <%= poll.ticker.upcase %>
+      </p>
+      <div class='approval-rate'>
+        <%= (poll.approval * 100).to_i %>%
+      </div>
+    </div>
+    <div class='poll-content collapse' id="collapse<%= poll.id %>">
+      <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
+      <div>
+        <div class='d-flex justify-content-between'>
+          <p style='color:gray'>Number of shares: </p>
+          <p><%= poll.quantity %></p>
+        </div>
+        <div class='d-flex justify-content-between'>
+          <p style='color:gray'>Cost per share: </p>
+          <p><%= humanized_money_with_symbol poll.price %></p>
+        </div>
+        <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
+          <p style='color:gray'>Total cost: </p>
+          <p><%= humanized_money_with_symbol (poll.price.to_f * poll.quantity.to_i) %></p>
+        </div>
+      </div>
+      <div class='poll-vote'>
+        <% poll.votes.each do |vote| %>
+          <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= vote.voting_power %>%)</i></p>
+        <% end %>
+        <% if poll.has_voted_by_current_user(current_user) %>
+          <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
+        <% else %>
+          <%= simple_form_for [poll, Vote.new] do |f| %>
+            <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
+            <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

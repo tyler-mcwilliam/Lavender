@@ -27,6 +27,7 @@ class GroupsController < ApplicationController
   end
 
   def create
+    @groups = current_user.groups
     @group = Group.new(group_params) # Create the group
     @group.creator = current_user # Assign group to user
     @group.cash_value_cents = cents(params[:group]['initial_deposit']) # Assign initial Cash Value
@@ -36,11 +37,11 @@ class GroupsController < ApplicationController
     @group.performance = {} # Create and empty hash for the group
     today = DateTime.now.to_s # Needs work here
     @group.performance[:today] = @group.portfolio_value # Store initial performance value
-    @group.save!
     if @group.save
-      redirect_to group_path(@group)
-    else
-      render :new
+      respond_to do |format|
+        format.html { render 'show' }
+        format.js
+      end
     end
   end
 

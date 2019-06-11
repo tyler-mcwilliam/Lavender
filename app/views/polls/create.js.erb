@@ -13,6 +13,11 @@ function refreshForm() {
   document.getElementById('poll_description').value = '';
 }
 
+function refreshPolls(polls) {
+  const pollsView = document.getElementById('group-polls');
+  pollsView.innerHtml = polls;
+}
+
 <% if @poll.buy == true %>
   <% @poll.save! if @poll.group.cash_value_cents > (@poll.quantity * @poll.price_cents) %>
   window.alert('Poll created!');
@@ -29,5 +34,6 @@ function refreshForm() {
 <% end %>
 
 refreshForm();
+refreshPolls("<%= j render 'partials/polls_container' %>")
 
 
