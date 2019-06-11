@@ -15,9 +15,9 @@ class VotesController < ApplicationController
     if @vote.save
       @poll.approval += @vote.voting_power if @vote.approve == true
       @poll.save
-      if @poll.approval > 0.45 # limit check/need to find out how we are going to register 51%
+      if @poll.approval > 0.51 # limit check/need to find out how we are going to register 51%
         @order = Order.new(
-          price: @poll.price_cents,
+          price_cents: @poll.price_cents,
           quantity: @poll.quantity,
           ticker: @poll.ticker.upcase,
           buy: @poll.buy,
