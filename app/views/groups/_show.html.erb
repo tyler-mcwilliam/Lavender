@@ -12,18 +12,19 @@
       <div id='group-stats' class='gray-shadow'>
         <div id='group-shares'>
           <div class='d-flex justify-content-between'>
-            <span style='color:gray;'>Shares:</span>
+            <span style='color:gray;'>Total shares:</span>
             <span><%= @group.total_shares %></span>
           </div>
           <div class='d-flex justify-content-between'>
             <span style='color:gray;'>Share value:</span>
-            <span><%=  humanized_money_with_symbol (@group.portfolio_value / @group.total_shares) %></span>
+            <span><%#=  humanized_money_with_symbol (@group.portfolio_value / @group.total_shares) %></span>
           </div>
           <div class='d-flex justify-content-between' style='border-top: 1px solid #8B81D2;'>
-            <span style='color:gray;'>Your share:</span>
+            <span style='color:gray;'>
+              Your shares:(<%#= @user_group.user_shares %>)
+            </span>
             <span>
-              <%#= humanized_money_with_symbol ((@group.portfolio_value_cents / @group.total_shares) * @user_share) %>
-              $100.00
+              <%#= humanized_money_with_symbol ((@group.portfolio_value / @group.total_shares) * @user_share) %>
             </span>
           </div>
         </div>
