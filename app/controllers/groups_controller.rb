@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit]
+  before_action :set_group, only: [:show, :edit, :update]
   before_action :set_polls, only: [:show]
   before_action :set_orders, only: [:show]
   before_action :set_positions, only: [:show]
@@ -44,11 +44,18 @@ class GroupsController < ApplicationController
     end
   end
 
-  def update
-    @group.save!
+  def edit
   end
 
-  def edit
+  def update
+    @group.update(group_params)
+    @group.save!
+    redirect_to dashboard_path
+    # if @group.save
+    #   respond_to do |format|
+    #     format.js
+    #   end
+    # end
   end
 
   def initial_deposit
