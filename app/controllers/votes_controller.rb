@@ -7,9 +7,9 @@ class VotesController < ApplicationController
     @vote = Vote.new
     @vote.approve = true if params[:commit] == 'yes'
     @vote.approve = false if params[:commit] == 'no'
+    @vote.poll = @poll
     @group = @poll.group
     @vote.voting_power = current_user.user_groups.where(@group.id == :group_id).first.user_share.to_f / @group.total_shares
-    @vote.poll = @poll
     @vote.user = current_user
     if @vote.save
       @poll.approval += @vote.voting_power if @vote.approve == true
