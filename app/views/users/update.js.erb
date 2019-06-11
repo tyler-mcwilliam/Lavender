@@ -25,7 +25,8 @@ function refreshBalance(string) {
   str.length > 0 ? balance.innerHTML += str.shift() : clearTimeout(running);
   var running = setTimeout(animate, 90);
   })();
-
+  const formBalance = document.getElementById('withdraw-form-balance');
+  formBalance.innerHTML = string;
 }
 
 refreshBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
