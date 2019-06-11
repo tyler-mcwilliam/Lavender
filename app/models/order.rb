@@ -9,6 +9,7 @@ class Order < ApplicationRecord
     @poll = self.poll
     @group = self.poll.group
     @position = @group.positions.find { |position| position.ticker == self.ticker}
+    raise
     if @position.nil?
       @position = Position.new(
         ticker: @poll.ticker,

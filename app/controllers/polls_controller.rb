@@ -16,6 +16,7 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new(poll_params)
+    @poll.ticker.upcase!
     @poll.creator = current_user
     @poll.group = @group
     @poll.price_cents = cents(StockQuote::Stock.quote(@poll.ticker).latest_price)
@@ -46,4 +47,3 @@ class PollsController < ApplicationController
     params.require(:poll).permit(:description, :quantity, :ticker, :expiration, :target_price, :stop_loss_price, :buy, :price, :creator_id, :created_at)
   end
 end
-
