@@ -97,28 +97,11 @@
         </div>
       <%# end %>
     </div> -->
-
-<!--     <div id='group-order'>
-      <h2>Orders</h2>
-      <%# @group.orders.each do |order| %>
-        <div id='group-orders-content' class='gray-shadow'>
-            <div>
-              <div class='d-flex'>
-                <strong><%#= order.ticker %></strong>
-                <p style='color:gray;'><b><%#= order.quantity %></p>
-                <p>$<%#= order.price %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <%# end %>
-    </div> -->
-
   </div>
 
   <div id='action-bar'>
     <!-- search -->
-    <div class='action-icon'>
+    <div data-toggle="modal" data-target="#stockSearch" data-whatever="@stockSearch" id='action-trade' class='action-icon'>
       <i class="fas fa-search"></i>
       <span>Search</span>
     </div>
@@ -155,3 +138,4 @@
 <%= render 'shared/modal_group_deposit' %>
 <%= render 'shared/modal_group_withdraw' %>
 <%= render 'shared/modal_edit_group' %>
+<%#= render 'shared/modal_stock_info' %>
