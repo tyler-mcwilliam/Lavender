@@ -20,7 +20,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'omniauth-google-oauth2'
 gem 'bootstrap'
-
+gem 'stripe'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 gem 'plaid'
