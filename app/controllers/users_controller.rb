@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     charge = Stripe::Charge.create({
-      amount: params[:user][:deposit].to_f * 100,
+      amount: params[:user][:deposit].to_i * 100,
       currency: 'usd',
       source: bank_account_token,
     })
