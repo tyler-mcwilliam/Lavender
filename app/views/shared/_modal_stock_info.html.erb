@@ -1,0 +1,27 @@
+<div class="modal fade modalForm" id="stockSearch" tabindex="-1" role="dialog" aria-labelledby="stockSearch" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="stockSearchLabel">Search for a Ticker</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     <!-- Search form -->
+      <form class="form-inline md-form form-sm active-purple active-purple-2 mt-2">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit">Search</button>
+      </form>
+      <div class="modal-body">
+        <p><%= StockQuote::Stock.quote('aapl').symbol %>: <strong><%= StockQuote::Stock.quote('aapl').latest_price %></strong></p>
+        <h2><%= StockQuote::Stock.company('aapl').company_name %></h2>
+        <img src="<%= StockQuote::Stock.logo('aapl').url%>">
+        <p><%= StockQuote::Stock.company('aapl').description %></p>
+        <% StockQuote::Stock.news('aapl').news.each do |news| %>
+        <h3><%= news["headline"] %></h3>
+        <p><%= news["summary"] %></p>
+        <% end %>
+    </div>
+  </div>
+</div>

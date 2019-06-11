@@ -199,7 +199,7 @@
 
   <div id='action-bar'>
     <!-- search -->
-    <div class='action-icon'>
+    <div data-toggle="modal" data-target="#stockSearch" data-whatever="@stockSearch" id='action-trade' class='action-icon'>
       <i class="fas fa-search"></i>
       <span>Search</span>
     </div>
@@ -236,3 +236,4 @@
 <%= render 'shared/modal_group_deposit' %>
 <%= render 'shared/modal_group_withdraw' %>
 <%= render 'shared/modal_edit_group' %>
+<%#= render 'shared/modal_stock_info' %>
