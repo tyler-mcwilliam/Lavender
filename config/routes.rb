@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get '/users' => 'users#dashboard', as: :user_root # creates user_root_path
   get '/user' => 'user#dashboard'
+  # post '/users/plaidauth', to: 'users#plaidauth'
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
   post '/user/:id', to: 'users#dashboard'
   patch '/users/:id', to: 'users#update', as: :update_user

@@ -34,6 +34,10 @@ class User < ApplicationRecord
     end
   end
 
+
+
+
+
   def vote_for_this_poll(poll)
     the_vote = poll.votes.find { |vote| vote.user == self }
 

@@ -25,7 +25,43 @@
         <!-- transaction buttons -->
         <div class='transaction-buttons'>
           <button type="button" class="btn" data-toggle="modal" data-target="#userWithdraw" style='margin-left:-20px;'>Withdraw</button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#userDeposit" style='margin-right:-20px'>Deposit</button>
+          <button type="button" class="btn" id='user-deposit' style='margin-right:-20px'>Deposit</button>
+
+
+
+          <button id='linkButton' style='display: none;' data-toggle="modal" data-target="#userDeposit">Open Plaid Link</button>
+            <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+            <script>
+            var linkHandler = Plaid.create({
+              env: 'sandbox',
+              clientName: 'Lavender',
+              key: '2f3696473c4273e66e578ccadb4483',
+              product: ['auth'],
+              selectAccount: true,
+              onSuccess: function(public_token, metadata) {
+                // Send the public_token and account ID to your app server.
+                document.querySelector('#public_token').value = public_token;
+                document.querySelector('#account_id').value = metadata.account_id;
+                document.querySelector('#linkButton').click();
+                console.log('public_token: ' + public_token);
+                console.log('account ID: ' + metadata.account_id);
+              },
+              onExit: function(err, metadata) {
+                // The user exited the Link flow.
+                if (err != null) {
+                  // The user encountered a Plaid API error prior to exiting.
+                }
+              },
+            });
+
+            // Trigger the Link UI
+            document.getElementById('user-deposit').onclick = function() {
+              linkHandler.open();
+            };
+            </script>
+
+
+
         </div>
       </div>
     </div>
@@ -162,3 +198,5 @@
     });
   })
 </script>
+
+
