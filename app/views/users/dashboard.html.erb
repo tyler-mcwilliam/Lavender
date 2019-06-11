@@ -131,7 +131,7 @@
 <%= render 'shared/modal_user_deposit' %>
 <%= render 'shared/modal_user_withdraw' %>
 
-<script>
+<!-- <script>
   const groups = document.getElementById('groups-list');
   const groupTabs = document.querySelectorAll('.group-tabs-container');
 
@@ -155,4 +155,26 @@
       };
     });
   })
+</script> -->
+
+<script>
+  const right = document.getElementById('right-bar');
+  right.addEventListener('click', (e) => {
+    if (e.target.classList.contains('group-tabs')) {
+      const groups = document.getElementById('groups-list');
+      const groupTabs = document.querySelectorAll('.group-tabs-container');
+      const tab = e.target;
+      if (tab === groups.firstElementChild.firstElementChild.firstElementChild) {
+        console.log('this is already the first child');
+        groups.firstElementChild.classList.add('active');
+        groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
+      } else {
+        groups.firstElementChild.classList.remove('active');
+        groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
+        groups.insertAdjacentElement('afterbegin', tab.parentElement.parentElement);
+        groups.firstElementChild.classList.add('active');
+        groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
+      }
+    };
+  });
 </script>
