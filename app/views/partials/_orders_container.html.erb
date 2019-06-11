@@ -1,18 +1,41 @@
 <h2>Open Orders</h2>
+<%= "No open orders" if (@group.orders.select { |order| order.filled == false }).count == 0 %>
+<% (@group.orders.select { |order| order.filled == false }).each do |order|%>
 <div id='orders-container'>
-  <h3>APPL <span style='color:#219974; font-size:24px;'>BUY</span></h3>
-  <div id='orders-content'>
-    <div>
-      <span style='color:gray;'>Quantity:</span>
-      <span>10</span>
-    </div>
-    <div>
-      <span style='color:gray;'>Price/share:</span>
-      <span>$10</span>
-    </div>
-    <div style='border-top: 1px solid #8B81D2'>
-      <span style='color:gray;'>Total Price:</span>
-      <span>$100.00</span>
-    </div>
+ <h3><%= order.ticker %> <span style='color:#219974; font-size:24px;'><%= "BUY" if order.buy == true %><%= "SELL" if order.buy == false %></span></h3>
+ <div id='orders-content'>
+  <div>
+   <span style='color:gray;'>Quantity:</span>
+   <span><%= order.quantity %></span>
   </div>
+  <div>
+   <span style='color:gray;'>Price/share:</span>
+   <span>$<%= order.price %></span>
+  </div>
+  <div style='border-top: 1px solid #8B81D2'>
+   <span style='color:gray;'>Total Price:</span>
+   <span>$<%= order.price * order.quantity %></span>
+  </div>
+ </div>
 </div>
+<% end %>
+<h2>Closed Orders</h2>
+<% (@group.orders.select { |order| order.filled == true }).each do |order|%>
+<div id='orders-container'>
+ <h3><%= order.ticker.upcase %> <span style='color:#219974; font-size:24px;'><%= "BUY" if order.buy == true %><%= "SELL" if order.buy == false %></span></h3>
+ <div id='orders-content'>
+  <div>
+   <span style='color:gray;'>Quantity:</span>
+   <span><%= order.quantity %></span>
+  </div>
+  <div>
+   <span style='color:gray;'>Price/share:</span>
+   <span>$<%= order.price %></span>
+  </div>
+  <div style='border-top: 1px solid #8B81D2'>
+   <span style='color:gray;'>Total Price:</span>
+   <span>$<%= order.price * order.quantity %></span>
+  </div>
+ </div>
+</div>
+<% end %>
