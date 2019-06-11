@@ -164,11 +164,23 @@ function mainChart() {
 
 console.log('hi');
 
-function refreshGroup(innerHTML) {
+function refreshGroup(group) {
   const groupView = document.getElementById('group-view-container');
-  groupView.innerHTML = innerHTML;
+  groupView.innerHTML = group;
+}
+
+function refreshPolls(polls) {
+  const pollsView = document.getElementById('group-polls')
+  pollsView.innerHTML = polls;
+}
+
+function refreshOrders(orders) {
+  const ordersView = document.getElementById('group-orders')
+  ordersView.innerHTML = orders;
 }
 
 refreshGroup("<%= j render 'groups/show' %>");
+refreshPolls("<%= j render 'partials/polls_container' %>");
+refreshOrders("<%= j render 'partials/orders_container' %>");
 mainChart();
 
