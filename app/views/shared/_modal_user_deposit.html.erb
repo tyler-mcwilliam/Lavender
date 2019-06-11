@@ -10,6 +10,8 @@
       <div class="modal-body">
         <%= simple_form_for [current_user], :url => update_user_path(@user.id), remote: true, :method => :patch do |f| %>
           <%= f.input :deposit, required: true, placeholder: 'Number in Dollars', style:'background-color:gray;', autocomplete: false%>
+          <input type="hidden" name="public_token" id='public_token'>
+          <input type="hidden" name="account_id" id='account_id'>
           <%= f.button :submit, 'Deposit Funds', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
         <% end %>
       </div>
