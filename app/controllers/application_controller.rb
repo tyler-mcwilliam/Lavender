@@ -14,4 +14,13 @@ class ApplicationController < ActionController::Base
   def cents(amount)
     (amount.to_f * 100).to_i
   end
+
+  def user_total_balance
+    total_balance_cents = 0
+    current_user.groups.each do |group|
+      user_share = group.user_groups.where(user_id == current_user.id).user_share
+      total_balance_cents += ((group.portfolio_value_cents / group.total_shares) * user_share)
+    end
+    current_user.available_balance_cents + total_balance_cents
+  end
 end

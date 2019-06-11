@@ -8,7 +8,7 @@
         </button>
       </div>
       <span style='padding: 10px 16px;'>
-        <span style='color:gray'>Funds available for withdrawal:</span> <%= humanized_money_with_symbol current_user.available_balance %>.
+        <span style='color:gray'>Funds available for withdrawal:</span> <span id='withdraw-form-balance'><%= humanized_money_with_symbol current_user.available_balance %></span>.
       </span>
       <div class="modal-body">
         <%= simple_form_for [current_user], :url => update_user_path(@user.id), remote: true, :method => :patch do |f| %>
