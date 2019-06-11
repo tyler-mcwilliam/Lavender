@@ -22,7 +22,7 @@
               <% else %>
                 <%= cl_image_tag user.photo, class:'avatar-large' %>
               <% end %>
-              <h3><%= user.first_name.capitalize %></h3>
+              <h3 style='margin-left: 10px;'><%= user.first_name.capitalize %></h3>
             </div>
             <h3><%= (user.user_groups.where(@group.id == :group_id).first.user_share.to_f / @group.total_shares) * 100 %>%</h3>
           </div>

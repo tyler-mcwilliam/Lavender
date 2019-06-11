@@ -1,8 +1,11 @@
 #group-information {
   margin-top:100px;
   background-color: $gray1;
+    border-radius: 5px;
   > img {
     width: 375px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
   }
   #groupshow-groupdescription {
     padding: 0 20px;
@@ -15,11 +18,17 @@
   }
   .gs-members-list {
     border-top: 1px solid $lavender;
+    border-bottom: 1px solid $lavender;
     .gs-member-tabs {
-      height: 75px;
+      height: 100px;
+      padding: 0 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      &:hover {
+        background-color: $lavender;
+        color: white;
+      }
     }
   }
 }
