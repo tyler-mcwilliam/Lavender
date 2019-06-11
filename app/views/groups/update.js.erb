@@ -1,13 +1,37 @@
 // update name, pic and description on group page
+function closeModal() {
+  editGroupModal = document.getElementById('editGroup');
+  editGroupModal.classList.remove('show');
+  editGroupModal.setAttribute('style', 'display:none;');
+  editGroupModal.setAttribute('aria-hidden', 'true;');
+  document.querySelector('.modal-backdrop').classList.remove('modal-backdrop');
+  document.querySelector('.modal-open').classList.remove('modal-open');
+  refreshForm();
+}
 
-function refreshName(newName) {
+
+function refreshHeader(newName) {
   const str = newName.split('');
-  const balance = document.getElementById('chart-header');
-  balance.innerHTML = '';
+  const header = document.getElementById('chart-header');
+  header.innerHTML = '';
   (function animate() {
-  str.length > 0 ? balance.innerHTML += str.shift() : clearTimeout(running);
+  str.length > 0 ? header.innerHTML += str.shift() : clearTimeout(running);
   var running = setTimeout(animate, 90);
   })();
 }
 
-refreshName('<%= j @group.name %>');
+function refreshTab(newName2) {
+  const str2 = newName2.split('');
+  const tab = document.querySelector('.group-tabs-container h2')
+  tab.innerHTML = '';
+  (function animate() {
+  str2.length > 0 ? tab.innerHTML += str2.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+refreshHeader('<%= j @group.name %>');
+refreshTab('<%= j @group.name %>');
+closeModal();
+
+
