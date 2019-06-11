@@ -1,5 +1,35 @@
 <!-- group view container -->
 <div class='container d-flex align-items-start justify-content-center'>
+  <div id='group-information'>
+    <% if @group.photo.file.nil? %>
+      <%= image_tag 'monsters/6.png' %>
+    <% else %>
+      <%= cl_image_tag @group.photo %>
+    <% end %>
+    <div id='groupshow-groupdescription' class='d-flex justify-content-center'>
+      <h2>
+        <i><%= @group.description %></i>
+      </h2>
+    </div>
+    <div>
+      <h2 style='margin-left: 20px;'>Members</h2>
+      <div class='gs-members-list'>
+        <% @group.users.each do |user| %>
+          <div class='gs-member-tabs'>
+            <div class='d-flex justify-content-start align-items-center'>
+              <% if user.photo.file.nil? %>
+                <%= image_tag 'monsters/6.png', class:'avatar-large' %>
+              <% else %>
+                <%= cl_image_tag user.photo, class:'avatar-large' %>
+              <% end %>
+              <h3><%= user.first_name.capitalize %></h3>
+            </div>
+            <h3><%= (user.user_groups.where(@group.id == :group_id).first.user_share.to_f / @group.total_shares) * 100 %>%</h3>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div id='group-show-div' style='margin-left:35px;'>
     <div id='group-performance'>
       <div id='main-chart-header'>
