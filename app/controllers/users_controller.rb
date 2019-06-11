@@ -1,6 +1,3 @@
-require 'uri'
-require 'net/http'
-
 class UsersController < ApplicationController
   def new
   end
@@ -39,5 +36,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :photo, :photo_cache)
   end
-
 end
