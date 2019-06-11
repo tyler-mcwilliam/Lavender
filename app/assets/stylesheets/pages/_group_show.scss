@@ -145,6 +145,7 @@
     border-bottom: 1px solid $lavender;
     position: relative;
     color: gray;
+    cursor: pointer;
     p {
       text-align: center;
       font-size: 24px;
@@ -207,6 +208,7 @@
       font-size: 24px;
       top: 0px;
       left: -10px;
+      cursor: pointer;
     }
     &:hover > i {
       color: $gray1;
