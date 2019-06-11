@@ -1,0 +1,47 @@
+function closeModals() {
+  depositModal = document.getElementById('groupDeposit');
+  depositModal.classList.remove('show');
+  depositModal.setAttribute('style', 'display:none;');
+  depositModal.setAttribute('aria-hidden', 'true;');
+  withdrawModal = document.getElementById('groupWithdraw');
+  withdrawModal.classList.remove('show');
+  withdrawModal.setAttribute('style', 'display:none;');
+  withdrawModal.setAttribute('aria-hidden', 'true;');
+  document.querySelector('.modal-backdrop').classList.remove('modal-backdrop');
+  document.querySelector('.modal-open').classList.remove('modal-open');
+}
+
+function port1(string1) {
+  const str1 = string1.split('');
+  const port1 = document.getElementById('group_portfolio1');
+  port1.innerHTML = '';
+  (function animate() {
+  str1.length > 0 ? port1.innerHTML += str1.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function port2(string2) {
+  const str2 = string2.split('');
+  const port2 = document.getElementById('group_portfolio2');
+  port2.innerHTML = '';
+  (function animate() {
+  str2.length > 0 ? port2.innerHTML += str2.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function port3(string3) {
+  const str3 = string3.split('');
+  const port3 = document.getElementById('group_cash_value');
+  port3.innerHTML = '';
+  (function animate() {
+  str3.length > 0 ? port3.innerHTML += str3.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+port3('<%= j number_to_currency(Group.find(@user_group.group_id).cash_value_cents * 0.01) %>');
+port1('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
+port2('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
+closeModals();
