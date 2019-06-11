@@ -209,7 +209,7 @@
       <span>Trade</span>
     </div>
     <!-- settings -->
-    <div class='action-icon'>
+    <div data-toggle="modal" data-target="#editGroup" data-whatever="@editGroup" id='action-trade' class='action-icon'>
       <i class="fas fa-cog"></i>
       <span>Settings</span>
     </div>
@@ -235,3 +235,4 @@
 <%= render 'shared/modal_create_poll' %>
 <%= render 'shared/modal_group_deposit' %>
 <%= render 'shared/modal_group_withdraw' %>
+<%= render 'shared/modal_edit_group' %>
