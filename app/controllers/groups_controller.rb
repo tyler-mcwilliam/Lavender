@@ -49,13 +49,11 @@ class GroupsController < ApplicationController
 
   def update
     @group.update(group_params)
-    @group.save!
-    redirect_to dashboard_path
-    # if @group.save
-    #   respond_to do |format|
-    #     format.js
-    #   end
-    # end
+    if @group.save
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
   def initial_deposit
