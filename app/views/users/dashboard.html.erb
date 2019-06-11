@@ -20,7 +20,12 @@
         </div>
         <div class='d-flex justify-content-between'>
           <span style='color:gray;'>Total Balance:</span>
-          <span><%= humanized_money_with_symbol current_user.total_balance %></span>
+          <span><%= humanized_money_with_symbol current_user.total_balance %>
+
+((@group.portfolio_value / @group.total_shares) * @user_group.user_share)
+
+
+          </span>
         </div>
         <!-- transaction buttons -->
         <div class='transaction-buttons'>
