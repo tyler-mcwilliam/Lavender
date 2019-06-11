@@ -1,0 +1,37 @@
+function closeModal() {
+  pollModal = document.getElementById('createPoll');
+  pollModal.classList.remove('show');
+  pollModal.setAttribute('style', 'display:none;');
+  pollModal.setAttribute('aria-hidden', 'true;');
+  document.querySelector('.modal-backdrop').classList.remove('modal-backdrop');
+  document.querySelector('.modal-open').classList.remove('modal-open');
+}
+
+function refreshForm() {
+  document.getElementById('poll_ticker').value = '';
+  document.getElementById('poll_quantity').value = '';
+  document.getElementById('poll_description').value = '';
+}
+<% if StockQuote::Stock.quote(@poll.ticker).nil? %>
+  window.alert('Invalid ticker');
+  refreshForm();
+<%end %>
+
+<% if @poll.buy == true %>
+  <% @poll.save! if @poll.group.cash_value_cents > (@poll.quantity * @poll.price_cents) %>
+  window.alert('Poll created!');
+  closeModal();
+<% else %>
+  <% quantity_match = @poll.group.positions.where(ticker: @poll.ticker).where('positions.quantity >= ?', @poll.quantity) %>
+  <% if quantity_match.any? %>
+    <% @poll.save!%>
+    closeModal();
+  <% else %>
+    window.alert("Please enter a valid ticker or quantity");
+    refreshForm();
+  <% end %>
+<% end %>
+
+refreshForm();
+
+
