@@ -29,8 +29,8 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params) # Create the group
     @group.creator = current_user # Assign group to user
-    @group.cash_value = params[:group]['initial_deposit'].to_f # Assign initial Cash Value
-    @group.portfolio_value = params[:group]['initial_deposit'].to_f # Assign initial portfolio Value
+    @group.cash_value_cents = cents(params[:group]['initial_deposit']) # Assign initial Cash Value
+    @group.portfolio_value_cents = cents(params[:group]['initial_deposit']) # Assign initial portfolio Value
     @group.total_shares = params[:group]['initial_deposit'].to_i * 100
     @group.chatroom = Chatroom.new # Create a chatroom for the group
     @group.performance = {} # Create and empty hash for the group

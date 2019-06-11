@@ -1,10 +1,34 @@
 .lavender-button {
-  background-color: $gray1;
-  border-radius: 10px;
-  border: 3px solid $lavender;
-  color: white;
+  background-color: $gray1 !important;
+  border-radius: 10px !important;
+  border: 3px solid $lavender !important;
+  color: white !important;
   &:hover {
+  background-color: $lavender !important;
+  color: white !important;
+  }
+  a {
+    text-decoration: none !important;
+    color: white !important;
+    &:hover {
+      background-color: $lavender !important;
+      color: white !important;
+    }
+  }
+}
+
+.signup-button {
   background-color: $lavender;
   color: white;
+  text-decoration: none;
+  font-size:30px;
+  border-radius: 40px;
+  width: 125px;
+  padding: 0;
+  margin: 8px 0;
+  &:hover{
+    background-color: #534d7f;
+    color:white;
+    text-decoration: none;
   }
 }
