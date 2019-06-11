@@ -38,7 +38,7 @@ class GroupsController < ApplicationController
     @group.performance[:today] = @group.portfolio_value # Store initial performance value
     @group.save!
     if @group.save
-      redirect_to dashboard_path
+      redirect_to group_path(@group)
     else
       render :new
     end
