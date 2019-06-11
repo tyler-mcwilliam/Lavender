@@ -21,23 +21,8 @@ class PollsController < ApplicationController
     @poll.price_cents = cents(StockQuote::Stock.quote(@poll.ticker).latest_price)
 
     respond_to do |format|
-      # format.html { redirect_to dashboard_path }
       format.js
     end
-
-
-    # sell only if you have a position with the ticker
-    # sell <= the number of stocks you have
-
-
-    # if @poll.save
-    #   respond_to do |format|
-    #     format.html
-    #     format.js
-    #   end
-    # else
-    #   redirect_to dashboard_path
-    # end
   end
 
   def update

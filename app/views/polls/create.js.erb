@@ -12,10 +12,6 @@ function refreshForm() {
   document.getElementById('poll_quantity').value = '';
   document.getElementById('poll_description').value = '';
 }
-<% if StockQuote::Stock.quote(@poll.ticker).nil? %>
-  window.alert('Invalid ticker');
-  refreshForm();
-<%end %>
 
 <% if @poll.buy == true %>
   <% @poll.save! if @poll.group.cash_value_cents > (@poll.quantity * @poll.price_cents) %>
