@@ -7,6 +7,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <span style='padding: 10px 16px;'>
+        <span style='color:gray'>Funds available for deposit:</span> <span id='withdraw-form-balance'><%= humanized_money_with_symbol current_user.available_balance %></span>.
+      </span>
       <div class="modal-body">
         <%= simple_form_for [@user_group] do |f| %>
           <%= f.input :group_id, as: :hidden, input_html: { value: '' } %>

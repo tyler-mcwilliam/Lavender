@@ -24,13 +24,16 @@ class UserGroupsController < ApplicationController
     #   format.html { redirect_to dashboard_path }
     #   format.js
     # end
-
-    if @user_group.save!
-      @group.save
-      current_user.save
+    if cents(params[:user_group][:initial_deposit]) > current_user.available_balance_cents
       redirect_to dashboard_path
     else
-      redirect_to dashboard_path
+      if @user_group.save!
+        @group.save
+        current_user.save
+        redirect_to dashboard_path
+      else
+        redirect_to dashboard_path
+      end
     end
   end
 
