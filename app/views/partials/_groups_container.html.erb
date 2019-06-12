@@ -38,7 +38,10 @@
                       <% end %>
                       <h3><%= user.first_name.capitalize %></h3>
                     </div>
-                    <h3><%= (user.user_groups.where(group.id == :group_id).first.user_share.to_f / group.total_shares) * 100 %>%</h3>
+                    <h3>
+                      <% usershares = user.user_groups.where(group_id: group.id)[0].user_share.to_f %>
+                      <%= number_to_percentage((( usershares / group.total_shares )* 100), precision: 0) %>
+                    </h3>
                   </div>
                 <% end %>
               </div>
