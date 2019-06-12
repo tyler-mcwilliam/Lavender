@@ -3,7 +3,7 @@ task update_all: :environment do
   puts "Updating data..."
   #  Data update
   positions = Position.all
-  puts "Enqueuing update of #{positions.size} groups..."
+  puts "Enqueuing update of #{positions.size} positions..."
   positions.each do |position|
     UpdatePerformanceJob.update_position(position.id)
   end
@@ -15,7 +15,7 @@ task update_all: :environment do
   end
   puts "Done"
   users = User.all
-  puts "Enqueuing update of #{users.size} groups..."
+  puts "Enqueuing update of #{users.size} users..."
   users.each do |user|
     UpdatePerformanceJob.update_user(user.id)
   end
