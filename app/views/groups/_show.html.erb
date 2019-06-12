@@ -33,7 +33,7 @@
             <span style='color:gray;'>
               Your total shares (<span style='color:white;'><%= number_with_delimiter @user_share %></span>):
             </span>
-            <span id='user-total-shares'>
+            <span id='user-share-value'>
               <%= humanized_money_with_symbol ((@group.portfolio_value / @group.total_shares) * @user_share) %>
             </span>
           </div>
