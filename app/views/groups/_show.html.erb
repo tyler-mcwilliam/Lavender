@@ -69,7 +69,7 @@
             </div>
             <div class='d-flex justify-content-between'>
               <span style='color:gray;'>Average Cost:</span>
-              <span>$22/share</span>
+              <span><%= humanized_money_with_symbol (100 * position.cost_basis / position.quantity) %>/share</span>
             </div>
           </div>
           <div>
