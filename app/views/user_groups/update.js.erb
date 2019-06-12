@@ -108,6 +108,26 @@ function updateUserPercentage(percentage, dataid) {
   })();
 }
 
+function updateGroupDepositFormBalance(value) {
+  const str = value.split('');
+  const groupDepositFormBalance = document.getElementById('group-deposit-form-balance');
+  groupDepositFormBalance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? groupDepositFormBalance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function updateGroupWithdrawFormBalance(value) {
+  const str = value.split('');
+  const groupWithdrawFormBalance = document.getElementById('group-withdraw-form-balance');
+  groupWithdrawFormBalance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? groupWithdrawFormBalance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
 updateGroupTotalShares('<%= j @user_group.group.total_shares.to_s %>');
 updateGroupShareValue('<%= j number_to_currency(@user_group.group.portfolio_value / @user_group.group.total_shares) %>');
 updateUserTotalShares('<%= j number_with_delimiter(@user_group.user_share) %>');
@@ -116,6 +136,8 @@ updateGroupCashValue('<%= j number_to_currency(@user_group.group.cash_value_cent
 updateGroupPortfolioValue('<%= j number_to_currency(@user_group.group.portfolio_value_cents * 0.01) %>');
 updateHeaderPortfolioValue('<%= j number_to_currency(@user_group.group.portfolio_value_cents * 0.01) %>');
 updateUserAvailableBalance('<%= j number_to_currency(@user_group.user.available_balance_cents * 0.01) %>');
+updateGroupDepositFormBalance('<%= j number_to_currency(@user_group.user.available_balance) %>');
+updateGroupWithdrawFormBalance('<%= j number_to_currency((@user_group.group.portfolio_value / @user_group.group.total_shares) * @user_group.user_share) %>');
 
 <% @user_group.group.users.each do |user| %>
   updateUserPercentage(
