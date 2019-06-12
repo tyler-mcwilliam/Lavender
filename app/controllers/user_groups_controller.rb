@@ -28,8 +28,8 @@ class UserGroupsController < ApplicationController
       redirect_to dashboard_path
     else
       if @user_group.save!
-        @group.save
-        current_user.save
+        @group.save!
+        current_user.save!
         redirect_to dashboard_path
       else
         redirect_to dashboard_path
