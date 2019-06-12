@@ -40,14 +40,22 @@ class GroupsController < ApplicationController
 
     today = DateTime.now.to_s # Needs work here
     @group.performance[:today] = @group.portfolio_value # Store initial performance value
-    # deduct deposit from user available balance
-    current_user.available_balance_cents -= cents(params[:group]['initial_deposit'])
-    current_user.save!
 
-    if @group.save
-      respond_to do |format|
-        format.html { redirect_to dashboard_path }
-        format.js
+    if current_user.available_balance_cents < cents(params[:group]['initial_deposit'])
+      #insignificant funds, redirect to dashboard
+      redirect_to dashboard_path
+    else
+      if @group.save!
+        # deduct deposit from user available balance
+        current_user.available_balance_cents -= cents(params[:group]['initial_deposit'])
+        current_user.save!
+        respond_to do |format|
+          format.html { redirect_to dashboard_path }
+          format.js
+        end
+      else
+        # ideally an error message would display
+        redirect_to dashboard_path
       end
     end
   end
