@@ -37,8 +37,13 @@ class GroupsController < ApplicationController
     @group.total_shares = params[:group]['initial_deposit'].to_i * 100
     @group.chatroom = Chatroom.new # Create a chatroom for the group
     @group.performance = {} # Create and empty hash for the group
+
     today = DateTime.now.to_s # Needs work here
     @group.performance[:today] = @group.portfolio_value # Store initial performance value
+    # deduct deposit from user available balance
+    current_user.available_balance_cents -= cents(params[:group]['initial_deposit'])
+    current_user.save!
+
     if @group.save
       respond_to do |format|
         format.html { redirect_to dashboard_path }
