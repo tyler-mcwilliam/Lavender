@@ -4,7 +4,7 @@ class UserGroup < ApplicationRecord
   monetize :user_contribution_cents
   monetize :user_balance_cents
 
-  attr_accessor :initial_deposit, :deposit, :withdrawal, :user_share
+  attr_accessor :initial_deposit, :deposit, :withdrawal
 
   def first_deposit(deposit)
     self.user = current_user

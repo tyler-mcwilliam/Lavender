@@ -32,7 +32,7 @@ class UpdatePerformanceJob < ApplicationJob
   def update_user(user)
     # user = User.find(user)
     puts "Updating user #{user.id}"
-    new_total = 0.0
+    new_total = 0
     user.user_groups.each do |user_group|
       new_total += user_group.user_balance_cents
     end
