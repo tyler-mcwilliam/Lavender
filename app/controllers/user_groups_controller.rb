@@ -5,7 +5,7 @@ class UserGroupsController < ApplicationController
 
   def create
     @user_group = UserGroup.new(user_group_params)
-    @user_group.user_contribution_cents += cents([:user_group][:initial_deposit])
+    @user_group.user_contribution_cents += cents(params[:user_group][:initial_deposit])
     @user_group.user_id = current_user.id
     @group = @user_group.group
     @user_group.user_share += cents(params[:user_group][:initial_deposit]) / (@group.portfolio_value_cents / @group.total_shares)
