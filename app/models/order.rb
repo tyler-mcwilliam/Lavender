@@ -28,6 +28,7 @@ class Order < ApplicationRecord
     @position.return = (@position.current_price_cents * @position.quantity) - @position.cost_basis_cents
     @position.save!
     @position.destroy if @position.quantity.zero?
+    @group.save!
     self.filled = true
     self.save!
   end
