@@ -11,7 +11,7 @@
         <span style='color:gray'>Funds available for deposit:</span> <span id='withdraw-form-balance'><%= humanized_money_with_symbol current_user.available_balance %></span>.
       </span>
       <div class="modal-body">
-        <%= simple_form_for [@user_group], remote: true do |f| %>
+        <%= simple_form_for [@user_group] do |f| %>
           <%= f.input :group_id, as: :hidden, input_html: { value: '' } %>
           <%= f.input :user_contribution, as: :decimal, required: true %>
           <%= f.button :submit, 'Join group', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
