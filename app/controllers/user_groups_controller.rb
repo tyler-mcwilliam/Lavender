@@ -8,7 +8,7 @@ class UserGroupsController < ApplicationController
     @user_group.user_contribution_cents += cents(params[:user_group][:initial_deposit])
     @user_group.user_id = current_user.id
     @group = @user_group.group
-    @user_group.user_share += cents(params[:user_group][:initial_deposit]) / (@group.portfolio_value_cents / @group.total_shares)
+    @user_group.user_share += cents(params[:user_group][:initial_deposit]) / (@group.portfolio_value_cents.to_f / @group.total_shares)
     @group.total_shares += @user_group.user_share
     current_user.available_balance_cents -= cents(params[:user_group][:initial_deposit])
     @group.cash_value_cents += cents(params[:user_group][:initial_deposit])
@@ -34,7 +34,6 @@ class UserGroupsController < ApplicationController
     else
       redirect_to dashboard_path
     end
-
   end
 
   private
