@@ -1,37 +1,37 @@
-<div class="collapse" id="collapseExample2">
+<div class="collapse" id="groupChat">
   <div class="chats">
     <% @group.chatroom.chats.each do |chat| %>
       <div class="col-12">
-        <div class="chat bg-secondary d-inline-block text-left text-white mb-2">
+        <div class="chat d-inline-block text-left text-white mb-2" style='background-color:#040404;width:100%; padding: 10px 20px;'>
           <div class="chat-bubble" style='display: flex'>
             <% if chat.user.photo.file.nil? %>
             <%= image_tag 'monsters/6.png', class:'chat-avatar' %>
           <% else %>
-            <%= cl_image_tag chat.user.photo, class: "avatar dropdown-toggle" %>
+            <%= cl_image_tag chat.user.photo, class: "avatar dropdown-toggle", style:'margin-right:20px;' %>
             <% end %>
             <div>
               <small class="chat-username"><i>At <%= chat.created_at.strftime("%I:%M%p") %> <%= chat.user.first_name %> said:</i></small>
-              <p class="m-0 chat-message"><%= chat.message %></p>
+              <p class="m-0 chat-message" style='background-color:transparent;'><%= chat.message %></p>
             </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-  <div class="chat-form">
+  <div class="chat-form" style='margin-bottom: 20px;'>
     <%= simple_form_for [Chat.new] do |f| %>
       <div class="field position-relative">
-        <%= f.input :message, class: "form-control", required: true, label: false %>
+        <%= f.input :message, class: "form-control bg-dark", required: true, label: false %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :chatroom_id, value: @group.chatroom.id %>
-        <%= f.submit %>
+        <%= f.submit 'Post Comment', class:'lavender-button'%>
       </div>
     <% end %>
   </div>
 </div>
 
-<button class="popup-trigger btn-lg btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-  Chat with <%= @group.name %>
+<button class="popup-trigger btn-lg btn-primary lavender-button" type="button" data-toggle="collapse" data-target="#groupChat" aria-expanded="false" aria-controls="collapseExample" style='width:100%;margin-right:20px;'>
+  Post a comment
 </button>
 
 <!-- <div class="collapse" id="collapseExample">

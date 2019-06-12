@@ -59,11 +59,8 @@
     <div id='group-positions'>
       <div class='d-flex align-items-start justify-content-start'>
         <h2>Positions</h2>
-        <div style='background-color: gray; border-radius: 5px; width: 150px; text-align: center; margin-left: 40px; font-size: 24px;'>
-            Dropdown
-        </div>
       </div>
-      <%= "No positions yet, what are you waiting for?" if @positions.count.zero? %>
+      <div style='margin-top: 5px;'><%= "No positions yet, what are you waiting for?" if @positions.count.zero? %></div>
       <% @positions.each do |position| %>
         <div id='group-positions-content' class='gray-shadow'>
           <div>
@@ -142,11 +139,14 @@
       <i class="fas fa-minus"></i>
       <span>Withdraw</span>
     </div>
+    <!-- message -->
+    <div>
+    </div>
   </div>
 </div>
 
-<div class="chatbar m-3">
-  <%= render 'shared/chat' %>
+<div class="chatbar" style='margin-top:50px; text-center'>
+      <%= render 'shared/chat' %>
 </div>
 
 <%= render 'shared/modal_create_poll' %>
