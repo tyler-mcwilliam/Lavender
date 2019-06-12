@@ -36,6 +36,16 @@ function updateGroupShareValue(value) {
   })();
 }
 
+function updateUserTotalShares(shares) {
+  const str = shares.split('');
+  const userTotalShares = document.getElementById('user-total-shares');
+  userTotalShares.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? userTotalShares.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
 function updateUserShareValue(value) {
   const str = value.split('');
   const userShareValue = document.getElementById('user-share-value');
@@ -90,9 +100,10 @@ function port4(string4) {
 }
 
 
-updateGroupTotalShares('<%= j Group.find(@user_group.group_id).total_shares.to_s %>');
-updateGroupShareValue('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value / Group.find(@user_group.group_id).total_shares) %>')
-updateUserShareValue('<%= j number_to_currency((Group.find(@user_group.group_id).portfolio_value / Group.find(@user_group.group_id).total_shares) * (@user_group.user_share)) %>')
+updateGroupTotalShares('<%= j @user_group.group.total_shares.to_s %>');
+updateGroupShareValue('<%= j number_to_currency(@user_group.group.portfolio_value / @user_group.group.total_shares) %>');
+updateUserTotalShares('<%= j number_with_delimiter(@user_group.user_share) %>');
+updateUserShareValue('<%= j number_to_currency((@user_group.group.portfolio_value / @user_group.group.total_shares) * (@user_group.user_share)) %>');
 
 port1('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
 port2('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
