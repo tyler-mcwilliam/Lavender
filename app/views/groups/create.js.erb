@@ -1,7 +1,6 @@
 function refreshGroupBar(groups) {
   const rightBar = document.getElementById('right-bar');
   rightBar.innerHTML = groups;
-  refreshForm();
 }
 
 function closeModal() {
@@ -51,3 +50,4 @@ refreshGroupBar("<%= j render 'partials/groups_container' %>");
 refreshBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
 closeModal();
 clickTab();
+refreshForm();
