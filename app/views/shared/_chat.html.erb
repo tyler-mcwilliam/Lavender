@@ -7,7 +7,7 @@
             <% if chat.user.photo.file.nil? %>
             <%= image_tag 'monsters/6.png', class:'chat-avatar' %>
           <% else %>
-            <%= cl_image_tag chat.user.photo, class: "avatar dropdown-toggle" %>
+            <%= cl_image_tag chat.user.photo, class: "avatar" %>
             <% end %>
             <div>
               <small class="chat-username"><i>At <%= chat.created_at.strftime("%I:%M%p") %> <%= chat.user.first_name %> said:</i></small>
