@@ -54,6 +54,7 @@ class UserGroup < ApplicationRecord
     self.user_balance_cents = @group.portfolio_value_cents * (self.user_share / @group.total_shares)
     @user.available_balance_cents += withdrawal
     @user.total_balance_cents += withdrawal
+    self.destroy if self.user_share == 0
     @group.save!
     @user.save!
     self.save!
