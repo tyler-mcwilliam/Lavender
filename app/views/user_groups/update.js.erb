@@ -46,8 +46,21 @@ function port3(string3) {
   })();
 }
 
-port3('<%= j number_to_currency(Group.find(@user_group.group_id).cash_value_cents * 0.01) %>');
+function port4(string4) {
+  const str4 = string4.split('');
+  const port4 = document.getElementById('user-available-balance');
+  port4.innerHTML = '';
+  (function animate() {
+  str4.length > 0 ? port4.innerHTML += str4.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+  const formBalance = document.getElementById('withdraw-form-balance');
+  formBalance.innerHTML = string4;
+}
+
 port1('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
 port2('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
+port3('<%= j number_to_currency(Group.find(@user_group.group_id).cash_value_cents * 0.01) %>');
+port4('<%= j number_to_currency(User.find(@user_group.user_id).available_balance_cents * 0.01) %>');
 refreshForm();
 closeModals();
