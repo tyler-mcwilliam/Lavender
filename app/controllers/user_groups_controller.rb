@@ -5,14 +5,20 @@ class UserGroupsController < ApplicationController
 
   def create
     @user_group = UserGroup.new(user_group_params)
-    @user_group.user_contribution_cents += cents(params[:user_group][:initial_deposit])
     @user_group.user_id = current_user.id
     @group = @user_group.group
+    # USERGROUP | set contribution, balance, and share value | user_balance should update dynamically
+    @user_group.user_contribution_cents += cents(params[:user_group][:initial_deposit])
+    @user_group.user_balance_cents += cents(params[:user_group][:initial_deposit])
+      # can test above by comparing to ((@group.portfolio_value_cents/@group.total_shares) * @user_group.user_share)
     @user_group.user_share = 0
     @user_group.user_share += (cents(params[:user_group][:initial_deposit]) / (@group.portfolio_value_cents.to_f / @group.total_shares)).to_i
+    # GROUP | update total shares and cash and portfolio value | portfolio value should update dynamically
     @group.total_shares += @user_group.user_share
-    current_user.available_balance_cents -= cents(params[:user_group][:initial_deposit])
     @group.cash_value_cents += cents(params[:user_group][:initial_deposit])
+    @group.portfolio_value_cents += cents(params[:user_group][:initial_deposit])
+    # USER | deduct deposit
+    current_user.available_balance_cents -= cents(params[:user_group][:initial_deposit])
 
     # respond_to do |format|
     #   format.html { redirect_to dashboard_path }
