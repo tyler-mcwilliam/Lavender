@@ -41,7 +41,7 @@ class GroupsController < ApplicationController
     @group.performance[:today] = @group.portfolio_value # Store initial performance value
     if @group.save
       respond_to do |format|
-        format.html { render 'show' }
+        format.html { redirect_to dashboard_path }
         format.js
       end
     end
