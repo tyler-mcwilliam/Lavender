@@ -25,6 +25,8 @@ class Order < ApplicationRecord
     end
     @group.cash_value_cents -= (self.price_cents * self.quantity) if self.buy == true
     @group.cash_value_cents += (self.price_cents * self.quantity) if self.buy == false
+    @group.investment_value_cents -= (self.price_cents * self.quantity) if self.buy == false
+    @group.investment_value_cents += (self.price_cents * self.quantity) if self.buy == true
     @position.return = (@position.current_price_cents * @position.quantity) - @position.cost_basis_cents
     @position.save!
     @position.destroy if @position.quantity.zero?
