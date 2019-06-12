@@ -1,6 +1,7 @@
 function refreshGroupBar(groups) {
   const rightBar = document.getElementById('right-bar');
   rightBar.innerHTML = groups;
+  refreshForm();
 }
 
 function closeModal() {
@@ -27,7 +28,13 @@ function insertTop(tab) {
   groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
 }
 
+function refreshForm() {
+  document.getElementById('group_name').value = '';
+  document.getElementById('group_description').value = '';
+  document.getElementById('group_initial_deposit').value = '';
+  document.getElementById('group_photo').value = '';
+}
+
 refreshGroupBar("<%= j render 'partials/groups_container' %>");
 closeModal();
 clickTab();
-
