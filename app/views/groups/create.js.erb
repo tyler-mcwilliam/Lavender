@@ -15,6 +15,16 @@ function closeModal() {
 function clickTab() {
   const tab = document.querySelector('[data-group_id="<%= @group.id %>"]')
   tab.getElementsByClassName('group-link')[0].click();
+  insertTop(tab);
+}
+
+function insertTop(tab) {
+  const groups = document.getElementById('groups-list');
+  groups.firstElementChild.classList.remove('active');
+  groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
+  groups.insertAdjacentElement('afterbegin', tab);
+  tab.classList.add('active'); //group-tabs-container
+  groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
 }
 
 refreshGroupBar("<%= j render 'partials/groups_container' %>");
