@@ -9,7 +9,7 @@ class VotesController < ApplicationController
     @vote.approve = false if params[:commit] == 'no'
     @poll = Poll.find(params[:poll_id])
     @group = @poll.group
-    @vote.voting_power = current_user.user_groups.where(@group.id == :group_id).first.user_share.to_f / @group.total_shares
+    @vote.voting_power = current_user.user_groups.where(group_id: @group.id)[0].user_share.to_f / @group.total_shares
     @vote.poll = @poll
     @vote.user = current_user
     if @vote.save

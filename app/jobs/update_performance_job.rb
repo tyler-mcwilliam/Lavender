@@ -5,7 +5,7 @@ class UpdatePerformanceJob < ApplicationJob
     # position = Position.find(position)
     puts "Updating position #{position.id}"
     position.current_price_cents = (StockQuote::Stock.quote(position.ticker).latest_price.to_f * 100).to_i
-    position.return_cents = (position.current_price_cents * position.quantity) - position.cost_basis_cents
+    position.return_cents = (position.current_price_cents - position.cost_basis_cents) * position.quantity
     position.save!
     puts "Done"
   end
