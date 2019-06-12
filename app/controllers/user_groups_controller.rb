@@ -11,7 +11,6 @@ class UserGroupsController < ApplicationController
     @user_group.user_contribution_cents += cents(params[:user_group][:initial_deposit])
     @user_group.user_balance_cents += cents(params[:user_group][:initial_deposit])
       # can test above by comparing to ((@group.portfolio_value_cents/@group.total_shares) * @user_group.user_share)
-    @user_group.user_share = 0
     @user_group.user_share += (cents(params[:user_group][:initial_deposit]) / (@group.portfolio_value_cents.to_f / @group.total_shares)).to_i
     # GROUP | update total shares and cash and portfolio value | portfolio value should update dynamically
     @group.total_shares += @user_group.user_share

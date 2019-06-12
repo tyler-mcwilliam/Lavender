@@ -46,6 +46,15 @@ class GroupsController < ApplicationController
       redirect_to dashboard_path
     else
       if @group.save!
+        user_group = @group.user_groups.build
+        user_group.user = @group.creator
+        user_group.user_contribution = @group.cash_value
+        user_group.user_share = @group.total_shares
+        user_group.user_balance = @group.cash_value
+        user_group.save!
+
+        # raise
+
         # deduct deposit from user available balance
         current_user.available_balance_cents -= cents(params[:group]['initial_deposit'])
         current_user.save!

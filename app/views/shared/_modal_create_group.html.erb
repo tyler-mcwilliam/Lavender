@@ -11,7 +11,7 @@
         <span style='color:gray'>Funds available for deposit:</span> <span id='withdraw-form-balance'><%= humanized_money_with_symbol current_user.available_balance %></span>.
       </span>
       <div class="modal-body">
-        <%= simple_form_for [@group], remote: true do |f| %>
+        <%= simple_form_for [@group] do |f| %>
         <%= f.input :name, maxlength: 20 %>
         <%= f.input :description %>
         <%= f.input :photo %>

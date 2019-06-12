@@ -15,17 +15,4 @@ class Group < ApplicationRecord
   monetize :investment_value_cents
 
   attr_accessor :initial_deposit
-
-  after_create :create_user_group
-
-  def create_user_group
-    @user_group = UserGroup.new
-    @user_group.group = self
-    @user_group.user = self.creator
-    @user_group.user_contribution = self.cash_value
-    @user_group.user_share = self.total_shares
-    @user_group.user_balance = self.cash_value
-    @user_group.save!
-    self.save!
-  end
 end

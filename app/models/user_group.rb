@@ -4,7 +4,7 @@ class UserGroup < ApplicationRecord
   monetize :user_contribution_cents
   monetize :user_balance_cents
 
-  attr_accessor :initial_deposit, :deposit, :withdrawal, :user_share
+  # attr_accessor :initial_deposit, :deposit, :withdrawal, :user_share
 
   def first_deposit(deposit)
     self.user = current_user
@@ -24,7 +24,6 @@ class UserGroup < ApplicationRecord
     newshares = deposit / (@group.portfolio_value_cents / @group.total_shares)
     # USERGROUP | update contribution, balance, and share count | user balance will update dynamically
     self.user_contribution_cents += deposit
-    self.user_balance_cents += deposit
     self.user_share += newshares
     # GROUP | update shares, cash value, and portfolio value
     @group.total_shares += newshares
