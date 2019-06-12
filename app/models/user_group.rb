@@ -22,14 +22,19 @@ class UserGroup < ApplicationRecord
     @group = self.group
     @user = self.user
     newshares = deposit / (@group.portfolio_value_cents / @group.total_shares)
-    @group.cash_value_cents += deposit
-    @group.total_shares += newshares
+    # USERGROUP | update contribution, balance, and share count | user balance will update dynamically
     self.user_contribution_cents += deposit
-    self.user_share += newshares
-    @group.portfolio_value_cents = @group.cash_value_cents + @group.investment_value_cents
+    self.user_balance_cents += deposit
     self.user_balance_cents = @group.portfolio_value_cents * (self.user_share / @group.total_shares)
+    self.user_share += newshares
+    # GROUP | update shares, cash value, and portfolio value
+    @group.total_shares += newshares
+    @group.cash_value_cents += deposit
+    @group.portfolio_value_cents = @group.cash_value_cents + @group.investment_value_cents
+    # USER | update person balances
     self.user.available_balance_cents -= deposit
     self.user.total_balance_cents -= deposit
+    # SAVE
     @group.save!
     @user.save!
     self.save!

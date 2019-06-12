@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     @user_group = UserGroup.new
     @user_groups = current_user.user_groups
     @user = current_user
-    # dynamic dashboard variables
     @groups = current_user.groups
   end
 
