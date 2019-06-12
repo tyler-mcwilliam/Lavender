@@ -42,7 +42,6 @@ function refreshWithdrawFormBalance(string) {
   formBalance.innerHTML = string;
 }
 
-
 refreshUserAvailableBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
 refreshUserTotalBalance('<%= j number_to_currency(current_user.total_balance_cents * 0.01) %>');
 refreshWithdrawFormBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');

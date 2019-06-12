@@ -32,8 +32,12 @@
         </div>
         <!-- transaction buttons -->
         <div class='transaction-buttons'>
-          <button type="button" class="btn" data-toggle="modal" data-target="#userWithdraw" style='margin-left:-20px;'>Withdraw</button>
-          <button type="button" class="btn" id='user-deposit' style='margin-right:-20px'>Deposit</button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#userWithdraw" style='margin-left:-20px;'>
+            Withdraw
+          </button>
+          <button type="button" class="btn" id='user-deposit' style='margin-right:-20px'>
+            Deposit
+          </button>
 
           <button id='linkButton' style='display: none;' data-toggle="modal" data-target="#userDeposit">Open Plaid Link</button>
             <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
@@ -77,7 +81,7 @@
       </div>
       <!-- watch tabs -->
       <div class='watch-tabs'>
-        <h3>APPL</h3>
+        <h3>AAPL</h3>
         <h3 style='color:#219974;'>+2.03%</h3>
       </div>
       <div class='watch-tabs'>
@@ -106,10 +110,14 @@
   <!-- group view container -->
   <div id='group-view-container'>
     <div style='height:90vh;' class='d-flex flex-column justify-content-center align-items-center fade-in-delay2'>
-      <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>Welcome</span> <%= current_user.first_name.capitalize %>!</h1>
+      <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>
+        Welcome</span> <%= current_user.first_name.capitalize %>!
+      </h1>
       <% if current_user.groups.size == 0 %>
         <div class="fade-in-delay2 d-flex justify-content-between" style='margin-top: 20px; width: 280px;'>
-          <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:120px;'>Create a Group</button>
+          <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:120px;'>
+            Create a Group
+          </button>
           <button type="button" class="btn lavender-button" style='width:120px;'><%= link_to "Join a Group", groups_path %></button>
         </div>
       <% end %>

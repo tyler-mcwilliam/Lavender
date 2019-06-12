@@ -16,6 +16,18 @@ function refreshForm() {
   document.getElementById('user_group_withdrawal').value = '';
 }
 
+function updateGroupTotalShares(shares) {
+  const str = shares.split('');
+  const groupTotalShares = document.getElementById('group-total-shares');
+  groupTotalShares.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? groupTotalShares.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+
+
 function port1(string1) {
   const str1 = string1.split('');
   const port1 = document.getElementById('group_portfolio1');
@@ -58,6 +70,7 @@ function port4(string4) {
   formBalance.innerHTML = string4;
 }
 
+updateGroupTotalShares('<%= j Group.find(@user_group.group_id).total_shares.to_s %>');
 port1('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
 port2('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
 port3('<%= j number_to_currency(Group.find(@user_group.group_id).cash_value_cents * 0.01) %>');
