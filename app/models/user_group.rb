@@ -34,8 +34,9 @@ class UserGroup < ApplicationRecord
     self.user_balance_cents = @group.portfolio_value_cents * (self.user_share / @group.total_shares)
     # USER | update person balances
     self.user.available_balance_cents -= deposit
-    self.user.total_balance_cents -= deposit
+    # self.user.total_balance_cents -= deposit + @group.portfolio_value_cents
     # SAVE
+    # byebug
     @group.save!
     @user.save!
     self.save!
