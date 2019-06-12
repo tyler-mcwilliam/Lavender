@@ -2,7 +2,7 @@ class UpdatePerformanceJob < ApplicationJob
   queue_as :default
 
   def update_position(position)
-    position = Position.find(position)
+    # position = Position.find(position)
     puts "Updating position #{position.id}"
     position.current_price_cents = cents(StockQuote::Stock.quote(position.ticker).latest_price)
     position.return_cents = (@position.current_price_cents * @position.quantity) - @position.cost_basis_cents
@@ -10,7 +10,7 @@ class UpdatePerformanceJob < ApplicationJob
   end
 
   def update_group(group)
-    group = Group.find(group)
+    # group = Group.find(group)
     puts "Updating group #{group.id}"
     new_total = 0
     group.positions.each do |position|
@@ -22,13 +22,19 @@ class UpdatePerformanceJob < ApplicationJob
     puts "Done"
   end
 
+  def update_user_group(user_group)
+    # user = UserGroup.find(user)
+    puts "Updating user group #{user_group.id}"
+    user_group.user_balance_cents = user_group.group.portfolio_value_cents * (user_group.user_share.to_f / user_group.group.total_shares)
+    puts "Done"
+  end
+
   def update_user(user)
-    user = User.find(user)
+    # user = User.find(user)
     puts "Updating user #{user.id}"
     new_total = 0.0
-    user.groups.each do |group|
-      user_group = group.user_groups.where(user_id: user.id).first
-      new_total += group.portfolio_value_cents * (user_group.user_share.to_f / group.total_shares)
+    user.user_groups.each do |user_group|
+      new_total += user_group.user_balance_cents
     end
     user.total_balance_cents = new_total + user.available_balance_cents
     # user.performance[Date.today.strftime("%d-%m-%Y")] = user.total_balance
@@ -36,19 +42,25 @@ class UpdatePerformanceJob < ApplicationJob
   end
 
   def perform
-    puts "Beginning positions update"
+    puts "Enqueuing update of #{Position.all.count} positions..."
     Position.all.each do |position|
       update_position(position)
     end
     puts "Finishing positions update"
 
-    puts "Beginning groups update"
+    puts "Enqueuing update of #{Group.all.count} groups..."
     Group.all.each do |group|
       update_group(group)
     end
     puts "Finishing groups update"
 
-    puts "Beginning users update"
+    puts "Enqueuing update of #{UserGroup.all.count} user groups..."
+    UserGroup.all.each do |user_group|
+      update_user_group(user_group)
+    end
+    puts "Finishing user groups update"
+
+    puts "Enqueuing update of #{User.all.count} users..."
     User.all.each do |user|
       update_user(user)
     end
