@@ -41,7 +41,7 @@
       </div>
       <div class='poll-vote'>
         <% poll.votes.each do |vote| %>
-          <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= vote.voting_power %>%)</i></p>
+          <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= number_to_percentage(vote.voting_power, precision: 2) %>%)</i></p>
         <% end %>
         <% if poll.has_voted_by_current_user(current_user) %>
           <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
