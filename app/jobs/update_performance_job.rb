@@ -2,6 +2,7 @@ class UpdatePerformanceJob < ApplicationJob
   queue_as :default
 
   def update_position(position)
+    position = Position.find(position)
     puts "Updating position #{position.id}"
     position.current_price_cents = cents(StockQuote::Stock.quote(position.ticker).latest_price)
     position.return_cents = (@position.current_price_cents * @position.quantity) - @position.cost_basis_cents
@@ -9,6 +10,7 @@ class UpdatePerformanceJob < ApplicationJob
   end
 
   def update_group(group)
+    group = Group.find(group)
     puts "Updating group #{group.id}"
     new_total = 0
     group.positions.each do |position|
@@ -21,6 +23,7 @@ class UpdatePerformanceJob < ApplicationJob
   end
 
   def update_user(user)
+    user = User.find(user)
     puts "Updating user #{user.id}"
     new_total = 0.0
     user.groups.each do |group|
