@@ -1,0 +1,19 @@
+function closeModals() {
+  let joinModal = document.getElementById('joinGroup');
+  joinModal.classList.remove('show');
+  joinModal.setAttribute('style', 'display:none;');
+  joinModal.setAttribute('aria-hidden', 'true;');
+  document.querySelector('.modal-backdrop').classList.remove('modal-backdrop');
+  document.querySelector('.modal-open').classList.remove('modal-open');
+}
+
+<% if Group.find(params[:user_group]['group_id']).users.where(id: current_user.id).any? %>
+  console.log('hello');
+  window.alert('You are already in this group!');
+  closeModals();
+  location.reload();
+<% else %>
+  console.log('else')
+  closeModals();
+<% end %>
+

@@ -1,0 +1,22 @@
+<div class="modal fade modalForm" id="nrCreateGroup" tabindex="-1" role="dialog" aria-labelledby="nrCreateGroup" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nrCreateGroupLabel">Create a group</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@group] do |f| %>
+        <%= f.input :name, maxlength: 20 %>
+        <%= f.input :description %>
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.input :initial_deposit, as: :decimal, required: true %>
+        <%= f.button :submit, 'Create Group', class: "btn btn-primary btn-lg", style:"border-radius: 5rem; width:100%; font-size: 100%;" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

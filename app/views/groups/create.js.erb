@@ -5,7 +5,7 @@ function refreshGroupBar(groups) {
 }
 
 function closeModal() {
-  groupModal = document.getElementById('createGroup');
+  let groupModal = document.getElementById('createGroup');
   groupModal.classList.remove('show');
   groupModal.setAttribute('style', 'display:none;');
   groupModal.setAttribute('aria-hidden', 'true;');
@@ -35,6 +35,19 @@ function refreshForm() {
   document.getElementById('group_photo').value = '';
 }
 
+function refreshBalance(string) {
+  const str = string.split('');
+  const balance = document.getElementById('user-available-balance');
+  balance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? balance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+  const formBalance = document.getElementById('withdraw-form-balance');
+  formBalance.innerHTML = string;
+}
+
 refreshGroupBar("<%= j render 'partials/groups_container' %>");
+refreshBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
 closeModal();
 clickTab();
