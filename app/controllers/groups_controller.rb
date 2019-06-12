@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
     @group.total_shares = params[:group]['initial_deposit'].to_i * 100
     @group.chatroom = Chatroom.new # Create a chatroom for the group
     @group.performance = {} # Create an empty hash for the group
-    @group.performance[Date.today.strftime("%d-%m-%Y")] = group.portfolio_value_cents # Store initial performance value
+    @group.performance[Date.today.strftime("%d-%m-%Y")] = @group.portfolio_value_cents # Store initial performance value
     if current_user.available_balance_cents < cents(params[:group]['initial_deposit'])
       #insignificant funds, redirect to dashboard
       redirect_to dashboard_path
