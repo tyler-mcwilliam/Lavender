@@ -41,6 +41,10 @@
   position: relative;
   img {
     margin:auto;
+    &:hover {
+      opacity: .8;
+      cursor: pointer;
+    }
   }
   .fa-edit {
     color: gray;
