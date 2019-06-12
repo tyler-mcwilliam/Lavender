@@ -8,7 +8,8 @@
         </button>
       </div>
       <span style='padding: 10px 16px;'>
-        <span style='color:gray'>Funds available for deposit:</span> <span id='withdraw-form-balance'><%= humanized_money_with_symbol @user_group.group.cash_value %></span>.
+        <span style='color:gray'>Funds available for withdrawal:</span> <span id='group-withdraw-form-balance'><%= humanized_money_with_symbol (@user_group.group.portfolio_value / @user_group.group.total_shares) * @user_group.user_share %>
+        </span>.
       </span>
       <div class="modal-body">
         <%= simple_form_for [@user_group], :url => update_user_group_path(@user_group.id), remote: true, :method => :patch do |f| %>

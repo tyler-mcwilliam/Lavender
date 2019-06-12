@@ -17,7 +17,7 @@ function closeModal() {
   refreshForm();
 }
 
-function refreshBalance(string) {
+function refreshUserAvailableBalance(string) {
   const str = string.split('');
   const balance = document.getElementById('user-available-balance');
   balance.innerHTML = '';
@@ -25,9 +25,24 @@ function refreshBalance(string) {
   str.length > 0 ? balance.innerHTML += str.shift() : clearTimeout(running);
   var running = setTimeout(animate, 90);
   })();
+}
+
+function refreshUserTotalBalance(string) {
+  const str = string.split('');
+  const balance = document.getElementById('user-total-balance');
+  balance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? balance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function refreshWithdrawFormBalance(string) {
   const formBalance = document.getElementById('withdraw-form-balance');
   formBalance.innerHTML = string;
 }
 
-refreshBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
+refreshUserAvailableBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
+refreshUserTotalBalance('<%= j number_to_currency(current_user.total_balance_cents * 0.01) %>');
+refreshWithdrawFormBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
 closeModal();

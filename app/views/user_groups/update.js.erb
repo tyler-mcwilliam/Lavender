@@ -16,51 +16,135 @@ function refreshForm() {
   document.getElementById('user_group_withdrawal').value = '';
 }
 
-function port1(string1) {
-  const str1 = string1.split('');
-  const port1 = document.getElementById('group_portfolio1');
-  port1.innerHTML = '';
+function updateGroupTotalShares(shares) {
+  const str = shares.split('');
+  const groupTotalShares = document.getElementById('group-total-shares');
+  groupTotalShares.innerHTML = '';
   (function animate() {
-  str1.length > 0 ? port1.innerHTML += str1.shift() : clearTimeout(running);
+  str.length > 0 ? groupTotalShares.innerHTML += str.shift() : clearTimeout(running);
   var running = setTimeout(animate, 90);
   })();
 }
 
-function port2(string2) {
-  const str2 = string2.split('');
-  const port2 = document.getElementById('group_portfolio2');
-  port2.innerHTML = '';
+function updateGroupShareValue(value) {
+  const str = value.split('');
+  const groupShareValue = document.getElementById('group-share-value');
+  groupShareValue.innerHTML = '';
   (function animate() {
-  str2.length > 0 ? port2.innerHTML += str2.shift() : clearTimeout(running);
+  str.length > 0 ? groupShareValue.innerHTML += str.shift() : clearTimeout(running);
   var running = setTimeout(animate, 90);
   })();
 }
 
-function port3(string3) {
-  const str3 = string3.split('');
-  const port3 = document.getElementById('group_cash_value');
-  port3.innerHTML = '';
+function updateUserTotalShares(shares) {
+  const str = shares.split('');
+  const userTotalShares = document.getElementById('user-total-shares');
+  userTotalShares.innerHTML = '';
   (function animate() {
-  str3.length > 0 ? port3.innerHTML += str3.shift() : clearTimeout(running);
+  str.length > 0 ? userTotalShares.innerHTML += str.shift() : clearTimeout(running);
   var running = setTimeout(animate, 90);
   })();
 }
 
-function port4(string4) {
-  const str4 = string4.split('');
-  const port4 = document.getElementById('user-available-balance');
-  port4.innerHTML = '';
+function updateUserShareValue(value) {
+  const str = value.split('');
+  const userShareValue = document.getElementById('user-share-value');
+  userShareValue.innerHTML = '';
   (function animate() {
-  str4.length > 0 ? port4.innerHTML += str4.shift() : clearTimeout(running);
+  str.length > 0 ? userShareValue.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function updateUserAvailableBalance(value) {
+  const str = value.split('');
+  const userAvailableBalance = document.getElementById('user-available-balance');
+  userAvailableBalance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? userAvailableBalance.innerHTML += str.shift() : clearTimeout(running);
   var running = setTimeout(animate, 90);
   })();
   const formBalance = document.getElementById('withdraw-form-balance');
-  formBalance.innerHTML = string4;
+  formBalance.innerHTML = value;
 }
 
-port1('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
-port2('<%= j number_to_currency(Group.find(@user_group.group_id).portfolio_value_cents * 0.01) %>');
-port3('<%= j number_to_currency(Group.find(@user_group.group_id).cash_value_cents * 0.01) %>');
-port4('<%= j number_to_currency(User.find(@user_group.user_id).available_balance_cents * 0.01) %>');
+function updateGroupCashValue(value) {
+  const str = value.split('');
+  const groupCashValue = document.getElementById('group_cash_value');
+  groupCashValue.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? groupCashValue.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function updateGroupPortfolioValue(value) {
+  const str = value.split('');
+  const groupPortfolioValue = document.getElementById('group-portfolio-value');
+  groupPortfolioValue.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? groupPortfolioValue.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function updateHeaderPortfolioValue(value) {
+  const str = value.split('');
+  const headerPortfolioValue = document.getElementById('header-portfolio-value');
+  headerPortfolioValue.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? headerPortfolioValue.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function updateUserPercentage(percentage, dataid) {
+  let str = percentage.split('');
+  let userTab = document.querySelector(dataid);
+  userTab.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? userTab.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function updateGroupDepositFormBalance(value) {
+  const str = value.split('');
+  const groupDepositFormBalance = document.getElementById('group-deposit-form-balance');
+  groupDepositFormBalance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? groupDepositFormBalance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function updateGroupWithdrawFormBalance(value) {
+  const str = value.split('');
+  const groupWithdrawFormBalance = document.getElementById('group-withdraw-form-balance');
+  groupWithdrawFormBalance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? groupWithdrawFormBalance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+updateGroupTotalShares('<%= j @user_group.group.total_shares.to_s %>');
+updateGroupShareValue('<%= j number_to_currency(@user_group.group.portfolio_value / @user_group.group.total_shares) %>');
+updateUserTotalShares('<%= j number_with_delimiter(@user_group.user_share) %>');
+updateUserShareValue('<%= j number_to_currency((@user_group.group.portfolio_value / @user_group.group.total_shares) * (@user_group.user_share)) %>');
+updateGroupCashValue('<%= j number_to_currency(@user_group.group.cash_value_cents * 0.01) %>');
+updateGroupPortfolioValue('<%= j number_to_currency(@user_group.group.portfolio_value_cents * 0.01) %>');
+updateHeaderPortfolioValue('<%= j number_to_currency(@user_group.group.portfolio_value_cents * 0.01) %>');
+updateUserAvailableBalance('<%= j number_to_currency(@user_group.user.available_balance_cents * 0.01) %>');
+updateGroupDepositFormBalance('<%= j number_to_currency(@user_group.user.available_balance) %>');
+updateGroupWithdrawFormBalance('<%= j number_to_currency((@user_group.group.portfolio_value / @user_group.group.total_shares) * @user_group.user_share) %>');
+
+<% @user_group.group.users.each do |user| %>
+  updateUserPercentage(
+    '<%= j number_to_percentage(((user.user_groups.where(group_id: @user_group.group.id)[0].user_share.to_f / @user_group.group.total_shares) * 100), precision: 2 ) %>',
+    '[data-user_percentage="<%= j user.id.to_s %>"]'
+  );
+<% end %>
+
 closeModals();
 refreshForm();
