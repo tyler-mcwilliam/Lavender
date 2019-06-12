@@ -9,7 +9,7 @@
       <% if @groups.count.zero? %>
         <div class="d-flex flex-column justify-content-center align-items-center">
           <h3>No available groups for you to join, maybe you should start one?!</h3>
-          <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:125px; margin-top: 20px;'>Create a Group</button>
+          <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#nrCreateGroup" data-whatever="@nrCreateGroup" style='width:125px; margin-top: 20px;'>Create a Group</button>
         </div>
       <% else %>
         <% @groups.each do |group| %>
@@ -34,6 +34,7 @@
 </span>
 
 <%= render 'shared/modal_join_group' %>
+<%= render 'shared/modal_nonremote_create_group' %>
 
 <script>
   const joinGroupButtons = document.querySelectorAll('.join-group-button');
