@@ -6,6 +6,7 @@ class UpdatePerformanceJob < ApplicationJob
     puts "Updating position #{position.id}"
     position.current_price_cents = (StockQuote::Stock.quote(position.ticker).latest_price.to_f * 100).to_i
     position.return_cents = (position.current_price_cents * position.quantity) - position.cost_basis_cents
+    position.save!
     puts "Done"
   end
 
@@ -19,6 +20,7 @@ class UpdatePerformanceJob < ApplicationJob
     group.investment_value_cents = new_total
     group.portfolio_value_cents = group.investment_value_cents + group.cash_value_cents
     group.performance[Date.today.strftime("%d-%m-%Y")] = group.portfolio_value_cents
+    group.save!
     puts "Done"
   end
 
@@ -26,6 +28,7 @@ class UpdatePerformanceJob < ApplicationJob
     # user = UserGroup.find(user)
     puts "Updating user group #{user_group.id}"
     user_group.user_balance_cents = user_group.group.portfolio_value_cents * (user_group.user_share.to_f / user_group.group.total_shares)
+    user_group.save!
     puts "Done"
   end
 
@@ -38,6 +41,7 @@ class UpdatePerformanceJob < ApplicationJob
     end
     user.total_balance_cents = new_total + user.available_balance_cents
     # user.performance[Date.today.strftime("%d-%m-%Y")] = user.total_balance
+    user.save!
     puts "Done"
   end
 
