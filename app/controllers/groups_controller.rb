@@ -43,6 +43,7 @@ class GroupsController < ApplicationController
       redirect_to dashboard_path
     else
       if @group.save!
+
         # deduct deposit from user available balance
         current_user.available_balance_cents -= cents(params[:group]['initial_deposit'])
         current_user.save!
