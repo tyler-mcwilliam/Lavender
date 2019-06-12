@@ -98,6 +98,16 @@ function updateHeaderPortfolioValue(value) {
   })();
 }
 
+function updateUserPercentage(percentage, dataid) {
+  let str = percentage.split('');
+  let userTab = document.querySelector(dataid);
+  userTab.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? userTab.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
 updateGroupTotalShares('<%= j @user_group.group.total_shares.to_s %>');
 updateGroupShareValue('<%= j number_to_currency(@user_group.group.portfolio_value / @user_group.group.total_shares) %>');
 updateUserTotalShares('<%= j number_with_delimiter(@user_group.user_share) %>');
@@ -106,5 +116,13 @@ updateGroupCashValue('<%= j number_to_currency(@user_group.group.cash_value_cent
 updateGroupPortfolioValue('<%= j number_to_currency(@user_group.group.portfolio_value_cents * 0.01) %>');
 updateHeaderPortfolioValue('<%= j number_to_currency(@user_group.group.portfolio_value_cents * 0.01) %>');
 updateUserAvailableBalance('<%= j number_to_currency(@user_group.user.available_balance_cents * 0.01) %>');
+
+<% @user_group.group.users.each do |user| %>
+  updateUserPercentage(
+    '<%= j number_to_percentage(((user.user_groups.where(group_id: @user_group.group.id)[0].user_share.to_f / @user_group.group.total_shares) * 100), precision: 2 ) %>',
+    '[data-user_percentage="<%= j user.id.to_s %>"]'
+  );
+<% end %>
+
 closeModals();
 refreshForm();
