@@ -18,6 +18,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @user_group = @group.user_groups.where(group_id: @group.id).where(user_id: current_user.id)[0]
     @user_share = @user_group.user_share
+    @group_performance = @group.performance
+
     respond_to do |format|
       format.html { render 'show' }
       format.js
