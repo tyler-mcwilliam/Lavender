@@ -13,7 +13,6 @@ function mainChart() {
   // Add data
   chart.data = generatechartData();
   function generatechartData() {
-    // var data = JSON.parse(`<%= raw @group_performance.to_json %>`);
     var realData = JSON.parse(`<%= raw @group_performance.to_json %>`);
 
     realData.map((data) => {
