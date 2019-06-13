@@ -193,3 +193,14 @@
     };
   });
 </script>
+
+<script>
+  const groupContainer2 = document.getElementById('group-view-container');
+  groupContainer2.addEventListener('click', (e) => {
+    if (e.target.classList.contains('lavender-button')) {
+      document.querySelector('.chats').scrollTop = document.querySelector('.chats').scrollHeight;
+    } else {
+      console.log('scroll bottom');
+    };
+  })
+</script>
