@@ -39,8 +39,7 @@ class GroupsController < ApplicationController
     @group.portfolio_value_cents = cents(params[:group]['initial_deposit']) # Assign initial portfolio Value
     @group.total_shares = params[:group]['initial_deposit'].to_i * 100
     @group.chatroom = Chatroom.new # Create a chatroom for the group
-    @group.performance = [{ "date": DateTime.now, "value": group.portfolio_value_cents }, { "date": DateTime.now, "value": group.portfolio_value_cents }] # Create initial performance so chart loads
-    @group.performance[Date.today.strftime("%d-%m-%Y")] = @group.portfolio_value_cents # Store initial performance value
+    @group.performance = [{ "date": (DateTime.now - 1), "value": @group.portfolio_value_cents }, { "date": DateTime.now, "value": @group.portfolio_value_cents }] # Create initial performance so chart loads
     if current_user.available_balance_cents < cents(params[:group]['initial_deposit'])
       #insignificant funds, redirect to dashboard
       redirect_to dashboard_path
