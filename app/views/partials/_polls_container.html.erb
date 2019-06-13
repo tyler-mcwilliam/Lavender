@@ -43,12 +43,13 @@
         </div>
       </div>
       <div class='poll-vote'>
-        <%# if poll.has_voted_by_current_user(current_user) %>
-          <!-- <p>You voted <%#= current_user.vote_for_this_poll(poll) %></p> -->
-        <%# else %>
-        <%= simple_form_for [poll, Vote.new] do |f| %>
-          <%= f.button :submit, 'yes', class: 'btn lavender-button mr-2'%>
-          <%= f.button :submit, 'no', class: 'btn lavender-button ml-2'%>
+        <% if poll.has_voted_by_current_user(current_user) %>
+          <span>You voted <%= current_user.vote_for_this_poll(poll).upcase %></span>
+        <% else %>
+          <%= simple_form_for [poll, Vote.new] do |f| %>
+            <%= f.button :submit, 'yes', class: 'btn lavender-button mr-2'%>
+            <%= f.button :submit, 'no', class: 'btn lavender-button ml-2'%>
+          <% end %>
         <% end %>
       </div>
 
