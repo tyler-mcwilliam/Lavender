@@ -19,7 +19,7 @@ class UpdatePerformanceJob < ApplicationJob
     end
     group.investment_value_cents = new_total
     group.portfolio_value_cents = group.investment_value_cents + group.cash_value_cents
-    group.performance[Date.today.strftime("%d-%m-%Y")] = group.portfolio_value_cents
+    group.performance << { "#{Date.today.strftime("%Y-%m-%d-%H-%M")}": group.portfolio_value_cents }
     group.save!
     puts "Done"
   end
