@@ -1,3 +1,8 @@
+function refreshPolls(polls) {
+  const pollsView = document.getElementById('group-polls');
+  pollsView.innerHTML = polls;
+}
+
 function closeModal() {
   pollModal = document.getElementById('createPoll');
   pollModal.classList.remove('show');
@@ -13,19 +18,16 @@ function refreshForm() {
   document.getElementById('poll_description').value = '';
 }
 
-function refreshPolls(polls) {
-  const pollsView = document.getElementById('group-polls');
-  pollsView.innerHtml = polls;
-}
 
 <% if @poll.buy == true %>
   <% @poll.save! if @poll.group.cash_value_cents > (@poll.quantity * @poll.price_cents) %>
   window.alert('Poll created!');
-  closeModal();
+  refreshPolls("<%= j render 'partials/polls_container' %>");
 <% else %>
   <% quantity_match = @poll.group.positions.where(ticker: @poll.ticker).where('positions.quantity >= ?', @poll.quantity) %>
   <% if quantity_match.any? %>
     <% @poll.save!%>
+    refreshPolls("<%= j render 'partials/polls_container' %>");
     closeModal();
   <% else %>
     window.alert("Please enter a valid ticker or quantity");
@@ -33,5 +35,6 @@ function refreshPolls(polls) {
   <% end %>
 <% end %>
 
+closeModal();
 refreshForm();
-refreshPolls("<%= j render 'partials/polls_container' %>")
+  

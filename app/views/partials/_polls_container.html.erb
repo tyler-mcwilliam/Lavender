@@ -2,8 +2,10 @@
 <%= "No current polls, start the discussion now!" if @group.polls.count.zero? %>
 <% @group.polls.each do |poll| %>
   <div id='polls-container' class='gray-shadow'>
+    <!-- poll header -->
     <div class='poll-header' data-poll_id='<%= poll.id %>' data-toggle="collapse" href="#collapse<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-      <p><span style='font-size:24px;'><%= poll.creator.first_name.capitalize %></span> wants to
+      <p>
+        <span style='font-size:24px;'><%= poll.creator.first_name.capitalize %></span> wants to
         <span id='poll-buy'>
           <%= 'BUY' if poll.buy == true %>
         </span>
@@ -23,6 +25,7 @@
         <%= (poll.approval * 100).to_i %>%
       </div>
     </div>
+    <!-- poll content -->
     <div class='poll-content collapse' id="collapse<%= poll.id %>">
       <p style='margin-bottom: 20px;'><i><%= poll.description %></i></p>
       <div>
@@ -40,17 +43,40 @@
         </div>
       </div>
       <div class='poll-vote'>
-        <% poll.votes.each do |vote| %>
-          <p><i><%= vote.user.first_name %> voted <%= 'yes' if vote.approve == true %><%= 'no' if vote.approve == false %>. (<%= number_to_percentage(vote.voting_power * 100, precision: 2) %>)</i></p>
-        <% end %>
         <% if poll.has_voted_by_current_user(current_user) %>
-          <p>You voted <%= current_user.vote_for_this_poll(poll) %></p>
+          <span>You voted <%= current_user.vote_for_this_poll(poll).upcase %></span>
         <% else %>
           <%= simple_form_for [poll, Vote.new] do |f| %>
-            <%= f.button :submit, 'yes', class: 'btn btn-primary' %>
-            <%= f.button :submit, 'no', class: 'btn btn-primary' %>
+            <%= f.button :submit, 'yes', class: 'btn lavender-button mr-2'%>
+            <%= f.button :submit, 'no', class: 'btn lavender-button ml-2'%>
           <% end %>
         <% end %>
+      </div>
+
+      <div class='votes-container'>
+        <div data-vote_id='<%= poll.id %>' data-toggle="collapse" href="#vote<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <h3>Results    <i class="fas fa-chevron-down"></i></h3>
+        </div>
+        <div class='vote-results collapse' id='vote<%= poll.id %>'>
+          <div class='vote-tab'>
+            <h3>Yes</h3>
+            <% poll.votes.where(approve: true).each do |vote| %>
+              <div class='vote-yes-card d-flex justify-content-between' style='padding: 0 10px;'>
+                <span><%= vote.user.first_name.truncate(10) %></span>
+                <span><%= number_to_percentage(vote.voting_power * 100, precision: 2) %></span>
+              </div>
+            <% end %>
+          </div>
+          <div class='vote-tab'>
+            <h3>No</h3>
+            <% poll.votes.where(approve: false).each do |vote| %>
+              <div class='vote-no-card'>
+                <%= vote.user.first_name %>
+                <%= number_to_percentage(vote.voting_power * 100, precision: 2) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
