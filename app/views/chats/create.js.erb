@@ -1,0 +1,12 @@
+function updateChat(string) {
+  console.log('hi');
+  const chattyCathy = document.querySelector('.chats');
+  chattyCathy.insertAdjacentHTML('beforeend', string);
+}
+
+function refreshForm() {
+  document.getElementById('chat_message').value = '';
+}
+
+updateChat('<div class="d-flex justify-content-between align-items-center" style="padding:10px 20px;background-color:#040404;margin-bottom:10px;"><div><%= j cl_image_tag @chat.user.photo, class:"avatar" %><span style="margin-left:20px;"><%= j @chat.user.first_name.capitalize %> said:</span></div><div style="width:250px;word-wrap:break-word;"><span><%= j @chat.message %></span></div><div><span style="color:gray;"><i><%= j @chat.created_at.strftime("%_m/%-d/%y %I:%M%p") %></i></span></div></div>');
+refreshForm();
