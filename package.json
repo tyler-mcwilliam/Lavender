@@ -9,6 +9,7 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "sortablejs": "^1.9.0",
+    "sweetalert": "^2.1.2",
     "sweetalert2": "^8.12.1"
   },
   "devDependencies": {
