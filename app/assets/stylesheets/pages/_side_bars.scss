@@ -156,6 +156,7 @@
 #groups-list {
   border-top: 1px solid $lavender;
   border-bottom: 1px solid $lavender;
+  overflow-y: scroll;
 }
 
 .collapse > img {
@@ -166,6 +167,8 @@
   padding: 15px 0;
   background-color: $gray2;
   border-bottom: 1px solid $lavender;
+  overflow-y: scroll;
+  height: 400px;
 }
 
 .transaction-buttons {
