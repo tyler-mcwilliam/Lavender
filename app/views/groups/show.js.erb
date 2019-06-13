@@ -86,7 +86,7 @@ function mainChart() {
 
   // Create value axis
   var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-  valueAxis.baseValue = chart.data[0]['value'];
+  valueAxis.baseValue = chart.data[0]['value'] - 1;
   valueAxis.renderer.grid.template.disabled = true;
   valueAxis.renderer.labels.template.disabled = true;
   valueAxis.cursorTooltipEnabled = false;
