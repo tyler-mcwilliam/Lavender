@@ -10,7 +10,9 @@ class ChatsController < ApplicationController
   def create
     @chat = Chat.new(chat_params)
     @chat.save!
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   def show
