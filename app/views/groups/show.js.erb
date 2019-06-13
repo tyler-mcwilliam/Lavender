@@ -86,6 +86,7 @@ function mainChart() {
 
   // Create value axis
   var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+  valueAxis.baseValue = chart.data[0]['value'];
   valueAxis.renderer.grid.template.disabled = true;
   valueAxis.renderer.labels.template.disabled = true;
   valueAxis.cursorTooltipEnabled = false;
@@ -101,9 +102,9 @@ function mainChart() {
   series.tooltip.background.fill = "#8B81D2";
   series.fillOpacity = 0.1;
 
-  // Create a range to change stroke for values below 0
+   // Create a range to change stroke for values below 0
   var range = valueAxis.createSeriesRange(series);
-  range.value = 0;
+  range.value = chart.data[0]['value'];
   range.endValue = -1000;
   range.contents.stroke = '#EA6D3F';
   range.contents.fill = range.contents.stroke;
