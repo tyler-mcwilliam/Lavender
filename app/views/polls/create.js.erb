@@ -21,7 +21,9 @@ function refreshPolls(polls) {
 <% if @poll.buy == true %>
   <% @poll.save! if @poll.group.cash_value_cents > (@poll.quantity * @poll.price_cents) %>
   window.alert('Poll created!');
+  refreshPolls("<%= j render 'partials/polls_container' %>");
   closeModal();
+  refreshForm();
 <% else %>
   <% quantity_match = @poll.group.positions.where(ticker: @poll.ticker).where('positions.quantity >= ?', @poll.quantity) %>
   <% if quantity_match.any? %>
@@ -33,7 +35,5 @@ function refreshPolls(polls) {
   <% end %>
 <% end %>
 
-refreshForm();
-refreshPolls("<%= j render 'partials/polls_container' %>");
 
 
