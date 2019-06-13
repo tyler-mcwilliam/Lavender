@@ -43,6 +43,9 @@ class UserGroupsController < ApplicationController
     @user_group.deposits(cents(params[:user_group][:deposit])) unless params[:user_group][:deposit].nil?
     @user_group.withdraw(cents(params[:user_group][:withdrawal])) unless params[:user_group][:withdrawal].nil?
     @user_group.first_deposit(cents(params[:initial_deposit])) unless params[:initial_deposit].nil?
+    @group = @user_group.group
+    @group.performance << { "date": DateTime.now, "value": @group.portfolio_value_cents }
+    @group.save!
     respond_to do |format|
       format.html { redirect_to dashboard_path }
       format.js
