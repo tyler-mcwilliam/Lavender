@@ -1,15 +1,19 @@
 <div class="collapse" id="groupChat">
   <div class="chats" style='height:400px;overflow-y:scroll;'>
     <% @group.chatroom.chats.each do |chat| %>
-      <div class="d-flex justify-content-between align-items-center" style="padding:10px 20px;background-color:#040404;margin-bottom:10px;">
-        <div>
-          <%= cl_image_tag chat.user.photo, class:"avatar" %>
-          <span style="margin-left:20px;"><%= chat.user.first_name.capitalize %> said: </span>
+      <div class="d-flex justify-content-between align-items-start" style="padding:10px 20px;background-color:#040404;margin-bottom:10px;">
+        <div class="d-flex flex-row">
+          <div class="d-flex align-items-center">
+            <%= cl_image_tag chat.user.photo, class:"avatar" %>
+          </div>
+          <div class="d-flex align-items-center">
+            <span style="margin-left:10px;"><%= chat.user.first_name.capitalize %> said: </span>
+          </div>
         </div>
-        <div style="width:250px;word-wrap:break-word;">
+        <div style="width:500px;height:90px;word-wrap:break-word;margin-top:7px;">
           <span><%= chat.message %></span>
         </div>
-        <div>
+        <div style="margin-top:7px;">
           <span style="color:gray;"><i><%= chat.created_at.strftime("%_m/%-d/%y %I:%M%p") %></i></span>
         </div>
       </div>
@@ -18,7 +22,7 @@
   <div class="chat-form" style='margin-bottom: 20px;'>
     <%= simple_form_for [@chat], remote: true do |f| %>
       <div class="field position-relative">
-        <%= f.input :message, class: "form-control bg-dark", required: true, label: false %>
+        <%= f.input :message, class: "form-control", required: true, label: false %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :chatroom_id, value: @group.chatroom.id %>
         <%= f.submit 'Send', class:'lavender-button'%>
