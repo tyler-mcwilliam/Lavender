@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
 
   def show
     @chat = Chat.new
+    @vote = Vote.new
     @group = Group.find(params[:id])
     @user_group = @group.user_groups.where(group_id: @group.id).where(user_id: current_user.id)[0]
     @user_share = @user_group.user_share
