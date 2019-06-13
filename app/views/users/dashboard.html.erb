@@ -197,10 +197,18 @@
 <script>
   const groupContainer2 = document.getElementById('group-view-container');
   groupContainer2.addEventListener('click', (e) => {
+    console.log(e.target);
+    // automatic chat scroll
     if (e.target.classList.contains('lavender-button')) {
       document.querySelector('.chats').scrollTop = document.querySelector('.chats').scrollHeight;
+    // assigning group to join group form
+    } else if (e.target.classList.contains('hidden-description')) {
+      const joinGroupValue = document.getElementById('user_group_group_id');
+      let groupID = e.target.dataset.group;
+      console.log(groupID);
+      joinGroupValue.value = groupID;
     } else {
-      console.log('scroll bottom');
+      console.log('what is going on?');
     };
   })
 </script>

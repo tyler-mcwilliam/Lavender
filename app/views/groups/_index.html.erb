@@ -15,9 +15,9 @@
       <div id='group-index-cards-container' class='container-fluid'>
         <div class='row'>
           <% @groups.each do |group| %>
-            <button type="button" class="join-group-button btn col-4" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
+            <button type="button" class="join-group-button btn col-4" data-toggle="modal" data-target="#joinGroup">
               <div class='group-index-cards gray-shadow'>
-                <div class='hidden-description'>
+                <div class='hidden-description' data-group='<%= group.id %>'>
                   <%= group.description %>
                 </div>
                 <div class ='group-index-card-photo'>
@@ -46,7 +46,7 @@
 <%= render 'shared/modal_join_group' %>
 <%= render 'shared/modal_create_group' %>
 
-<script>
+<!-- <script>
   const joinGroupButtons = document.querySelectorAll('.join-group-button');
   const joinGroupInput = document.getElementById('user_group_group_id');
   joinGroupButtons.forEach((button) => {
@@ -56,3 +56,4 @@
     });
   })
 </script>
+ -->
