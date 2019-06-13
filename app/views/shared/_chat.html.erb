@@ -6,7 +6,7 @@
           <%= cl_image_tag chat.user.photo, class:"avatar" %>
           <span style="margin-left:20px;"><%= chat.user.first_name.capitalize %> said: </span>
         </div>
-        <div style="width:250px;word-wrap:break-word;">
+        <div style="width:500px;height:90px;word-wrap:break-word;" class="d-flex align-items-center">
           <span><%= chat.message %></span>
         </div>
         <div>
