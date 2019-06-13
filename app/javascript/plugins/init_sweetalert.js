@@ -1,4 +1,4 @@
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 
 const initSweetalert = (selector, options = {}) => {
   console.log("hellooooooooo")
