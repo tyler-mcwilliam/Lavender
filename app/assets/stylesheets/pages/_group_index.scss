@@ -1,3 +1,10 @@
+#group-index-container {
+  width: 800px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+
 #group-index-banner {
   background-color: $gray1;
   height: 30vh;

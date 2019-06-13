@@ -168,7 +168,7 @@
   background-color: $gray2;
   border-bottom: 1px solid $lavender;
   overflow-y: scroll;
-  height: 400px;
+  max-height: 400px;
 }
 
 .transaction-buttons {

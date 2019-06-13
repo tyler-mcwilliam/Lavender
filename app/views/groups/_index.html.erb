@@ -1,0 +1,43 @@
+<div id='group-index-container'>
+
+  <% if @groups.count.zero? %>
+    <div class="d-flex flex-column justify-content-center align-items-center" style='height:100vh;'>
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <h3>No available groups for you to join, maybe you should start one?!</h3>
+        <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:125px; margin-top: 20px;'>Create a Group</button>
+      </div>
+    </div>
+  <% else %>
+    <% @groups.each do |group| %>
+    <button type="button" class="join-group-button btn" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
+      <div class='group-cardd gray-shadow'>
+        <% if group.photo.file.nil? %>
+            <%= image_tag 'creategroupdefault.jpg' %>
+          <% else %>
+            <%= cl_image_tag group.photo %>
+          <% end %>
+        <div class='d-flex justify-content-between align-items-center' style='width:300px;'>
+          <h3 style='margin-left: 10px;'><%= group.name %></h3>
+          <p style='margin: 0 10px 5px 0; font-size: 20px;'><i class="fas fa-user"></i> <%= group.users.count %></p>
+        </div>
+        <i class="fas fa-plus"></i>
+      </div>
+    </button>
+    <% end %>
+  <% end %>
+
+</div>
+
+<%= render 'shared/modal_join_group' %>
+<%= render 'shared/modal_create_group' %>
+
+<script>
+  const joinGroupButtons = document.querySelectorAll('.join-group-button');
+  const joinGroupInput = document.getElementById('user_group_group_id');
+  joinGroupButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      joinGroupInput.value = button.dataset.group;
+      console.log('hi');
+    });
+  })
+</script>

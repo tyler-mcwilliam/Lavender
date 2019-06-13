@@ -1,0 +1,8 @@
+function showIndex(index) {
+  const indexView = document.getElementById('group-view-container');
+  indexView.innerHTML = index;
+  const pollsView = document.getElementById('polls-orders');
+  pollsView.innerHTML = '';
+}
+
+showIndex("<%= j render 'groups/index' %>");
