@@ -8,7 +8,8 @@
     "bootstrap-social": "^5.1.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
-    "sortablejs": "^1.9.0"
+    "sortablejs": "^1.9.0",
+    "sweetalert2": "^8.12.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.5.1"
