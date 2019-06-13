@@ -5,10 +5,33 @@ function mainChart() {
   // Create chart instance
   var chart = am4core.create("mainchartdiv", am4charts.XYChart);
 
+  // /**
+  // * Set date format for the whole chart
+  // */
+  chart.dateFormatter.dateFormat = "yyyy-MM-dd',' h:mm a";
+
   // Add data
   chart.data = generatechartData();
   function generatechartData() {
-    var chartData = [];
+    var data = "<%= @group.performance %>";
+    console.log(data);
+    var realData = [];
+    var testData = [{
+      "date": new Date(2018, 3, 20, 13, 30),
+      "value": 90
+    }, {
+      "date": new Date(2018, 3, 21, 13, 30),
+      "value": 102
+    }, {
+      "date": new Date(2018, 3, 22, 13, 30)
+    }, {
+      "date": new Date(2018, 3, 23, 13, 30),
+      "value": 125
+    }, {
+      "date": new Date(2018, 3, 24, 22, 30),
+      "value": 55
+    }]
+    var fakeData = [];
     var firstDate = new Date();
     firstDate.setDate( firstDate.getDate() - 30 );
     var visits = -40;
@@ -24,12 +47,12 @@ function mainChart() {
       }
       visits += Math.round((Math.random()<b?1:-1)*Math.random()*10);
 
-      chartData.push( {
-        date: newDate,
-        visits: visits
+      fakeData.push( {
+        "date": newDate,
+        "value": visits
       } );
     }
-    return chartData;
+    return fakeData;
   }
 
   // Create axes
@@ -48,7 +71,7 @@ function mainChart() {
 
   // Create series
   var series = chart.series.push(new am4charts.LineSeries());
-  series.dataFields.valueY = "visits";
+  series.dataFields.valueY = "value";
   series.dataFields.dateX = "date";
   series.stroke = '#219975'
   series.strokeWidth = 3;
@@ -124,7 +147,7 @@ function mainChart() {
   function updateValues(dataItem) {
     am4core.array.each(["date", "value"], function(key) {
       let series = chart.series.getIndex(0);
-      series.dataFields.valueY = "visits";
+      series.dataFields.valueY = "value";
       series.dataFields.dateX = "date";
       let label = chart.map.getKey(key);
       label.text = chart.numberFormatter.format(dataItem[key + "ValueX"]);
