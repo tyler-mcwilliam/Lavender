@@ -1,0 +1,27 @@
+function hideVote() {
+  document.querySelector('[data-vote_button="<%= j @poll.id.to_s %>"]').setAttribute('style','display: none;');
+}
+
+function refreshApprovalRate(string) {
+  const approvalRate = document.querySelector('[data-approval_rate="<%= j @poll.id.to_s %>"]');
+  approvalRate.innerHTML = string;
+  hideVote();
+}
+
+function appendYesVote(string) {
+  const yesVote = document.getElementById('yes-vote');
+  yesVote.insertAdjacentHTML('beforeend', string);
+}
+
+function appendNoVote(string) {
+  const noVote = document.getElementById('no-vote');
+  noVote.insertAdjacentHTML('beforeend', string);
+}
+
+refreshApprovalRate('<%= j number_to_percentage((@poll.approval * 100), precision: 2) %>');
+
+<% if @vote.approve == true %>
+  appendYesVote('<b>You (<%= j number_to_percentage(((@poll.group.user_groups.where(user_id: current_user.id)[0].user_share * 100) / @poll.group.total_shares ), precision: 2) %>)</b>');
+<% else %>
+  appendNoVote('<b>You (<%= j number_to_percentage(((@poll.group.user_groups.where(user_id: current_user.id)[0].user_share * 100) / @poll.group.total_shares ), precision: 2) %>)</b>');
+<% end %>

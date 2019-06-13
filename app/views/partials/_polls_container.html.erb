@@ -21,7 +21,7 @@
         <% end %>
         of <%= poll.ticker.upcase %>
       </p>
-      <div class='approval-rate'>
+      <div class='approval-rate' data-approval_rate='<%= poll.id.to_s %>'>
         <%= (poll.approval * 100).to_i %>%
       </div>
     </div>
@@ -42,11 +42,11 @@
           <p><%= humanized_money_with_symbol (poll.price.to_f * poll.quantity.to_i) %></p>
         </div>
       </div>
-      <div class='poll-vote'>
+      <div class='poll-vote' data-vote_button='<%= poll.id.to_s %>'>
         <% if poll.has_voted_by_current_user(current_user) %>
           <span>You voted <%= current_user.vote_for_this_poll(poll).upcase %></span>
         <% else %>
-          <%= simple_form_for [poll, Vote.new] do |f| %>
+          <%= simple_form_for [poll, @vote], remote:true do |f| %>
             <%= f.button :submit, 'yes', class: 'btn lavender-button mr-2'%>
             <%= f.button :submit, 'no', class: 'btn lavender-button ml-2'%>
           <% end %>
@@ -58,7 +58,7 @@
           <h3>Results    <i class="fas fa-chevron-down"></i></h3>
         </div>
         <div class='vote-results collapse' id='vote<%= poll.id %>'>
-          <div class='vote-tab'>
+          <div class='vote-tab' id='yes-vote'>
             <h3>Yes</h3>
             <% poll.votes.where(approve: true).each do |vote| %>
               <div class='vote-yes-card d-flex justify-content-between' style='padding: 0 10px;'>
@@ -67,7 +67,7 @@
               </div>
             <% end %>
           </div>
-          <div class='vote-tab'>
+          <div class='vote-tab' id='no-vote'>
             <h3>No</h3>
             <% poll.votes.where(approve: false).each do |vote| %>
               <div class='vote-no-card'>

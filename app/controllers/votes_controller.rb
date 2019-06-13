@@ -26,7 +26,11 @@ class VotesController < ApplicationController
         )
         @order.save!
       end
+      respond_to do |format|
+        format.js
+      end
       # @poll.rejection += @vote.voting_power if @vote.approve == false
+    else
       redirect_to dashboard_path
     end
   end

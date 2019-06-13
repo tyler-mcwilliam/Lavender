@@ -15,6 +15,7 @@ class PollsController < ApplicationController
   end
 
   def create
+    @vote = Vote.new
     @poll = Poll.new(poll_params)
     @poll.ticker.upcase!
     @poll.creator = current_user
