@@ -5,9 +5,9 @@
     <div id='side-profile'>
       <div id='side-profile-photo'>
         <% if current_user.photo.file.nil? %>
-          <%= image_tag 'monsters/6.png', class:'avatar-huge' %>
+          <%= image_tag 'monsters/6.png', class:'avatar-huge', data: { toggle:'modal', target:'#editProfile' } %>
         <% else %>
-          <%= cl_image_tag current_user.photo, class:'avatar-huge' %>
+          <%= cl_image_tag current_user.photo, class:'avatar-huge', data: { toggle:'modal', target:'#editProfile' } %>
         <% end %>
         <i class="fas fa-edit" data-toggle="modal" data-target="#editProfile"></i>
       </div>
