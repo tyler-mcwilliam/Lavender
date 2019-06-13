@@ -1,30 +1,42 @@
-<div id='group-index-container container'>
+<div id='group-index-container'>
+  <div id='group-index-header' class='d-flex
+  flex-column justify-content-center align-items-center'>
+    <h2>Join a <span>group<span>.</h2>
+    <h2>Start investing today!</h2>
+  </div>
 
-  <% if @groups.count.zero? %>
-    <div class="d-flex flex-column justify-content-center align-items-center" style='height:100vh;'>
-      <div class="d-flex flex-column justify-content-center align-items-center">
-        <h3>No available groups for you to join, maybe you should start one?!</h3>
-        <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:125px; margin-top: 20px;'>Create a Group</button>
-      </div>
-    </div>
-  <% else %>
-    <% @groups.each do |group| %>
-    <button type="button" class="join-group-button btn" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
-      <div class='group-cardd gray-shadow'>
-        <% if group.photo.file.nil? %>
-            <%= image_tag 'creategroupdefault.jpg' %>
-          <% else %>
-            <%= cl_image_tag group.photo %>
-          <% end %>
-        <div class='d-flex justify-content-between align-items-center' style='width:300px;'>
-          <h3 style='margin-left: 10px;'><%= group.name %></h3>
-          <p style='margin: 0 10px 5px 0; font-size: 20px;'><i class="fas fa-user"></i> <%= group.users.count %></p>
+    <% if @groups.count.zero? %>
+      <div class="d-flex flex-column justify-content-center align-items-center" style='height:100vh;'>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <h3>No available groups for you to join, maybe you should start one?!</h3>
+          <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:125px; margin-top: 20px;'>Create a Group</button>
         </div>
-        <i class="fas fa-plus"></i>
       </div>
-    </button>
+    <% else %>
+      <div id='group-index-cards-container' class='container-fluid'>
+        <div class='row'>
+          <% @groups.each do |group| %>
+            <button type="button" class="join-group-button btn col-4" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
+              <div class='group-index-cards gray-shadow'>
+                <div class ='group-index-card-photo'>
+                  <% if group.photo.file.nil? %>
+                    <%= image_tag 'creategroupdefault.jpg' %>
+                  <% else %>
+                    <%= cl_image_tag group.photo %>
+                  <% end %>
+                </div>
+                <div class=' group-index-card-description'>
+                  <h3><%= group.name %></h3>
+                  <span><i class="fas fa-user"></i> <%= group.users.count %></span>
+                </div>
+                <i class="fas fa-plus"></i>
+              </div>
+            </button>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  <% end %>
+  </div>
 
 </div>
 
