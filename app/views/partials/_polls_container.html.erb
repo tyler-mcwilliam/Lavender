@@ -1,6 +1,6 @@
 <h2>Polls</h2>
 <%= "No current polls, start the discussion now!" if @group.polls.count.zero? %>
-<% @group.polls.each do |poll| %>
+<% @group.polls.reverse.each do |poll| %>
   <div id='polls-container' class='gray-shadow'>
     <!-- poll header -->
     <div class='poll-header' data-poll_id='<%= poll.id %>' data-toggle="collapse" href="#collapse<%= poll.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
