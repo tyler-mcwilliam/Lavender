@@ -1,8 +1,7 @@
 <div id='group-index-container'>
   <div id='group-index-header' class='d-flex
   flex-column justify-content-center align-items-center'>
-    <h2>Join a <span>group<span>.</h2>
-    <h2>Start investing today!</h2>
+    <h1><span style='font-size:30px; color:#8B81D2;'>Click</span> on a group to join!</h1>
   </div>
 
     <% if @groups.count.zero? %>
@@ -18,6 +17,9 @@
           <% @groups.each do |group| %>
             <button type="button" class="join-group-button btn col-4" data-toggle="modal" data-target="#joinGroup" data-group='<%= group.id %>'>
               <div class='group-index-cards gray-shadow'>
+                <div class='hidden-description'>
+                  <%= group.description %>
+                </div>
                 <div class ='group-index-card-photo'>
                   <% if group.photo.file.nil? %>
                     <%= image_tag 'creategroupdefault.jpg' %>
@@ -26,10 +28,11 @@
                   <% end %>
                 </div>
                 <div class=' group-index-card-description'>
-                  <h3><%= group.name %></h3>
+                  <div class='d-flex flex-column align-items-start'>
+                    <h2><%= group.name %></h2>
+                  </div>
                   <span><i class="fas fa-user"></i> <%= group.users.count %></span>
                 </div>
-                <i class="fas fa-plus"></i>
               </div>
             </button>
           <% end %>
