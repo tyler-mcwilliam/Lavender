@@ -1,5 +1,7 @@
 <h2>Polls</h2>
-<%= "No current polls, start the discussion now!" if @group.polls.count.zero? %>
+<div style='width:350px; border-bottom: 1px solid #8B81D2'>
+  <%= "No current polls, start the discussion now!" if @group.polls.count.zero? %>
+</div>
 <% @group.polls.reverse.each do |poll| %>
   <div id='polls-container' class='gray-shadow'>
     <!-- poll header -->
@@ -21,7 +23,7 @@
         <% end %>
         of <%= poll.ticker.upcase %>
       </p>
-      <div class='approval-rate' data-approval_rate='<%= poll.id.to_s %>'>
+      <div class='approval-rate' data-approval_rate='<%= poll.id.to_s %>' style='color:white;'>
         <%= (poll.approval * 100).to_i %>%
       </div>
     </div>
@@ -63,16 +65,16 @@
             <% poll.votes.where(approve: true).each do |vote| %>
               <div class='vote-yes-card d-flex justify-content-between' style='padding: 0 10px;'>
                 <span><%= vote.user.first_name.truncate(10) %></span>
-                <span><%= number_to_percentage(vote.voting_power * 100, precision: 2) %></span>
+                <span style='color:#219974'><%= number_to_percentage(vote.voting_power * 100, precision: 2) %></span>
               </div>
             <% end %>
           </div>
           <div class='vote-tab' id='no-vote'>
             <h3>No</h3>
             <% poll.votes.where(approve: false).each do |vote| %>
-              <div class='vote-no-card'>
-                <%= vote.user.first_name %>
-                <%= number_to_percentage(vote.voting_power * 100, precision: 2) %>
+              <div class='vote-yes-card d-flex justify-content-between' style='padding: 0 10px;'>
+                <span><%= vote.user.first_name.truncate(10) %></span>
+                <span style='color:##ab502f'><%= number_to_percentage(vote.voting_power * 100, precision: 2) %></span>
               </div>
             <% end %>
           </div>

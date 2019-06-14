@@ -20,20 +20,18 @@ class UserGroupsController < ApplicationController
     @group.portfolio_value_cents += cents(params[:user_group]['user_contribution'])
     # USER | deduct deposit
     current_user.available_balance_cents -= cents(params[:user_group]['user_contribution'])
+    @groups = current_user.groups
+    @polls = @user_group.group.polls
 
-    # respond_to do |format|
-    #   format.html { redirect_to dashboard_path }
-    #   format.js
-    # end
     if cents(params[:user_group]['user_contribution']) > current_user.available_balance_cents
       redirect_to dashboard_path
     else
-      if @user_group.save!
-        @group.save!
-        current_user.save!
-        redirect_to dashboard_path
-      else
-        redirect_to dashboard_path
+      @user_group.save!
+      @group.save!
+      current_user.save!
+      respond_to do |format|
+        format.html { redirect_to dashboard_path }
+        format.js
       end
     end
   end
@@ -46,10 +44,6 @@ class UserGroupsController < ApplicationController
     @group = @user_group.group
     @group.performance << { "date": DateTime.now, "value": @group.portfolio_value_cents }
     @group.save!
-    respond_to do |format|
-      format.html { redirect_to dashboard_path }
-      format.js
-    end
   end
 
   private

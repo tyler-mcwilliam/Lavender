@@ -7,7 +7,9 @@
 
 #left-bar {
   height: 100%;
-  width: 300px;
+  // width: 300px;
+  width: 15vw;
+  min-width: 250px;
   background-color: $dark-gray;
   position: fixed;
   top: 0;
@@ -35,6 +37,9 @@
     padding: 20px;
     background-color: $gray1;
   }
+  h2 {
+    margin: 8px 0;
+  }
 }
 
 #side-profile-photo {
@@ -60,7 +65,10 @@
 
 #right-bar {
   height: 100%;
-  width: 300px;
+  // width: 300px;
+  min-width: 250px;
+  width: 15vw;
+
   background-color: $dark-gray;
   position: fixed;
   top: 0;
@@ -168,7 +176,7 @@
   background-color: $gray2;
   border-bottom: 1px solid $lavender;
   overflow-y: scroll;
-  height: 400px;
+  max-height: 400px;
 }
 
 .transaction-buttons {

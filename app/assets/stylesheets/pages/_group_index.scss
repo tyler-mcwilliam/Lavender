@@ -1,3 +1,67 @@
+#group-index-container {
+  // width: 800px;
+  height: 100vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  #group-index-header {
+    margin-top: 100px;
+    border-bottom: 1px solid $lavender;
+    width: 100%;
+  }
+  #group-index-cards-container {
+    margin-top: 15px;
+    .group-index-cards {
+      width: 20vw;
+      margin-bottom: 20px;
+      background: $gray1;
+      position: relative;
+      .hidden-description {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        color: white;
+        font-size: 20px;
+        &:hover {
+          opacity: 1;
+          background-color: rgba(0,0,0,.9);
+        }
+      }
+      .group-index-card-photo {
+        width: 100%;
+        img {
+          width: 100%;
+        }
+      }
+      .group-index-card-description {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding: 10px 20px;
+        span {
+          color: $lavender;
+          .fa-user {
+            font-size: 18px;
+            color: $lavender;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
 #group-index-banner {
   background-color: $gray1;
   height: 30vh;
@@ -13,15 +77,15 @@
 }
 
 .group-cardd {
-  width: 300px;
-  height: 280px;
+  width: 350px;
+  height: 300px;
   display: flex;
-  background-color: #181625;
+  background-color: $gray1;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   border-radius: 5px;
-  margin: 10px;
+  margin: auto;
   position:relative;
   img {
     width: 280px;
@@ -54,6 +118,7 @@
   display: flex;
   justify-content: center;
 }
+
 
 .join-group-button {
   border-color: transparent;

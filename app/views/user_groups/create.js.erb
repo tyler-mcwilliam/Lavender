@@ -7,13 +7,38 @@ function closeModals() {
   document.querySelector('.modal-open').classList.remove('modal-open');
 }
 
-<% if Group.find(params[:user_group]['group_id']).users.where(id: current_user.id).any? %>
-  console.log('hello');
-  window.alert('You are already in this group!');
-  closeModals();
-  location.reload();
-<% else %>
-  console.log('else')
-  closeModals();
-<% end %>
+function refreshGroupBar(groups) {
+  const rightBar = document.getElementById('right-bar');
+  rightBar.innerHTML = groups;
+}
+
+function refreshUserAvailableBalance(string) {
+  const str = string.split('');
+  const balance = document.getElementById('user-available-balance');
+  balance.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? balance.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+function insertTop(tab) {
+  const groups = document.getElementById('groups-list');
+  groups.firstElementChild.classList.remove('active');
+  groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
+  groups.insertAdjacentElement('afterbegin', tab);
+  tab.classList.add('active'); //group-tabs-container
+  groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
+}
+
+function clickTab() {
+  const tab = document.querySelector('[data-group_id="<%= @group.id %>"]')
+  tab.getElementsByClassName('group-link')[0].click();
+  insertTop(tab);
+}
+
+refreshGroupBar("<%= j render 'partials/groups_container' %>");
+refreshUserAvailableBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
+closeModals();
+clickTab();
 

@@ -12,6 +12,10 @@ class GroupsController < ApplicationController
     end
     @user_group = UserGroup.new
     @group = Group.new
+    respond_to do |format|
+      format.html { render 'index'}
+      format.js
+    end
   end
 
   def show

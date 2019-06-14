@@ -1,0 +1,10 @@
+function showIndex(index) {
+  const indexView = document.getElementById('group-view-container');
+  indexView.innerHTML = index;
+  const pollsContainer= document.getElementById('group-polls');
+    pollsContainer.innerHTML = '';
+  const ordersContainer= document.getElementById('group-orders');
+    ordersContainer.innerHTML = '';
+}
+
+showIndex("<%= j render 'groups/index' %>");

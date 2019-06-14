@@ -13,7 +13,7 @@
       </div>
       <h2><%= current_user.first_name.capitalize %></h2>
       <!-- balances container -->
-      <div class='gray-shadow'>
+      <div>
         <div class='d-flex justify-content-between'>
           <span style='color:gray;'>
             Available Balance:
@@ -74,7 +74,7 @@
     </div>
 
     <!-- watchlist container -->
-    <div id='watch-list' class='gray-shadow'>
+    <div id='watch-list'>
       <div id='watch-list-header'>
         <h2>Watch List</h2>
         <i class="fas fa-plus"></i>
@@ -109,7 +109,7 @@
 
   <!-- group view container -->
   <div id='group-view-container'>
-    <div style='height:90vh;' class='d-flex flex-column justify-content-center align-items-center fade-in-delay2'>
+    <div style='height:100vh;' class='d-flex flex-column justify-content-center align-items-center fade-in-delay2'>
       <h1 class='fade-in-delay2' style='font-size:32px;'><span style='font-size:30px; color:#8B81D2;'>
         Welcome</span> <%= current_user.first_name.capitalize %>!
       </h1>
@@ -118,7 +118,7 @@
           <button type="button" class="btn lavender-button" data-toggle="modal" data-target="#createGroup" data-whatever="@createGroup" style='width:120px;'>
             Create a Group
           </button>
-          <button type="button" class="btn lavender-button" style='width:120px;'><%= link_to "Join a Group", groups_path %></button>
+          <button type="button" class="btn lavender-button" style='width:120px;'><%= link_to "Join a Group", groups_path, remote: true %></button>
         </div>
       <% end %>
     </div>
@@ -197,10 +197,18 @@
 <script>
   const groupContainer2 = document.getElementById('group-view-container');
   groupContainer2.addEventListener('click', (e) => {
+    console.log(e.target);
+    // automatic chat scroll
     if (e.target.classList.contains('lavender-button')) {
       document.querySelector('.chats').scrollTop = document.querySelector('.chats').scrollHeight;
+    // assigning group to join group form
+    } else if (e.target.classList.contains('hidden-description')) {
+      const joinGroupValue = document.getElementById('user_group_group_id');
+      let groupID = e.target.dataset.group;
+      console.log(groupID);
+      joinGroupValue.value = groupID;
     } else {
-      console.log('scroll bottom');
+      console.log('what is going on?');
     };
   })
 </script>
