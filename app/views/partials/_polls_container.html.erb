@@ -65,16 +65,16 @@
             <% poll.votes.where(approve: true).each do |vote| %>
               <div class='vote-yes-card d-flex justify-content-between' style='padding: 0 10px;'>
                 <span><%= vote.user.first_name.truncate(10) %></span>
-                <span><%= number_to_percentage(vote.voting_power * 100, precision: 2) %></span>
+                <span style='color:#219974'><%= number_to_percentage(vote.voting_power * 100, precision: 2) %></span>
               </div>
             <% end %>
           </div>
           <div class='vote-tab' id='no-vote'>
             <h3>No</h3>
             <% poll.votes.where(approve: false).each do |vote| %>
-              <div class='vote-no-card'>
-                <%= vote.user.first_name %>
-                <%= number_to_percentage(vote.voting_power * 100, precision: 2) %>
+              <div class='vote-yes-card d-flex justify-content-between' style='padding: 0 10px;'>
+                <span><%= vote.user.first_name.truncate(10) %></span>
+                <span style='color:##ab502f'><%= number_to_percentage(vote.voting_power * 100, precision: 2) %></span>
               </div>
             <% end %>
           </div>
