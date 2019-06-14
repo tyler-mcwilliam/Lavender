@@ -23,7 +23,7 @@
         <% end %>
         of <%= poll.ticker.upcase %>
       </p>
-      <div class='approval-rate' data-approval_rate='<%= poll.id.to_s %>'>
+      <div class='approval-rate' data-approval_rate='<%= poll.id.to_s %>' style='color:white;'>
         <%= (poll.approval * 100).to_i %>%
       </div>
     </div>
