@@ -3,8 +3,13 @@ function hideVote() {
 }
 
 function refreshApprovalRate(string) {
+  const str = string.split('');
   const approvalRate = document.querySelector('[data-approval_rate="<%= j @poll.id.to_s %>"]');
-  approvalRate.innerHTML = string;
+  approvalRate.innerHTML = '';
+  (function animate() {
+  str.length > 0 ? approvalRate.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
   hideVote();
 }
 
