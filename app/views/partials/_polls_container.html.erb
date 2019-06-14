@@ -1,5 +1,7 @@
 <h2>Polls</h2>
-<%= "No current polls, start the discussion now!" if @group.polls.count.zero? %>
+<div style='width:350px; border-bottom: 1px solid #8B81D2'>
+  <%= "No current polls, start the discussion now!" if @group.polls.count.zero? %>
+</div>
 <% @group.polls.reverse.each do |poll| %>
   <div id='polls-container' class='gray-shadow'>
     <!-- poll header -->
