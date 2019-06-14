@@ -223,14 +223,14 @@ function refreshOrders(orders) {
   ordersView.innerHTML = orders;
 }
 
-function addFade() {
-  document.getElementById('group-view-container').classList.add('fade-in');
-  console.log('fadein');
-}
+// function addFade() {
+//   document.getElementById('group-view-container').classList.add('fade-in');
+//   console.log('fadein');
+// }
 
 
 refreshGroup("<%= j render 'groups/show' %>");
-addFade();
+// addFade();
 refreshPolls("<%= j render 'partials/polls_container' %>");
 refreshOrders("<%= j render 'partials/orders_container' %>");
 mainChart();

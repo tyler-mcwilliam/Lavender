@@ -22,21 +22,23 @@ function refreshUserAvailableBalance(string) {
   })();
 }
 
+function insertTop(tab) {
+  const groups = document.getElementById('groups-list');
+  groups.firstElementChild.classList.remove('active');
+  groups.firstElementChild.getElementsByClassName('collapse')[0].classList.remove('show');
+  groups.insertAdjacentElement('afterbegin', tab);
+  tab.classList.add('active'); //group-tabs-container
+  groups.firstElementChild.getElementsByClassName('collapse')[0].classList.toggle('show');
+}
+
 function clickTab() {
   const tab = document.querySelector('[data-group_id="<%= @group.id %>"]')
   tab.getElementsByClassName('group-link')[0].click();
   insertTop(tab);
 }
 
-<% if Group.find(params[:user_group]['group_id']).users.where(id: current_user.id).any? %>
-    console.log('hello');
-    window.alert('You are already in this group!');
-    closeModals();
-    location.reload();
-<% else %>
-    refreshGroupBar("<%= j render 'partials/groups_container' %>");
-    refreshUserAvailableBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
-    closeModals();
-    clickTab();
-<% end %>
+refreshGroupBar("<%= j render 'partials/groups_container' %>");
+refreshUserAvailableBalance('<%= j number_to_currency(current_user.available_balance_cents * 0.01) %>');
+closeModals();
+clickTab();
 
