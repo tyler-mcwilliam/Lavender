@@ -26,9 +26,9 @@ function appendNoVote(string) {
 refreshApprovalRate('<%= j number_to_percentage((@poll.approval * 100), precision: 2) %>');
 
 <% if @vote.approve == true %>
-  appendYesVote('<div class="vote-yes-card d-flex justify-content-between" style="padding: 0 10px;"><span>You</span><span style="color:#219974">(<%= j number_to_percentage(((@poll.group.user_groups.where(user_id: current_user.id)[0].user_share * 100) / @poll.group.total_shares ), precision: 2) %>)</span></div>');
+  appendYesVote('<div class="vote-yes-card d-flex justify-content-between" style="padding: 0 10px;"><span>You</span><span style="color:#219974"><%= j number_to_percentage(((@poll.group.user_groups.where(user_id: current_user.id)[0].user_share * 100) / @poll.group.total_shares ), precision: 2) %></span></div>');
 <% else %>
-  appendNoVote('<b>You (<%= j number_to_percentage(((@poll.group.user_groups.where(user_id: current_user.id)[0].user_share * 100) / @poll.group.total_shares ), precision: 2) %>)</b>');
+  appendNoVote('<div class="vote-no-card d-flex justify-content-between" style="padding: 0 10px;"><span>You</span><span style="color:#219974"><%= j number_to_percentage(((@poll.group.user_groups.where(user_id: current_user.id)[0].user_share * 100) / @poll.group.total_shares ), precision: 2) %></span></div>');
 <% end %>
 
 
