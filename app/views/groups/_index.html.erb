@@ -1,9 +1,4 @@
 <div id='group-index-container'>
-  <div id='group-index-header' class='d-flex
-  flex-column justify-content-center align-items-center'>
-    <h1><span style='font-size:30px; color:#8B81D2;'>Click</span> on a group to join!</h1>
-  </div>
-
     <% if @groups.count.zero? %>
       <div class="d-flex flex-column justify-content-center align-items-center" style='height:100vh;'>
         <div class="d-flex flex-column justify-content-center align-items-center">
@@ -12,6 +7,10 @@
         </div>
       </div>
     <% else %>
+      <div id='group-index-header' class='d-flex
+      flex-column justify-content-center align-items-center'>
+        <h1><span style='font-size:30px; color:#8B81D2;'>Click</span> on a group to join!</h1>
+      </div>
       <div id='group-index-cards-container' class='container-fluid'>
         <div class='row'>
           <% @groups.each do |group| %>
