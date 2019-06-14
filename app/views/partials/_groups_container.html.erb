@@ -28,19 +28,19 @@
                 <%= cl_image_tag group.photo %>
               <% end %>
               <div id="members-list">
-                <% group.users.each do |user| %>
+                <% UserGroup.where(group: group).order('user_share ASC').reverse_order.each do |user_group| %>
                   <div class='member-tabs'>
                     <div class='d-flex justify-content-start align-items-center'>
-                      <% if user.photo.file.nil? %>
+                      <% if user_group.user.photo.file.nil? %>
                         <%= image_tag 'monsters/6.png', class:'avatar' %>
                       <% else %>
-                        <%= cl_image_tag user.photo, class:'avatar' %>
+                        <%= cl_image_tag user_group.user.photo, class:'avatar' %>
                       <% end %>
-                      <h3><%= user.first_name.capitalize %></h3>
+                      <h3><%= user_group.user.first_name.capitalize %></h3>
                     </div>
-                    <h3 data-user_percentage='<%=user.id %>'>
-                      <% usershares = user.user_groups.where(group_id: group.id)[0].user_share.to_f %>
-                      <%= number_to_percentage((( usershares / group.total_shares )* 100), precision: 2) %>
+                    <h3 data-user_percentage='<%= user_group.user_id %>'>
+                      <% usershares = user_group.user_share.to_f %>
+                      <%= number_to_percentage((( usershares / user_group.group.total_shares )* 100), precision: 2) %>
                     </h3>
                   </div>
                 <% end %>
