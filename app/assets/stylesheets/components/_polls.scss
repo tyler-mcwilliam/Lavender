@@ -1,13 +1,64 @@
-
 #group-polls {
   margin-top: 50px;
+}
+#polls-container {
+  width: 22vw;
+  background-color: $gray1;
+  border-radius: 5px;
+  border-bottom: 1px solid $lavender;
+  margin-bottom: 10px;
+  .poll-header {
+    width: 22vw;
+    padding: 20px;
+    border-bottom: 1px solid $lavender;
+    position: relative;
+    color: gray;
+    cursor: pointer;
+    p {
+      text-align: center;
+      font-size: 24px;
+    }
+    .approval-rate {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    #poll-buy {
+      color: $lavender-green;
+      font-size: 24px;
+    }
+    #poll-sell {
+      color: $lavender-red;
+      font-size: 24px;
+    }
+  }
+  .poll-content {
+    width: 22vw;
+    padding: 20px;
+    background-color: $gray2;
+    border-bottom: 1px solid $lavender;
+  }
+  .poll-vote {
+    width: 20vw;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    a {
+      text-decoration: none;
+      font-size: 24px;
+      transition: 1s;
+      &:hover {
+        font-size: 30px;
+      }
+    }
+  }
 }
 
 #group-orders {
   margin-top: 50px;
   #orders-container {
     text-align: center;
-    width: 350px;
+    width: 22vw;
     background-color: $gray1;
     border-radius: 5px;
     border-bottom: 1px solid $lavender;
@@ -33,58 +84,7 @@
   }
 }
 
-#polls-container {
-  width: 350px;
-  background-color: $gray1;
-  border-radius: 5px;
-  border-bottom: 1px solid $lavender;
-  margin-bottom: 10px;
-  .poll-header {
-    width: 350px;
-    padding: 20px;
-    border-bottom: 1px solid $lavender;
-    position: relative;
-    color: gray;
-    cursor: pointer;
-    p {
-      text-align: center;
-      font-size: 24px;
-    }
-    .approval-rate {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-    #poll-buy {
-      color: $lavender-green;
-      font-size: 24px;
-    }
-    #poll-sell {
-      color: $lavender-red;
-      font-size: 24px;
-    }
-  }
-  .poll-content {
-    width: 350px;
-    padding: 20px;
-    background-color: $gray2;
-    border-bottom: 1px solid $lavender;
-  }
-  .poll-vote {
-    width: 310px;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    a {
-      text-decoration: none;
-      font-size: 24px;
-      transition: 1s;
-      &:hover {
-        font-size: 30px;
-      }
-    }
-  }
-}
+
 
 .votes-container {
   margin-top: 20px;
