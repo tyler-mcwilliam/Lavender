@@ -34,7 +34,7 @@
 }
 
 #group-show-div {
-  width: 800px;
+  width: 50vw;
   margin-top: 100px;
   margin-left: 50px;
   h1 {
@@ -49,6 +49,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  width: 50vw;
   div {
     display: flex;
   }
@@ -59,7 +60,7 @@
 }
 
 #mainchartdiv {
-  width: 100%;
+  width: 50vw;
   height: 500px;
   background-color: $gray1;
   border-bottom: 3px solid $lavender;
@@ -68,7 +69,7 @@
 }
 
 #group-stats {
-  width: 800px;
+  width: 50vw;
   height: 100px;
   background-color: $gray1;
   margin-top: 10px;
@@ -79,7 +80,7 @@
   border-bottom: 1px solid $lavender;
   border-radius: 5px;
   div {
-    width: 350px;
+    width: 22vw;
   }
 }
 
@@ -97,7 +98,7 @@
   align-items: center;
   border-bottom: 1px solid $lavender;
   div {
-    width: 350px;
+    width: 22vw;
   }
 }
 
@@ -110,7 +111,7 @@
     text-decoration: none;
     color: gray;
     margin-bottom: 20px;
-    font-size: 30px;
+    font-size: 25px;
     &:hover {
       color: $lavender;
     }
@@ -138,4 +139,10 @@
 .chatbar {
   margin: 0 auto;
   margin-top:50px
+}
+
+#group-performance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

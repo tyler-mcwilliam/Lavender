@@ -1,6 +1,6 @@
 <h2>Open Orders</h2>
 <div style='border-bottom: 1px solid #8B81D2; margin-bottom: 10px;'>
-  <div style='width:350px;'>
+  <div style='width:22vw;'>
     <%= "No open orders" if (@group.orders.select { |order| order.filled == false }).count == 0 %>
   </div>
   <% (@group.orders.select { |order| order.filled == false }).each do |order|%>
