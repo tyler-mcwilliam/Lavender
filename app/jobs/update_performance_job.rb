@@ -4,6 +4,7 @@ class UpdatePerformanceJob < ApplicationJob
   def update_position(position)
     # position = Position.find(position)
     puts "Updating position #{position.id}"
+    StockQuote::Stock.new(api_key: 'pk_5f4dbf25fbd3494cbbd71fe4c33393fe')
     position.current_price_cents = (StockQuote::Stock.quote(position.ticker).latest_price.to_f * 100).to_i
     position.return_cents = (position.current_price_cents - position.cost_basis_cents) * position.quantity
     position.save!
