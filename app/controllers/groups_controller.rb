@@ -5,7 +5,8 @@ class GroupsController < ApplicationController
   before_action :set_positions, only: [:show]
   before_action :set_users, only: [:show]
   before_action :set_user_group, only: [:show, :update]
-
+  before_action :set_stock_quote
+  
   def index
     @groups = Group.all.reject do |group|
       group.users.include?(current_user)
@@ -116,6 +117,10 @@ class GroupsController < ApplicationController
       user_group.group == @group && user_group.user == current_user
     end
     @user_group = @user_group[0]
+  end
+
+  def set_stock_quote
+    StockQuote::Stock.new(api_key: 'pk_5f4dbf25fbd3494cbbd71fe4c33393fe')
   end
 
   def group_params
