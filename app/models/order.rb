@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   after_create :execute, :post_to_alpaca
 
   def execute
+    StockQuote::Stock.new(api_key: 'pk_5f4dbf25fbd3494cbbd71fe4c33393fe')
     @poll = self.poll
     @group = self.poll.group
     @position = @group.positions.find { |position| position.ticker == self.ticker}
