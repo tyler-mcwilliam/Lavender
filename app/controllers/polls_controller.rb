@@ -2,6 +2,7 @@ class PollsController < ApplicationController
   # before_action :set_group, only: [:show, :edit]
   before_action :set_poll, only: [:show, :edit]
   before_action :set_group, only: [:create]
+  before_action :set_stock_quote, only: [:create]
 
   def index
     @polls = Poll.all
@@ -42,6 +43,10 @@ class PollsController < ApplicationController
 
   def set_poll
     @poll = Poll.find(params[:id])
+  end
+
+  def set_stock_quote
+    StockQuote::Stock.new(api_key: 'pk_5f4dbf25fbd3494cbbd71fe4c33393fe')
   end
 
   def poll_params
