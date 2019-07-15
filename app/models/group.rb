@@ -17,6 +17,11 @@ class Group < ApplicationRecord
   attr_accessor :initial_deposit
 
   after_create :create_user_group
+  before_action :set_stock_quote
+  
+  def set_stock_quote
+    StockQuote::Stock.new(api_key: 'pk_5f4dbf25fbd3494cbbd71fe4c33393fe')
+  end
 
   def create_user_group
     @user_group = UserGroup.new
