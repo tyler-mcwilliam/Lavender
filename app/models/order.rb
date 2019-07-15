@@ -4,6 +4,11 @@ class Order < ApplicationRecord
   monetize :price_cents
 
   after_create :execute, :post_to_alpaca
+  before_action :set_stock_quote
+  
+  def set_stock_quote
+    StockQuote::Stock.new(api_key: 'pk_5f4dbf25fbd3494cbbd71fe4c33393fe')
+  end
 
   def execute
     @poll = self.poll
