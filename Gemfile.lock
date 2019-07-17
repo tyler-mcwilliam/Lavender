@@ -250,7 +250,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stock_quote (2.0.0)
+    stock_quote (3.0.0)
       json
       rest-client (~> 2.0.2)
     stripe (4.18.1)
@@ -316,7 +316,7 @@ DEPENDENCIES
   sortable-rails
   spring
   spring-watcher-listen (~> 2.0.0)
-  stock_quote
+  stock_quote (~> 3.0.0)
   stripe
   uglifier
   unirest
