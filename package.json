@@ -6,7 +6,7 @@
     "@rails/webpacker": "^4.0.6",
     "bootstrap": "^4.3.1",
     "bootstrap-social": "^5.1.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.15.0",
     "sortablejs": "^1.9.0",
     "sweetalert": "^2.1.2",
