@@ -2,7 +2,7 @@
   "name": "Lavender",
   "private": true,
   "dependencies": {
-    "@amcharts/amcharts4": "^4.4.10",
+    "@amcharts/amcharts4": "^4.10.29",
     "@rails/webpacker": "^4.0.6",
     "bootstrap": "^4.3.1",
     "bootstrap-social": "^5.1.1",
